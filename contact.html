@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact & Get Pre-Approved — LotLink Indiana</title>
+<meta name="description" content="Contact LotLink Indiana or get pre-approved for auto financing. All credit situations welcome. Serving Rochester, Warsaw, Plymouth, and all of Northern Indiana.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://lotlinkin.com/contact.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="LotLink Indiana">
+<meta property="og:title" content="Contact LotLink Indiana">
+<meta property="og:description" content="Reach John Roberts at 260-229-9393 or get pre-approved for auto financing. All credit welcome.">
+<meta property="og:url" content="https://lotlinkin.com/contact.html">
+<meta property="og:image" content="https://lotlinkin.com/assets/og-default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<script src="assets/site.js" defer></script>
+<script src="assets/lead-submit.js" defer></script>
+<style>
+/* CONTACT SPECIFIC */
+.about-john { display:grid; grid-template-columns:140px 1fr; gap:36px; align-items:center; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:10px; padding:36px; margin-bottom:56px; }
+.about-avatar { width:140px; height:140px; border-radius:50%; background:linear-gradient(135deg,var(--accent),var(--blue)); display:flex; align-items:center; justify-content:center; font-family:'Bebas Neue',sans-serif; font-size:58px; color:var(--white); letter-spacing:2px; border:3px solid rgba(232,160,32,0.4); }
+.about-john h3 { font-family:'DM Serif Display',serif; font-size:26px; color:var(--white); margin-bottom:6px; }
+.about-john .role { font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:var(--gold); margin-bottom:14px; font-weight:600; }
+.about-john p { font-size:14px; color:rgba(255,255,255,0.75); line-height:1.75; }
+.about-cred { display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; }
+.about-cred span { background:rgba(46,117,182,0.15); border:1px solid rgba(46,117,182,0.3); border-radius:20px; padding:5px 14px; font-size:11px; color:rgba(255,255,255,0.75); letter-spacing:0.5px; }
+.contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start; }
+.contact-info { padding-right:16px; }
+.contact-block { margin-bottom:36px; }
+.contact-block h4 { font-size:13px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--sky); margin-bottom:12px; }
+.contact-block p { font-size:15px; color:rgba(255,255,255,0.75); line-height:1.75; }
+.contact-block a { color:var(--white); text-decoration:none; transition:color 0.2s; }
+.contact-block a:hover { color:var(--sky); }
+.contact-big { font-family:'Bebas Neue',sans-serif; font-size:36px; color:var(--white); letter-spacing:1px; }
+
+.service-area { background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:6px; padding:28px; margin-top:32px; }
+.service-area h4 { font-size:12px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--sky); margin-bottom:14px; }
+.city-list { display:flex; flex-wrap:wrap; gap:8px; }
+.city-tag { background:rgba(46,117,182,0.15); border:1px solid rgba(46,117,182,0.25); border-radius:20px; padding:5px 14px; font-size:12px; color:rgba(255,255,255,0.65); }
+
+.contact-form-box { background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:8px; padding:40px; }
+.contact-form-box h3 { font-family:'DM Serif Display',serif; font-size:24px; color:var(--white); margin-bottom:8px; }
+.contact-form-box .sub { font-size:14px; color:var(--text-muted); margin-bottom:28px; line-height:1.6; }
+
+/* CREDIT APP */
+.credit-section { background:linear-gradient(135deg,rgba(27,58,107,0.35),rgba(10,26,48,0.9)); border-top:1px solid var(--border); padding:88px 48px; }
+.credit-grid { display:grid; grid-template-columns:1fr 1.4fr; gap:72px; align-items:start; }
+.credit-form-box { background:rgba(255,255,255,0.04); border:1px solid rgba(232,160,32,0.25); border-radius:8px; padding:40px; }
+.credit-form-box h3 { font-family:'DM Serif Display',serif; font-size:26px; color:var(--white); margin-bottom:8px; }
+.credit-form-box .sub { font-size:14px; color:var(--text-muted); margin-bottom:28px; line-height:1.6; }
+.credit-badge { display:inline-flex; align-items:center; gap:8px; background:rgba(232,160,32,0.1); border:1px solid rgba(232,160,32,0.25); border-radius:20px; padding:6px 16px; font-size:12px; color:var(--gold); font-weight:600; margin-bottom:20px; }
+.lender-points { list-style:none; margin-top:32px; }
+.lender-points li { display:flex; align-items:flex-start; gap:12px; padding:14px 0; border-bottom:1px solid rgba(255,255,255,0.06); font-size:14px; color:rgba(255,255,255,0.7); line-height:1.6; }
+.lender-points li:last-child { border-bottom:none; }
+.lender-points li::before { content:'✓'; color:var(--gold); font-weight:700; font-size:13px; margin-top:1px; }
+.section-anchor { position:relative; top:-100px; }
+
+@media(max-width:768px) {
+  .contact-grid { grid-template-columns:1fr; gap:40px; }
+  .contact-info { padding-right:0; }
+  .credit-section { padding:56px 20px; }
+  .credit-grid { grid-template-columns:1fr; gap:40px; }
+  .about-john { grid-template-columns:1fr; text-align:center; gap:20px; padding:28px; }
+  .about-avatar { margin:0 auto; }
+  .about-cred { justify-content:center; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Lot<span>Link</span> Indiana</a>
+  <ul id="nav-links" class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="inventory.html">Inventory</a></li>
+    <li><a href="dealers.html">For Dealers</a></li>
+    <li><a href="concierge.html">Concierge</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+    <li><a href="contact.html#credit" class="nav-cta">Get Pre-Approved</a></li>
+  </ul>
+  <button class="nav-mobile-btn" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+    <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+  </button>
+</nav>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Get In Touch</div>
+    <h1>Let's Find Your<br><em>Next</em> <span class="gold">Vehicle.</span></h1>
+    <p class="hero-sub">Whether you have a specific vehicle in mind, need help getting financed, or just want to know what's available — reach out and a real person will get back to you fast.</p>
+    <div class="hero-actions">
+      <a href="tel:2602299393" class="btn-gold"><span aria-hidden="true">📞</span> Call: 260-229-9393</a>
+      <a href="sms:+12602299393" class="btn-outline"><span aria-hidden="true">💬</span> Text John</a>
+      <a href="#credit" class="btn-outline">Get Pre-Approved</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT JOHN TRUST BLOCK -->
+<section class="section" style="padding-bottom:0;">
+  <div class="about-john">
+    <div class="about-avatar" aria-hidden="true">JR</div>
+    <div>
+      <h3>John Roberts</h3>
+      <div class="role">Founder · Licensed Indiana Auto Broker</div>
+      <p>I'm a Northern Indiana auto professional with deep relationships across the regional dealer network. I built LotLink Indiana because buying a car in our area shouldn't mean driving to five lots or getting lost on a national website. When you call or text, you get me — not a rep, not a call center — and I'll tell you straight whether we can help.</p>
+      <div class="about-cred">
+        <span>Based in Rochester, IN</span>
+        <span>Indiana Licensed Broker</span>
+        <span>Direct line to the owner</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section">
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="section-label">Contact Information</div>
+      <div class="section-title">Talk to a <em>Real Person</em></div>
+      <p style="font-size:15px;font-weight:300;color:var(--text-muted);line-height:1.75;margin-bottom:36px;">No call centers. No automated systems. When you contact LotLink Indiana you get John Roberts — a real Northern Indiana auto professional who knows the local market inside and out.</p>
+
+      <div class="contact-block">
+        <h4>Phone</h4>
+        <a href="tel:2602299393" class="contact-big">260-229-9393</a>
+        <p style="margin-top:6px;font-size:13px;">Typically responds within the hour during business hours</p>
+        <p style="margin-top:10px;font-size:13px;"><a href="sms:+12602299393" style="color:var(--gold);border-bottom:1px solid rgba(232,160,32,0.4);">Text John &rsaquo;</a></p>
+      </div>
+
+      <div class="contact-block">
+        <h4>Email</h4>
+        <p><a href="mailto:john@lotlinkin.com" style="font-size:18px;font-weight:500;">john@lotlinkin.com</a></p>
+      </div>
+
+      <div class="contact-block">
+        <h4>Business Hours</h4>
+        <p>Monday – Friday: 9:00 AM – 7:00 PM<br>Saturday: 10:00 AM – 5:00 PM<br>Sunday: By appointment</p>
+      </div>
+
+      <div class="contact-block">
+        <h4>Response Time</h4>
+        <p>Phone & text inquiries: Within 1 hour<br>Email inquiries: Within a few hours<br>Form submissions: Same business day</p>
+      </div>
+
+      <div class="service-area">
+        <h4>Areas We Serve</h4>
+        <div class="city-list">
+          <span class="city-tag">Rochester</span>
+          <span class="city-tag">Warsaw</span>
+          <span class="city-tag">Plymouth</span>
+          <span class="city-tag">Logansport</span>
+          <span class="city-tag">Peru</span>
+          <span class="city-tag">Kokomo</span>
+          <span class="city-tag">Wabash</span>
+          <span class="city-tag">Winamac</span>
+          <span class="city-tag">Culver</span>
+          <span class="city-tag">Bourbon</span>
+          <span class="city-tag">Mentone</span>
+          <span class="city-tag">All of Northern Indiana</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form-box">
+      <h3>Send Us a Message</h3>
+      <p class="sub">Tell us what you're looking for and we'll get back to you fast. No pressure, no obligation.</p>
+      <form id="contactMsgForm" data-lead-type="contact" action="https://formspree.io/f/xgonwnea" method="POST">
+        <input type="hidden" name="_subject" value="New Contact Inquiry — LotLink Indiana">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Name *</label>
+            <input type="text" name="name" required placeholder="Jane Smith">
+          </div>
+          <div class="form-group">
+            <label>Phone Number *</label>
+            <input type="tel" name="phone" required placeholder="(574) 000-0000">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" name="email" placeholder="jane@email.com">
+        </div>
+        <div class="form-group">
+          <label>I'm Interested In</label>
+          <select name="inquiry_type">
+            <option>Select...</option>
+            <option>Searching for a specific vehicle</option>
+            <option>General inventory inquiry</option>
+            <option>Concierge Service</option>
+            <option>Getting pre-approved for financing</option>
+            <option>Dealer partnership</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea name="message" placeholder="Tell us what you're looking for, ask a question, or just say hello..."></textarea>
+        </div>
+        <button type="submit" class="btn-gold" style="width:100%;justify-content:center;padding:16px;">Send Message ›</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- CREDIT APPLICATION -->
+<div class="section-anchor" id="credit"></div>
+<section class="credit-section">
+  <div class="credit-grid">
+    <div>
+      <div class="section-label">Auto Financing</div>
+      <div class="section-title">All Credit <em>Welcome.</em><br>No <span class="gold">Exceptions.</span></div>
+      <p style="font-size:15px;font-weight:300;color:var(--text-muted);line-height:1.75;margin-bottom:24px;">We work with a network of lenders specifically selected to help buyers at every credit level — including those who've been turned away elsewhere.</p>
+      <p style="font-size:15px;font-weight:300;color:var(--text-muted);line-height:1.75;margin-bottom:24px;">Start by sharing a little about what you need. John will review it and send you a secure link to the appropriate lender's application — where your real credit check happens through encrypted banking-grade software, not this website.</p>
+      <ul class="lender-points">
+        <li>Good and excellent credit — lowest available rates</li>
+        <li>Fair or average credit — multiple lender options</li>
+        <li>Challenged or rebuilding credit — we have lenders for that too</li>
+        <li>First-time buyers — we'll walk you through everything</li>
+        <li>Recent bankruptcy or repossession — don't count yourself out</li>
+        <li>Formal credit check happens only in the lender's secure portal</li>
+      </ul>
+    </div>
+
+    <div class="credit-form-box">
+      <div class="credit-badge">💳 Financing Interest — Not a Credit Check</div>
+      <h3>Start the Pre-Approval Conversation</h3>
+      <p class="sub">Tell us a little about what you're looking for. John will review it and send you a secure link from one of our lender partners to complete the actual credit application. Nothing below pulls your credit or affects your score.</p>
+      <form id="financingForm" data-lead-type="financing" action="https://formspree.io/f/xgonwnea" method="POST">
+        <input type="hidden" name="_subject" value="New Financing Interest — LotLink Indiana">
+        <input type="hidden" name="_form_type" value="financing_interest">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cf-first">First Name *</label>
+            <input type="text" id="cf-first" name="first_name" required placeholder="Jane" autocomplete="given-name">
+          </div>
+          <div class="form-group">
+            <label for="cf-last">Last Name *</label>
+            <input type="text" id="cf-last" name="last_name" required placeholder="Smith" autocomplete="family-name">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cf-phone">Phone Number *</label>
+            <input type="tel" id="cf-phone" name="phone" required placeholder="(574) 000-0000" autocomplete="tel">
+          </div>
+          <div class="form-group">
+            <label for="cf-email">Email Address *</label>
+            <input type="email" id="cf-email" name="email" required placeholder="jane@email.com" autocomplete="email">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cf-city">City / ZIP *</label>
+            <input type="text" id="cf-city" name="city_zip" required placeholder="Warsaw, IN 46580" autocomplete="postal-code">
+          </div>
+          <div class="form-group">
+            <label for="cf-employment">Employment Status *</label>
+            <select id="cf-employment" name="employment" required>
+              <option value="">Select…</option>
+              <option>Full-time employed</option>
+              <option>Part-time employed</option>
+              <option>Self-employed</option>
+              <option>Retired</option>
+              <option>Other income</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cf-income">Monthly Income (approx.)</label>
+            <select id="cf-income" name="monthly_income">
+              <option>Prefer not to say</option>
+              <option>Under $1,500</option>
+              <option>$1,500 – $2,500</option>
+              <option>$2,500 – $4,000</option>
+              <option>$4,000 – $6,000</option>
+              <option>$6,000+</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="cf-credit">Credit Situation</label>
+            <select id="cf-credit" name="credit_situation">
+              <option>Prefer not to say</option>
+              <option>Good / Excellent (700+)</option>
+              <option>Fair (600–699)</option>
+              <option>Rebuilding / Challenged</option>
+              <option>Not sure</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cf-vehicle">Vehicle Type Interested In</label>
+            <select id="cf-vehicle" name="vehicle_interest">
+              <option>Open to anything</option>
+              <option>Car / Sedan</option>
+              <option>SUV / Crossover</option>
+              <option>Truck</option>
+              <option>Van / Minivan</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="cf-payment">Desired Monthly Payment</label>
+            <select id="cf-payment" name="monthly_payment">
+              <option>Flexible</option>
+              <option>Under $200</option>
+              <option>$200 – $350</option>
+              <option>$350 – $500</option>
+              <option>$500+</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="cf-trade">Do you have a trade-in?</label>
+          <select id="cf-trade" name="trade_in">
+            <option>No trade-in</option>
+            <option>Yes — I have a vehicle to trade</option>
+            <option>Maybe — I'd like to find out its value</option>
+          </select>
+        </div>
+        <div class="form-group" style="display:flex;gap:10px;align-items:flex-start;">
+          <input type="checkbox" id="cf-consent" name="consent" required style="width:auto;margin-top:3px;">
+          <label for="cf-consent" style="margin:0;text-transform:none;letter-spacing:0;font-size:12px;font-weight:400;color:var(--text-muted);line-height:1.6;">I authorize LotLink Indiana to contact me by phone, text, or email about financing options. I understand this form is an inquiry only and does not pull my credit. A formal credit application, if I choose to proceed, will be completed through a secure lender portal. See our <a href="privacy.html">Privacy Policy</a>.</label>
+        </div>
+        <button type="submit" class="btn-gold" style="width:100%;justify-content:center;padding:16px;">Send My Info ›</button>
+        <p style="font-size:11px;color:var(--text-dim);text-align:center;margin-top:12px;line-height:1.6;">Do not enter your Social Security number, full date of birth, or bank information on this page. Those details are collected only through our lender's secure portal.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Questions Before You Apply?</h2>
+  <p>Call or text John directly — he'll answer honestly and help you figure out your best path forward.</p>
+  <div class="cta-actions">
+    <a href="tel:2602299393" class="btn-white">📞 260-229-9393</a>
+    <a href="concierge.html" class="btn-outline-white">Learn About Concierge ›</a>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <a href="index.html" class="footer-logo">Lot<span>Link</span> Indiana</a>
+    <p class="footer-tagline">Northern Indiana's Regional<br>Auto Brokerage & Marketplace</p>
+  </div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="dealers.html">For Dealers</a>
+    <a href="concierge.html">Concierge Service</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="contact.html#credit">Get Pre-Approved</a>
+  </div>
+  <div class="footer-contact">
+    <p>John Roberts<br><a href="tel:2602299393">260-229-9393</a><br><a href="mailto:john@lotlinkin.com">john@lotlinkin.com</a><br>Serving Rochester, Warsaw,<br>Plymouth & all of Northern Indiana</p>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <div class="footer-bottom-left">
+    <p>© 2026 LotLink Indiana. All rights reserved.</p>
+    <p class="footer-legal">Indiana Licensed Auto Broker · License #<span class="license-placeholder">PENDING</span> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></p>
+  </div>
+  <p class="footer-disclaimer">lotlinkin.com</p>
+</div>
+
+<script>
+/*
+ * Wire both contact-page forms through LotLinkLead (API first, Formspree
+ * fallback). On success we swap in an inline success block so the user
+ * gets confirmation without a page reload.
+ */
+(function () {
+  function onReady(fn) {
+    if (document.readyState !== 'loading') fn();
+    else document.addEventListener('DOMContentLoaded', fn);
+  }
+
+  function showSuccess(formEl, title, body) {
+    var box = document.createElement('div');
+    box.className = 'lead-success';
+    box.setAttribute('role', 'status');
+    box.style.cssText = 'padding:36px 28px;text-align:center;border:1px solid rgba(232,160,32,0.35);background:rgba(232,160,32,0.06);border-radius:8px;';
+    box.innerHTML =
+      '<div style="font-size:32px;color:var(--gold);margin-bottom:10px;">✓</div>' +
+      '<h3 style="font-family:\'Bebas Neue\',sans-serif;font-size:26px;letter-spacing:1px;color:var(--white);margin-bottom:8px;">' + title + '</h3>' +
+      '<p style="font-size:14px;color:var(--text-muted);line-height:1.6;">' + body + '</p>';
+    formEl.parentNode.replaceChild(box, formEl);
+  }
+
+  function wire(formId, leadType, successTitle, successBody) {
+    var form = document.getElementById(formId);
+    if (!form) return;
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      var btn = form.querySelector('button[type="submit"]');
+      var origText = btn ? btn.textContent : null;
+      if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+      try {
+        await window.LotLinkLead.submit(leadType, form);
+        showSuccess(form, successTitle, successBody);
+      } catch (err) {
+        alert('Something went wrong sending your message. Please call 260-229-9393 or email john@lotlinkin.com.');
+        if (btn) { btn.disabled = false; btn.textContent = origText; }
+      }
+    });
+  }
+
+  onReady(function () {
+    wire('contactMsgForm', 'contact',
+      'Message Sent',
+      "Thanks — we'll reach out shortly. If it's urgent, call or text 260-229-9393.");
+    wire('financingForm', 'financing',
+      "You're Pre-Approval Ready",
+      'John will review your info and send you a secure link from the appropriate lender partner to complete the real application. No credit pull happened on this page.');
+  });
+})();
+</script>
+
+<!-- LotLink AI web chat — routes to the marketplace concierge inbox -->
+<script
+  src="https://lotlink-api-production.up.railway.app/widget.js"
+  data-dealership="cfff76a7-6385-4e2c-b4ee-63418198a564"
+  defer></script>
+</body>
+</html>

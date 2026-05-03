@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vehicle Inventory — LotLink Indiana</title>
+  <meta name="description" content="Browse the full LotLink Indiana inventory — cars, trucks, SUVs, and vans from partner dealers across Northern Indiana. Updated often. Financing available for all credit.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://lotlinkin.com/inventory.html">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="LotLink Indiana">
+  <meta property="og:title" content="Vehicle Inventory — LotLink Indiana">
+  <meta property="og:description" content="Browse cars, trucks, SUVs, and vans from partner dealers across Northern Indiana.">
+  <meta property="og:url" content="https://lotlinkin.com/inventory.html">
+  <meta property="og:image" content="https://lotlinkin.com/assets/og-default.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <script src="assets/site.js" defer></script>
+  <script src="assets/lead-submit.js" defer></script>
+  <style>
+    /* ── INVENTORY-SPECIFIC STYLES ── */
+
+    /* Filter Bar */
+    .filter-bar {
+      background: rgba(255,255,255,0.03);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 48px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 66px;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+    }
+    .filter-bar label {
+      font-size: 11px; font-weight: 600; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--gray);
+    }
+    .filter-select, .filter-input {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      padding: 9px 14px;
+      border-radius: 4px;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .filter-select { cursor: pointer; }
+    .filter-select option { background: var(--navy); }
+    .filter-input { flex: 1; min-width: 220px; }
+    .filter-input::placeholder { color: var(--gray); }
+    .filter-select:focus, .filter-input:focus {
+      border-color: var(--sky);
+      background: rgba(91,163,217,0.06);
+    }
+    .result-count {
+      margin-left: auto;
+      font-size: 13px;
+      color: var(--gray);
+      white-space: nowrap;
+    }
+    .result-count strong { color: var(--gold); }
+
+    /* Grid */
+    .inventory-section {
+      padding: 48px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .inventory-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 24px;
+    }
+
+    /* Vehicle Card */
+    .vehicle-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      transition: background 0.3s, border-color 0.3s, transform 0.2s, box-shadow 0.2s;
+    }
+    .vehicle-card:hover {
+      background: rgba(46,117,182,0.06);
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.35);
+    }
+    .card-image {
+      position: relative;
+      display: block;
+      height: 200px;
+      background: rgba(255,255,255,0.03);
+      overflow: hidden;
+      text-decoration: none;
+    }
+    .card-title-link { text-decoration:none; color:inherit; display:block; }
+    .card-title-link:hover .card-year-make { color:var(--sky); transition:color 0.2s; }
+    .card-image img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s;
+    }
+    .vehicle-card:hover .card-image img { transform: scale(1.04); }
+    .no-img {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 8px;
+      color: var(--gray); font-size: 13px;
+      background: linear-gradient(135deg, rgba(15,36,68,0.8), rgba(27,58,107,0.6));
+    }
+    .no-img-icon { font-size: 32px; opacity: 0.3; }
+    .stock-tag {
+      position: absolute; bottom: 10px; right: 10px;
+      background: rgba(10,26,48,0.85);
+      backdrop-filter: blur(6px);
+      color: var(--gray);
+      font-size: 11px; padding: 3px 9px; border-radius: 3px;
+      font-weight: 500; letter-spacing: 0.3px;
+      border: 1px solid var(--border);
+    }
+    .call-badge {
+      position: absolute; top: 10px; left: 10px;
+      background: var(--sky); color: var(--dark);
+      font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; padding: 3px 9px; border-radius: 3px;
+    }
+
+    .card-body { padding: 18px 20px 20px; }
+
+    .card-year-make {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 24px; letter-spacing: 1px;
+      color: var(--white); line-height: 1;
+    }
+    .card-model {
+      font-size: 12px; font-weight: 400;
+      color: var(--gray); margin-top: 3px; line-height: 1.4;
+    }
+    .card-specs {
+      display: flex; gap: 18px;
+      margin-top: 14px; padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+    .spec { display: flex; flex-direction: column; gap: 3px; }
+    .spec-label {
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--gray);
+    }
+    .spec-value {
+      font-size: 13px; font-weight: 500; color: var(--white);
+    }
+    .card-footer {
+      display: flex; align-items: center;
+      justify-content: space-between; margin-top: 16px;
+    }
+    .card-price {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 30px; letter-spacing: 1px;
+      color: var(--gold); line-height: 1;
+    }
+    .card-price.call {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px; font-weight: 600;
+      color: var(--sky); letter-spacing: 0;
+      padding-top: 6px;
+    }
+    .btn-inquire {
+      background: var(--gold); color: var(--dark);
+      border: none; border-radius: 4px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px; font-weight: 600;
+      letter-spacing: 0.3px;
+      padding: 9px 18px; cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+      white-space: nowrap;
+    }
+    .btn-inquire:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(232,160,32,0.35);
+    }
+    .btn-inquire.sky-btn {
+      background: var(--sky); color: var(--dark);
+    }
+    .btn-inquire.sky-btn:hover {
+      box-shadow: 0 6px 20px rgba(91,163,217,0.35);
+    }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(10,26,48,0.82);
+      backdrop-filter: blur(6px);
+      z-index: 999;
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.25s;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal {
+      background: var(--dark2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      width: 100%; max-width: 500px;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+      transform: translateY(20px) scale(0.97);
+      transition: transform 0.25s;
+      overflow: hidden;
+    }
+    .modal-overlay.open .modal { transform: translateY(0) scale(1); }
+
+    .modal-header {
+      background: linear-gradient(135deg, var(--dark) 0%, var(--navy) 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 22px 26px;
+      display: flex; align-items: flex-start;
+      justify-content: space-between; gap: 16px;
+    }
+    .modal-eyebrow {
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--sky); margin-bottom: 5px;
+    }
+    .modal-vehicle-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 26px; letter-spacing: 1px;
+      color: var(--white); line-height: 1;
+    }
+    .modal-stock { font-size: 12px; color: var(--gray); margin-top: 4px; }
+    .modal-close {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      color: var(--gray); width: 32px; height: 32px;
+      border-radius: 4px; cursor: pointer; font-size: 16px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: background 0.2s, color 0.2s;
+    }
+    .modal-close:hover { background: rgba(255,255,255,0.12); color: var(--white); }
+
+    .modal-body { padding: 26px; }
+
+    .vehicle-prefill {
+      background: rgba(232,160,32,0.08);
+      border: 1px solid rgba(232,160,32,0.25);
+      border-radius: 4px;
+      padding: 11px 15px; margin-bottom: 20px;
+      font-size: 13px; color: var(--gold-light); font-weight: 500;
+    }
+    .vehicle-prefill span {
+      font-size: 10px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 1.5px;
+      color: var(--gray); display: block; margin-bottom: 3px;
+    }
+
+    .modal-body .form-group { margin-bottom: 16px; }
+    .modal-body .form-group input,
+    .modal-body .form-group select,
+    .modal-body .form-group textarea {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 4px; padding: 11px 14px;
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif; font-size: 14px;
+      outline: none; transition: border-color 0.2s, background 0.2s;
+      width: 100%;
+    }
+    .modal-body .form-group input:focus,
+    .modal-body .form-group select:focus,
+    .modal-body .form-group textarea:focus {
+      border-color: var(--sky);
+      background: rgba(91,163,217,0.06);
+    }
+    .modal-body .form-group input::placeholder,
+    .modal-body .form-group textarea::placeholder { color: var(--gray); }
+    .modal-body .form-group select option { background: var(--navy); }
+    .modal-body .form-group textarea { resize: vertical; min-height: 80px; }
+    .modal-body .form-group label {
+      display: block; font-size: 11px; font-weight: 600;
+      letter-spacing: 1px; text-transform: uppercase;
+      color: var(--gray); margin-bottom: 7px;
+    }
+
+    .btn-submit {
+      width: 100%; background: var(--gold); color: var(--dark);
+      border: none; border-radius: 4px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px; font-weight: 600; letter-spacing: 0.4px;
+      padding: 13px; cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-top: 4px;
+    }
+    .btn-submit:hover { transform: translateY(-1px); box-shadow: 0 8px 28px rgba(232,160,32,0.35); }
+    .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
+
+    .form-disclaimer {
+      text-align: center; font-size: 11px;
+      color: var(--gray); margin-top: 12px; line-height: 1.6;
+    }
+    .form-disclaimer a { color: var(--sky); }
+
+    /* Success state */
+    .modal-success { padding: 44px 26px; text-align: center; display: none; }
+    .modal-success.visible { display: block; }
+    .modal-body.hidden { display: none; }
+    .success-icon {
+      width: 58px; height: 58px;
+      background: rgba(232,160,32,0.1);
+      border: 1px solid rgba(232,160,32,0.35);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 18px; font-size: 22px; color: var(--gold);
+    }
+    .success-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 30px; letter-spacing: 1px;
+      color: var(--white); margin-bottom: 10px;
+    }
+    .success-body { font-size: 14px; color: var(--gray); line-height: 1.65; }
+    .success-body strong { color: var(--gold-light); }
+    .btn-close-success {
+      margin-top: 24px; background: transparent;
+      border: 1px solid var(--border); color: var(--gray);
+      font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+      letter-spacing: 0.5px; padding: 10px 28px; border-radius: 4px;
+      cursor: pointer; transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-close-success:hover { border-color: var(--sky); color: var(--white); }
+
+    /* Empty state */
+    .empty-state { grid-column: 1 / -1; text-align: center; padding: 80px 20px; }
+    .empty-state h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px; letter-spacing: 1px;
+      color: var(--gray); margin-bottom: 10px;
+    }
+    .empty-state p { font-size: 14px; color: var(--gray); }
+    .empty-state a { color: var(--sky); }
+
+    @media (max-width: 768px) {
+      .filter-bar { padding: 12px 20px; top: 58px; }
+      .inventory-section { padding: 24px 20px; }
+      .inventory-grid { gap: 16px; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Lot<span>Link</span> Indiana</a>
+  <ul id="nav-links" class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="inventory.html" class="active">Inventory</a></li>
+    <li><a href="dealers.html">For Dealers</a></li>
+    <li><a href="concierge.html">Concierge</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="contact.html#credit" class="nav-cta">Get Pre-Approved</a></li>
+  </ul>
+  <button class="nav-mobile-btn" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<main id="main">
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Northern Indiana Auto Marketplace</div>
+    <h1>Vehicle <span class="gold">Inventory</span></h1>
+    <p class="hero-sub">Real cars. Real prices. Connected dealers across Northern Indiana — browse the lot and reach out directly.</p>
+  </div>
+</section>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <label>Filter:</label>
+  <select class="filter-select" id="filterMake">
+    <option value="">All Makes</option>
+    <option>Cadillac</option><option>Chevrolet</option><option>Chrysler</option>
+    <option>Ford</option><option>GMC</option><option>Honda</option>
+    <option>Hyundai</option><option>Jeep</option><option>Kia</option>
+    <option>Lincoln</option><option>Nissan</option><option>Ram</option>
+    <option>Rambler</option><option>Tesla</option><option>Toyota</option>
+    <option>Volkswagen</option>
+  </select>
+  <select class="filter-select" id="filterPrice">
+    <option value="">Any Price</option>
+    <option value="10000">Under $10k</option>
+    <option value="15000">Under $15k</option>
+    <option value="20000">Under $20k</option>
+    <option value="25000">Under $25k</option>
+    <option value="30000">Under $30k</option>
+    <option value="40000">Under $40k</option>
+  </select>
+  <input class="filter-input" id="filterSearch" type="text" placeholder="Search make, model, stock #…" />
+  <span class="result-count" id="resultCount"><strong>50</strong> vehicles</span>
+</div>
+
+<!-- INVENTORY -->
+<div class="inventory-section">
+  <div class="inventory-grid" id="inventoryGrid"></div>
+</div>
+
+<!-- INQUIRY MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-header">
+      <div>
+        <div class="modal-eyebrow">Inquire About This Vehicle</div>
+        <div class="modal-vehicle-name" id="modalTitle">—</div>
+        <div class="modal-stock" id="modalStock">—</div>
+      </div>
+      <button class="modal-close" id="modalClose" aria-label="Close dialog">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody">
+      <div class="vehicle-prefill">
+        <span>Vehicle of Interest</span>
+        <span id="modalPrefillText">—</span>
+      </div>
+      <form id="inquiryForm" novalidate>
+        <input type="hidden" name="_subject" id="formSubject" />
+        <input type="hidden" name="vehicle" id="formVehicle" />
+        <input type="hidden" name="stock" id="formStock" />
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fieldName">Full Name *</label>
+            <input type="text" id="fieldName" name="name" placeholder="Jane Smith" required />
+          </div>
+          <div class="form-group">
+            <label for="fieldPhone">Phone *</label>
+            <input type="tel" id="fieldPhone" name="phone" placeholder="(574) 000-0000" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="fieldEmail">Email *</label>
+          <input type="email" id="fieldEmail" name="email" placeholder="jane@email.com" required />
+        </div>
+        <div class="form-group">
+          <label for="fieldContact">Best Way to Reach You</label>
+          <select id="fieldContact" name="contact_preference">
+            <option>Either phone or email</option>
+            <option>Phone call</option>
+            <option>Text message</option>
+            <option>Email only</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="fieldMessage">Message / Questions</label>
+          <textarea id="fieldMessage" name="message" placeholder="Any questions, trade-in info, or financing needs?"></textarea>
+        </div>
+        <button type="submit" class="btn-submit" id="submitBtn">Send Inquiry</button>
+        <p class="form-disclaimer">
+          By submitting you agree to be contacted by LotLink Indiana regarding this vehicle.<br/>
+          Questions? <a href="mailto:john@lotlinkin.com">john@lotlinkin.com</a>
+        </p>
+      </form>
+    </div>
+    <div class="modal-success" id="modalSuccess">
+      <div class="success-icon">✓</div>
+      <div class="success-title">You're All Set</div>
+      <p class="success-body">Thanks for reaching out. John will follow up with you shortly about the <strong id="successVehicle">—</strong>.</p>
+      <button class="btn-close-success" id="successClose">Back to Inventory</button>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <a href="index.html" class="footer-logo">Lot<span>Link</span> Indiana</a>
+    <p class="footer-tagline">Northern Indiana's Regional<br>Auto Brokerage & Marketplace</p>
+  </div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="dealers.html">For Dealers</a>
+    <a href="concierge.html">Concierge Service</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="contact.html#credit">Get Pre-Approved</a>
+  </div>
+  <div class="footer-contact">
+    <p>John Roberts<br><a href="tel:2602299393">260-229-9393</a><br><a href="mailto:john@lotlinkin.com">john@lotlinkin.com</a><br>Serving Rochester, Warsaw,<br>Plymouth & all of Northern Indiana</p>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <div class="footer-bottom-left">
+    <p>© 2026 LotLink Indiana. All rights reserved.</p>
+    <p class="footer-legal">Indiana Licensed Auto Broker · License #<span class="license-placeholder">PENDING</span> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></p>
+  </div>
+  <p class="footer-disclaimer">Listings subject to prior sale. Prices exclude tax, title &amp; fees.</p>
+</div>
+
+<script src="assets/inventory.js"></script>
+<script>
+// `inventory` holds whatever is currently known — starts as the static fallback
+// and is overwritten when the BDC's live feed resolves. Using `let` (not const)
+// so we can reassign when live data arrives.
+let inventory = window.LOTLINK_INVENTORY || [];
+
+function fmt$(n) { return '$' + n.toLocaleString(); }
+function fmtMi(n) { return n ? n.toLocaleString() + ' mi' : 'See dealer'; }
+
+function renderCards(list) {
+  const grid = document.getElementById('inventoryGrid');
+  document.getElementById('resultCount').innerHTML = `<strong>${list.length}</strong> vehicle${list.length !== 1 ? 's' : ''}`;
+  if (!list.length) {
+    grid.innerHTML = `<div class="empty-state"><h3>No Vehicles Found</h3><p>Try adjusting your filters or <a href="contact.html">contact us</a> about what you need.</p></div>`;
+    return;
+  }
+  grid.innerHTML = list.map(v => {
+    const callOnly = v.price === null;
+    const detailHref = `vehicle.html?stock=${encodeURIComponent(v.stock)}`;
+    const imgHtml = v.img
+      ? `<img src="${v.img}" alt="${v.year} ${v.make} ${v.model}" loading="lazy" decoding="async" width="640" height="480" />`
+      : `<div class="no-img"><div class="no-img-icon" aria-hidden="true">🚗</div><span>Photo Coming Soon</span></div>`;
+    return `
+    <div class="vehicle-card">
+      <a class="card-image" href="${detailHref}" aria-label="View details for ${v.year} ${v.make} ${v.model} stock ${v.stock}">
+        ${imgHtml}
+        ${callOnly ? '<div class="call-badge">Call for Price</div>' : ''}
+        <div class="stock-tag">#${v.stock}</div>
+      </a>
+      <div class="card-body">
+        <a href="${detailHref}" class="card-title-link">
+          <div class="card-year-make">${v.year} ${v.make}</div>
+          <div class="card-model">${v.model}${v.trim ? ' · ' + v.trim : ''}</div>
+        </a>
+        <div class="card-specs">
+          <div class="spec">
+            <span class="spec-label">Miles</span>
+            <span class="spec-value">${fmtMi(v.miles)}</span>
+          </div>
+          <div class="spec">
+            <span class="spec-label">Stock #</span>
+            <span class="spec-value">${v.stock}</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="card-price${callOnly ? ' call' : ''}">${callOnly ? 'Call for Price' : fmt$(v.price)}</div>
+          <button type="button" class="btn-inquire${callOnly ? ' sky-btn' : ''}" onclick="openModal(${v.id})">
+            ${callOnly ? 'Call for Info' : 'Inquire Now'}
+          </button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function applyFilters() {
+  const make  = document.getElementById('filterMake').value;
+  const price = document.getElementById('filterPrice').value;
+  const q     = document.getElementById('filterSearch').value.toLowerCase();
+  renderCards(inventory.filter(v => {
+    if (make  && v.make !== make) return false;
+    if (price && v.price && v.price > +price) return false;
+    if (q && !`${v.year} ${v.make} ${v.model} ${v.trim} ${v.stock}`.toLowerCase().includes(q)) return false;
+    return true;
+  }));
+}
+['filterMake','filterPrice'].forEach(id =>
+  document.getElementById(id).addEventListener('change', applyFilters));
+document.getElementById('filterSearch').addEventListener('input', applyFilters);
+
+// Pre-apply filters from URL params (e.g., ?make=Ford&price=20000&q=crew)
+(function applyFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const urlMake  = params.get('make');
+  const urlPrice = params.get('price');
+  const urlQ     = params.get('q');
+  const urlStock = params.get('stock');
+  if (urlMake) {
+    const sel = document.getElementById('filterMake');
+    const match = [...sel.options].find(o => o.value.toLowerCase() === urlMake.toLowerCase() || o.text.toLowerCase() === urlMake.toLowerCase());
+    if (match) sel.value = match.value || match.text;
+  }
+  if (urlPrice && /^\d+$/.test(urlPrice)) {
+    document.getElementById('filterPrice').value = urlPrice;
+  }
+  // If linked from an inventory card (?stock=XXXX), seed the search with stock #
+  if (urlStock) {
+    document.getElementById('filterSearch').value = urlStock;
+  } else if (urlQ) {
+    document.getElementById('filterSearch').value = urlQ;
+  }
+})();
+
+// Modal
+const overlay = document.getElementById('modalOverlay');
+let lastFocus = null;
+
+function getFocusables(root) {
+  return root.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])');
+}
+
+function openModal(id) {
+  const v = inventory.find(x => x.id === id);
+  if (!v) return;
+  lastFocus = document.activeElement;
+  const name  = `${v.year} ${v.make} ${v.model}`;
+  const price = v.price ? fmt$(v.price) : 'Call for Price';
+  document.getElementById('modalTitle').textContent      = name;
+  document.getElementById('modalStock').textContent      = `Stock #${v.stock}`;
+  document.getElementById('modalPrefillText').textContent = `${name} — ${price} · Stock #${v.stock}`;
+  document.getElementById('formVehicle').value           = name;
+  document.getElementById('formStock').value             = v.stock;
+  document.getElementById('formSubject').value           = `LotLink Inquiry: ${name} (#${v.stock})`;
+  document.getElementById('successVehicle').textContent  = name;
+  document.getElementById('modalBody').classList.remove('hidden');
+  document.getElementById('modalSuccess').classList.remove('visible');
+  document.getElementById('inquiryForm').reset();
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  // Focus the first text field for convenience
+  setTimeout(() => {
+    const firstInput = document.getElementById('fieldName');
+    if (firstInput) firstInput.focus();
+  }, 60);
+}
+function closeModal() {
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+  if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+}
+document.getElementById('modalClose').addEventListener('click', closeModal);
+document.getElementById('successClose').addEventListener('click', closeModal);
+overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+document.addEventListener('keydown', e => {
+  if (!overlay.classList.contains('open')) return;
+  if (e.key === 'Escape') { closeModal(); return; }
+  // Focus trap
+  if (e.key === 'Tab') {
+    const focusables = getFocusables(overlay);
+    if (!focusables.length) return;
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
+});
+
+document.getElementById('inquiryForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  if (!document.getElementById('fieldName').value.trim() ||
+      !document.getElementById('fieldPhone').value.trim() ||
+      !document.getElementById('fieldEmail').value.trim()) {
+    alert('Please fill in your name, phone, and email.'); return;
+  }
+  btn.disabled = true; btn.textContent = 'Sending…';
+  try {
+    // Posts to the BDC API (app.lotlinkin.com) first so Jordan can
+    // follow up immediately; falls back to Formspree if the API is
+    // unreachable so no lead is ever dropped.
+    await window.LotLinkLead.submit('inquiry', this);
+    document.getElementById('modalBody').classList.add('hidden');
+    document.getElementById('modalSuccess').classList.add('visible');
+  } catch {
+    alert('Something went wrong. Please email john@lotlinkin.com or call (260) 229-9393.');
+  } finally {
+    btn.disabled = false; btn.textContent = 'Send Inquiry';
+  }
+});
+
+// Run filters once now that URL params (if any) have been applied. This gives
+// users an instant paint using the static fallback list.
+applyFilters();
+
+// Then, as soon as the live BDC feed resolves, swap in fresh data and re-render.
+if (window.LOTLINK_INVENTORY_READY && typeof window.LOTLINK_INVENTORY_READY.then === 'function') {
+  window.LOTLINK_INVENTORY_READY.then(function (fresh) {
+    if (Array.isArray(fresh) && fresh.length) {
+      inventory = fresh;
+      applyFilters();
+    }
+  }).catch(function () { /* already handled inside inventory.js */ });
+}
+</script>
+
+<!-- LotLink AI web chat — routes to the marketplace concierge inbox -->
+<script
+  src="https://lotlink-api-production.up.railway.app/widget.js"
+  data-dealership="cfff76a7-6385-4e2c-b4ee-63418198a564"
+  defer></script>
+</body>
+</html>

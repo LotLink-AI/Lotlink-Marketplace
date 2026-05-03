@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LotLink Indiana — Northern Indiana's Auto Marketplace</title>
+<meta name="description" content="Northern Indiana's regional auto marketplace — hundreds of vehicles from local dealers, an AI-powered BDC that works every lead 24/7, and a white-glove concierge service. One platform. Three ways to buy, sell, and sell faster.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://lotlinkin.com/">
+
+<!-- Open Graph / Twitter -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="LotLink Indiana">
+<meta property="og:title" content="LotLink Indiana — Northern Indiana's Auto Marketplace">
+<meta property="og:description" content="Hundreds of vehicles from trusted Northern Indiana dealers — one search, one local person to help you buy.">
+<meta property="og:url" content="https://lotlinkin.com/">
+<meta property="og:image" content="https://lotlinkin.com/assets/og-default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="LotLink Indiana — Northern Indiana's Auto Marketplace">
+<meta name="twitter:description" content="One search. Every lot. All credit welcome.">
+<meta name="twitter:image" content="https://lotlinkin.com/assets/og-default.jpg">
+
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<script src="assets/site.js" defer></script>
+<!-- Live inventory feed (hydrates window.LOTLINK_INVENTORY_READY). Loaded on
+     the homepage so the Featured Vehicles strip can render real cars from
+     the BDC's hourly scraper. -->
+<script src="assets/inventory.js" defer></script>
+
+<!-- Structured data: AutoDealer / Broker -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AutoDealer",
+  "name": "LotLink Indiana",
+  "description": "Northern Indiana auto brokerage and regional marketplace connecting buyers with vehicles from multiple dealer partners.",
+  "url": "https://lotlinkin.com/",
+  "telephone": "+1-260-229-9393",
+  "email": "john@lotlinkin.com",
+  "areaServed": [
+    { "@type": "City", "name": "Rochester, Indiana" },
+    { "@type": "City", "name": "Warsaw, Indiana" },
+    { "@type": "City", "name": "Plymouth, Indiana" },
+    { "@type": "City", "name": "Logansport, Indiana" },
+    { "@type": "City", "name": "Peru, Indiana" },
+    { "@type": "City", "name": "Kokomo, Indiana" },
+    { "@type": "City", "name": "Wabash, Indiana" }
+  ],
+  "openingHours": [
+    "Mo-Fr 09:00-19:00",
+    "Sa 10:00-17:00"
+  ]
+}
+</script>
+<style>
+/* HOME SPECIFIC */
+.hero-full { min-height:100vh; padding:130px 48px 80px; display:flex; align-items:center; gap:48px; }
+.hero-full .hero-content { max-width:620px; flex:1; min-width:0; }
+
+/* Sticky phone in the nav — gold underline + phone glyph so it stays
+   visible across every screen. Indiana car buyers expect the number. */
+.nav-phone {
+  display:inline-flex; align-items:center; gap:6px;
+  font-family:'DM Sans',sans-serif; font-size:13px; font-weight:600;
+  color:var(--gold); letter-spacing:0.3px; text-decoration:none;
+  padding:6px 0; border-bottom:1.5px solid transparent; transition:border-color 0.2s, color 0.2s;
+}
+.nav-phone:hover { border-color:var(--gold); color:var(--white); }
+
+/* Trust pills directly under the hero CTAs. Each is a single concrete
+   promise — response time, credit guarantee, delivery — so the visitor
+   sees the differentiators at a glance. */
+.hero-trust { display:flex; flex-wrap:wrap; gap:8px; margin-top:24px; opacity:0; animation:fadeIn 0.8s 0.8s forwards; }
+.trust-pill {
+  display:inline-flex; align-items:center; gap:6px;
+  background:rgba(255,255,255,0.05); border:1px solid var(--border);
+  border-radius:999px; padding:7px 14px; font-size:12px; font-weight:500;
+  color:rgba(255,255,255,0.78); letter-spacing:0.3px;
+}
+
+/* Founder card on the hero — photo + personal-promise quote. Replaces
+   decorative stats so visitors see a real face before they read anything
+   else. CarEdge-style trust-builder. */
+.hero-founder {
+  flex:0 0 320px;
+  background:rgba(255,255,255,0.04); border:1px solid var(--border);
+  border-radius:10px; padding:22px;
+  display:flex; flex-direction:column; gap:16px;
+  opacity:0; animation:fadeIn 1s 1s forwards;
+  position:relative;
+}
+.hero-founder::before {
+  content:''; position:absolute; inset:0;
+  border-radius:10px; pointer-events:none;
+  background:linear-gradient(135deg, rgba(232,160,32,0.08), rgba(46,117,182,0.08));
+}
+.founder-photo {
+  width:100%; aspect-ratio:1/1;
+  border-radius:8px; overflow:hidden; background:rgba(255,255,255,0.04);
+  position:relative;
+}
+.founder-photo img { width:100%; height:100%; object-fit:cover; display:block; }
+.founder-photo-fallback {
+  position:absolute; inset:0;
+  align-items:center; justify-content:center; flex-direction:column; gap:8px;
+  color:rgba(255,255,255,0.4);
+}
+.founder-photo-fallback span { font-size:48px; }
+.founder-photo-fallback small { font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+.founder-quote p {
+  font-family:'DM Serif Display',serif; font-size:15px;
+  color:var(--white); line-height:1.45; margin:0 0 12px 0;
+  position:relative;
+}
+.founder-byline { display:flex; flex-direction:column; gap:2px; }
+.founder-byline strong { font-size:13px; font-weight:600; color:var(--gold); letter-spacing:0.3px; }
+.founder-byline span { font-size:11px; color:var(--text-muted); letter-spacing:0.5px; }
+
+/* SEARCH */
+.search-wrap { background:var(--navy); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:28px 48px; }
+.search-bar { display:flex; max-width:960px; margin:0 auto; background:rgba(255,255,255,0.04); border:1px solid var(--border); border-radius:6px; overflow:hidden; }
+.search-bar select, .search-bar input { background:transparent; border:none; border-right:1px solid var(--border); color:var(--white); font-family:'DM Sans',sans-serif; font-size:14px; padding:15px 18px; outline:none; flex:1; }
+.search-bar select option { background:var(--navy); }
+.search-bar select:last-of-type { border-right:1px solid var(--border); }
+.search-bar input { flex:1.5; }
+.search-bar button { background:var(--accent); color:var(--white); border:none; padding:15px 32px; font-family:'DM Sans',sans-serif; font-size:14px; font-weight:600; letter-spacing:0.4px; cursor:pointer; transition:background 0.2s; white-space:nowrap; }
+.search-bar button:hover { background:var(--sky); }
+
+/* HOW IT WORKS */
+.steps-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; }
+.step { background:rgba(255,255,255,0.03); border:1px solid var(--border); padding:36px 28px; position:relative; overflow:hidden; transition:background 0.3s, border-color 0.3s; }
+.step:hover { background:rgba(46,117,182,0.1); border-color:var(--border-hover); }
+.step-num { font-family:'Bebas Neue',sans-serif; font-size:72px; line-height:1; color:rgba(255,255,255,0.04); position:absolute; top:10px; right:16px; transition:color 0.3s; }
+.step:hover .step-num { color:rgba(91,163,217,0.07); }
+.step-icon { width:42px; height:42px; background:rgba(46,117,182,0.2); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:18px; margin-bottom:16px; }
+.step h3 { font-size:16px; font-weight:600; color:var(--white); margin-bottom:8px; }
+.step p { font-size:13px; font-weight:300; color:var(--text-muted); line-height:1.65; }
+
+/* WHY LOTLINK */
+.why-grid { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; }
+.why-left { padding-right:32px; }
+.why-points { list-style:none; margin-bottom:36px; }
+.why-points li { display:flex; align-items:flex-start; gap:14px; padding:16px 0; border-bottom:1px solid rgba(255,255,255,0.06); font-size:14px; color:rgba(255,255,255,0.7); line-height:1.6; }
+.why-points li:last-child { border-bottom:none; }
+.check-circle { width:22px; height:22px; min-width:22px; background:rgba(46,117,182,0.25); border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--sky); font-size:11px; margin-top:1px; }
+.why-right { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.why-card { background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:6px; padding:28px 24px; transition:0.3s; }
+.why-card:hover { background:rgba(46,117,182,0.1); border-color:var(--border-hover); transform:translateY(-3px); }
+.why-card-num { font-family:'Bebas Neue',sans-serif; font-size:40px; color:var(--gold); line-height:1; margin-bottom:6px; }
+.why-card-label { font-size:12px; color:var(--text-muted); line-height:1.5; }
+
+/* DEALER PARTNER STRIP — animated marquee of dealer-partner logos.
+   Until John collects real logos, each dealer renders as a name-pill
+   so the visitor still sees breadth ("12 partners — these are real
+   businesses"). Swap each .partner-pill for an <img> tag once logos
+   are in /assets/dealers/<slug>.svg. */
+.partner-strip {
+  background:rgba(0,0,0,0.25); border-bottom:1px solid var(--border);
+  padding:18px 0; overflow:hidden; position:relative;
+}
+.partner-strip::before, .partner-strip::after {
+  content:''; position:absolute; top:0; bottom:0; width:80px; z-index:2; pointer-events:none;
+}
+.partner-strip::before { left:0; background:linear-gradient(90deg, var(--navy), transparent); }
+.partner-strip::after  { right:0; background:linear-gradient(270deg, var(--navy), transparent); }
+.partner-strip-eyebrow {
+  text-align:center; font-size:10px; letter-spacing:2px;
+  text-transform:uppercase; color:var(--text-muted);
+  margin-bottom:12px;
+}
+.partner-strip-track {
+  display:flex; gap:48px; align-items:center;
+  animation:partnerScroll 40s linear infinite;
+  width:max-content; will-change:transform;
+}
+.partner-strip:hover .partner-strip-track { animation-play-state:paused; }
+.partner-pill {
+  display:inline-flex; align-items:center; gap:8px;
+  font-family:'Bebas Neue',sans-serif; font-size:18px; letter-spacing:1.5px;
+  color:rgba(255,255,255,0.55); white-space:nowrap;
+  padding:6px 14px; border:1px solid rgba(255,255,255,0.12); border-radius:4px;
+  transition:color 0.2s, border-color 0.2s;
+}
+.partner-pill:hover { color:var(--white); border-color:var(--gold); }
+.partner-pill::before { content:'·'; color:var(--gold); font-size:24px; line-height:0; }
+@keyframes partnerScroll {
+  from { transform:translateX(0); }
+  to   { transform:translateX(-50%); }
+}
+
+/* FEATURED VEHICLES — actual cars on the homepage. Hydrated from the
+   live BDC scraper feed via assets/inventory.js. If the feed is slow
+   or down, the static fallback in inventory.js still renders. */
+.featured-section { padding:72px 48px; }
+.featured-header {
+  display:flex; justify-content:space-between; align-items:flex-end;
+  max-width:1200px; margin:0 auto 32px auto; gap:24px; flex-wrap:wrap;
+}
+.featured-header .section-title { margin:0; }
+.featured-link {
+  font-size:13px; color:var(--gold); font-weight:600; text-decoration:none;
+  letter-spacing:0.5px; white-space:nowrap;
+}
+.featured-link:hover { color:var(--white); }
+.featured-grid {
+  display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;
+  max-width:1200px; margin:0 auto;
+}
+.featured-card {
+  background:rgba(255,255,255,0.03); border:1px solid var(--border);
+  border-radius:8px; overflow:hidden; transition:0.3s; text-decoration:none;
+  display:flex; flex-direction:column;
+}
+.featured-card:hover { border-color:var(--border-hover); transform:translateY(-4px); box-shadow:0 12px 32px rgba(0,0,0,0.25); }
+.featured-card-img {
+  width:100%; aspect-ratio:4/3; background:rgba(255,255,255,0.04);
+  display:flex; align-items:center; justify-content:center; overflow:hidden;
+}
+.featured-card-img img { width:100%; height:100%; object-fit:cover; transition:transform 0.4s; }
+.featured-card:hover .featured-card-img img { transform:scale(1.05); }
+.featured-card-empty { font-size:36px; color:rgba(255,255,255,0.18); }
+.featured-card-body { padding:18px 18px 20px; display:flex; flex-direction:column; gap:6px; }
+.featured-card-title {
+  font-family:'DM Serif Display',serif; font-size:18px; color:var(--white); line-height:1.25;
+}
+.featured-card-trim { font-size:12px; color:var(--text-muted); letter-spacing:0.3px; }
+.featured-card-meta {
+  display:flex; justify-content:space-between; align-items:baseline;
+  margin-top:8px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.06);
+}
+.featured-card-price { font-family:'Bebas Neue',sans-serif; font-size:24px; color:var(--gold); letter-spacing:0.5px; }
+.featured-card-price.call { color:var(--sky); font-size:13px; font-family:'DM Sans',sans-serif; font-weight:600; letter-spacing:0.5px; text-transform:uppercase; }
+.featured-card-stock { font-size:11px; color:var(--text-muted); letter-spacing:0.5px; }
+.featured-loading {
+  grid-column:1/-1; text-align:center; padding:60px 20px;
+  font-size:13px; color:var(--text-muted); letter-spacing:0.5px;
+}
+
+/* TESTIMONIALS — three-up quote cards with first-name + city tags.
+   Drop real customer texts in here once you have them. The placeholder
+   copy is intentionally generic so John can swap quote-by-quote. */
+.testimonials { padding:72px 48px; background:linear-gradient(135deg, rgba(232,160,32,0.04), transparent); }
+.testimonials-header { text-align:center; max-width:680px; margin:0 auto 40px auto; }
+.testimonials-grid {
+  display:grid; grid-template-columns:repeat(3, 1fr); gap:24px;
+  max-width:1180px; margin:0 auto;
+}
+.testimonial-card {
+  background:rgba(255,255,255,0.03); border:1px solid var(--border);
+  border-radius:8px; padding:28px 26px;
+  display:flex; flex-direction:column; gap:18px;
+  position:relative; transition:0.3s;
+}
+.testimonial-card:hover { border-color:var(--border-hover); transform:translateY(-3px); }
+.testimonial-quote {
+  font-family:'DM Serif Display',serif; font-size:16px;
+  color:rgba(255,255,255,0.92); line-height:1.55;
+}
+.testimonial-quote::before { content:'"'; font-size:42px; color:var(--gold); line-height:0; vertical-align:-12px; margin-right:4px; }
+.testimonial-stars { color:var(--gold); letter-spacing:2px; font-size:14px; }
+.testimonial-byline { display:flex; flex-direction:column; gap:2px; margin-top:auto; }
+.testimonial-byline strong { font-size:13px; color:var(--white); font-weight:600; }
+.testimonial-byline span { font-size:11px; color:var(--text-muted); letter-spacing:0.5px; }
+
+/* FOUNDER-DIRECT CTA — replaces the generic "Ready to Find Your Next
+   Vehicle?" with a personal hook. CarEdge ends pages with Ray-on-camera;
+   this is the LotLink equivalent. */
+.founder-cta {
+  padding:80px 48px; background:linear-gradient(135deg, var(--blue), var(--accent));
+  position:relative; overflow:hidden;
+}
+.founder-cta::before {
+  content:''; position:absolute; inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23fff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
+}
+.founder-cta-inner {
+  max-width:980px; margin:0 auto;
+  display:grid; grid-template-columns:140px 1fr auto; gap:32px; align-items:center;
+  position:relative;
+}
+.founder-cta-photo {
+  width:140px; height:140px; border-radius:50%;
+  background:rgba(255,255,255,0.1); border:3px solid rgba(255,255,255,0.25);
+  overflow:hidden; position:relative;
+}
+.founder-cta-photo img { width:100%; height:100%; object-fit:cover; }
+.founder-cta-photo-fallback {
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  font-size:64px; color:rgba(255,255,255,0.6);
+}
+.founder-cta-text h2 {
+  font-family:'Bebas Neue',sans-serif; font-size:clamp(32px,5vw,52px); letter-spacing:1px;
+  line-height:1.05; color:var(--white); margin:0 0 10px 0;
+}
+.founder-cta-text p { font-size:15px; color:rgba(255,255,255,0.85); line-height:1.55; margin:0 0 6px 0; }
+.founder-cta-text .signature { font-family:'DM Serif Display',serif; font-style:italic; color:var(--white); font-size:14px; opacity:0.85; }
+.founder-cta-actions { display:flex; flex-direction:column; gap:10px; }
+.founder-cta-actions .btn-white { white-space:nowrap; }
+
+@media(max-width:768px) {
+  .featured-section { padding:48px 20px; }
+  .testimonials { padding:48px 20px; }
+  .founder-cta { padding:56px 20px; }
+  .founder-cta-inner { grid-template-columns:1fr; text-align:center; gap:20px; }
+  .founder-cta-photo { margin:0 auto; width:120px; height:120px; }
+  .founder-cta-actions { align-items:center; }
+}
+
+/* AUDIENCE ROUTER — "Who are you?" two-card split that lets visitors
+   self-identify in under two seconds. Placed right below the search bar
+   so buyers who want to browse have already clicked through; everyone
+   else uses these cards to exit to the right experience. */
+.audience-router { padding:56px 48px; }
+.audience-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; max-width:960px; margin:0 auto; }
+.audience-card { position:relative; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:8px; padding:36px 32px; text-decoration:none; transition:0.3s; display:flex; flex-direction:column; gap:10px; }
+.audience-card:hover { background:rgba(46,117,182,0.1); border-color:var(--border-hover); transform:translateY(-3px); }
+.audience-card.dealer { background:rgba(232,160,32,0.05); border-color:rgba(232,160,32,0.25); }
+.audience-card.dealer:hover { background:rgba(232,160,32,0.1); border-color:rgba(232,160,32,0.5); }
+.audience-eyebrow { font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--sky); font-weight:700; }
+.audience-card.dealer .audience-eyebrow { color:var(--gold); }
+.audience-headline { font-family:'DM Serif Display',serif; font-size:26px; color:var(--white); line-height:1.15; margin:4px 0 0 0; }
+.audience-body { font-size:14px; color:var(--text-muted); line-height:1.6; margin:6px 0 0 0; }
+.audience-arrow { font-size:14px; color:var(--sky); margin-top:auto; padding-top:12px; font-weight:600; }
+.audience-card.dealer .audience-arrow { color:var(--gold); }
+
+/* THREE PILLARS — proper cross-audience service grid. Each card carries
+   an audience pill so visitors don't have to read three paragraphs to
+   find out which card is for them. Marketplace is the center card
+   because it's the shared platform. */
+.pillars-strip { background:linear-gradient(135deg, rgba(27,58,107,0.4), rgba(10,26,48,0.9)); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:72px 48px; }
+.pillars-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; max-width:1180px; margin:36px auto 0 auto; }
+.pillar-card { background:rgba(255,255,255,0.04); border:1px solid var(--border); border-radius:8px; padding:32px 28px; position:relative; display:flex; flex-direction:column; gap:14px; transition:0.3s; }
+.pillar-card:hover { background:rgba(46,117,182,0.1); border-color:var(--border-hover); transform:translateY(-4px); }
+.pillar-card.featured { background:rgba(232,160,32,0.05); border-color:rgba(232,160,32,0.3); }
+.pillar-pill { position:absolute; top:20px; right:20px; font-size:9px; letter-spacing:1.2px; text-transform:uppercase; font-weight:700; padding:4px 9px; border-radius:4px; }
+.pill-buyers { background:rgba(46,117,182,0.2); color:var(--sky); }
+.pill-dealers { background:rgba(232,160,32,0.2); color:var(--gold); }
+.pill-both { background:rgba(148,163,184,0.18); color:rgba(255,255,255,0.72); }
+.pillar-icon { font-size:32px; margin-bottom:4px; }
+.pillar-name { font-family:'DM Serif Display',serif; font-size:22px; color:var(--white); line-height:1.2; }
+.pillar-tagline { font-size:13px; color:var(--text-muted); line-height:1.7; }
+.pillar-anchor { font-size:12px; color:rgba(255,255,255,0.5); padding-top:8px; border-top:1px solid rgba(255,255,255,0.08); }
+.pillar-anchor strong { color:var(--gold); font-weight:600; }
+.pillar-cta { font-size:13px; color:var(--sky); text-decoration:none; font-weight:600; margin-top:auto; padding-top:10px; }
+.pillar-cta:hover { color:var(--white); }
+
+/* DEALER BAND — compact strip before the final CTA that keeps dealer
+   visitors in the flow without hijacking the buyer-primary page. */
+.dealer-band { padding:36px 48px; background:rgba(232,160,32,0.04); border-top:1px solid rgba(232,160,32,0.2); border-bottom:1px solid rgba(232,160,32,0.2); }
+.dealer-band-inner { max-width:960px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+.dealer-band-text { font-size:15px; color:rgba(255,255,255,0.85); }
+.dealer-band-text strong { color:var(--gold); font-weight:600; }
+.dealer-band-cta { font-size:13px; color:var(--gold); font-weight:700; text-decoration:none; letter-spacing:0.5px; white-space:nowrap; }
+.dealer-band-cta:hover { text-decoration:underline; }
+
+/* CTA */
+.cta-section { padding:80px 48px; text-align:center; background:linear-gradient(135deg, var(--blue), var(--accent)); position:relative; overflow:hidden; }
+.cta-section::before { content:''; position:absolute; inset:0; background:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23fff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E"); }
+.cta-section h2 { font-family:'Bebas Neue',sans-serif; font-size:clamp(40px,6vw,68px); letter-spacing:1px; line-height:1; color:var(--white); margin-bottom:14px; position:relative; }
+.cta-section p { font-size:16px; font-weight:300; color:rgba(255,255,255,0.75); margin-bottom:36px; position:relative; }
+.cta-actions { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; position:relative; }
+.btn-white { background:var(--white); color:var(--blue); padding:14px 32px; border-radius:4px; font-size:14px; font-weight:700; text-decoration:none; cursor:pointer; transition:transform 0.2s, box-shadow 0.2s; display:inline-flex; align-items:center; gap:8px; }
+.btn-white:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(0,0,0,0.2); }
+.btn-outline-white { background:transparent; color:var(--white); padding:13px 32px; border-radius:4px; font-size:14px; font-weight:500; text-decoration:none; border:2px solid rgba(255,255,255,0.45); cursor:pointer; transition:border-color 0.2s, background 0.2s; display:inline-flex; align-items:center; gap:8px; }
+.btn-outline-white:hover { border-color:var(--white); background:rgba(255,255,255,0.1); }
+
+@media(max-width:768px) {
+  .hero-full { padding:100px 20px 60px; flex-direction:column; align-items:stretch; gap:32px; }
+  .hero-full .hero-content { max-width:100%; }
+  .hero-founder { flex:0 0 auto; max-width:100%; }
+  .nav-phone { display:none; } /* mobile gets the phone in CTA section instead — saves nav space */
+  .search-wrap { padding:20px; }
+  .search-bar { flex-direction:column; }
+  .search-bar select, .search-bar input { border-right:none; border-bottom:1px solid var(--border); }
+  .steps-grid { grid-template-columns:1fr 1fr; }
+  .why-grid { grid-template-columns:1fr; gap:40px; }
+  .why-left { padding-right:0; }
+  .services-grid { grid-template-columns:1fr; }
+  .cta-section { padding:60px 20px; }
+  .audience-router { padding:36px 20px; }
+  .audience-grid { grid-template-columns:1fr; gap:12px; }
+  .pillars-strip { padding:48px 20px; }
+  .pillars-grid { grid-template-columns:1fr; }
+  .dealer-band { padding:28px 20px; }
+  .dealer-band-inner { flex-direction:column; text-align:center; }
+  .featured-grid { grid-template-columns:1fr 1fr; gap:14px; }
+  .testimonials-grid { grid-template-columns:1fr; gap:14px; }
+  .partner-strip-track { animation-duration:30s; }
+}
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+
+<nav>
+  <a href="index.html" class="nav-logo">Lot<span>Link</span> Indiana</a>
+  <ul id="nav-links" class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="inventory.html">Inventory</a></li>
+    <li><a href="dealers.html">For Dealers</a></li>
+    <li><a href="concierge.html">Concierge</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="tel:2602299393" class="nav-phone" aria-label="Call LotLink Indiana"><span aria-hidden="true">📞</span> 260-229-9393</a></li>
+    <li><a href="contact.html#credit" class="nav-cta">Get Pre-Approved</a></li>
+  </ul>
+  <button class="nav-mobile-btn" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+    <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+  </button>
+</nav>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="hero-full page-hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Local · Northern Indiana · Real People</div>
+    <h1>Find the right car at <em>any</em><br>Northern Indiana lot — without<br>the <em>runaround.</em></h1>
+    <p class="hero-sub">One search across 12+ local dealers. A real person who picks up the phone — every time. Concierge delivery to your driveway if you'd rather skip the showroom altogether.</p>
+    <div class="hero-actions">
+      <a href="inventory.html" class="btn-gold">Browse Inventory ›</a>
+      <a href="tel:2602299393" class="btn-outline" aria-label="Call John at 260-229-9393">📞 Call John Direct</a>
+    </div>
+    <div class="hero-trust">
+      <span class="trust-pill">⚡ Replies in under 5 min</span>
+      <span class="trust-pill">✓ All credit welcome</span>
+      <span class="trust-pill">🚚 Concierge delivery available</span>
+    </div>
+  </div>
+
+  <!-- Founder card — replaces decorative stats with a real face + a personal
+       promise. Drop your headshot at /assets/founder-john.jpg and the
+       placeholder rotates out automatically. -->
+  <aside class="hero-founder" aria-label="Meet John, founder of LotLink Indiana">
+    <div class="founder-photo">
+      <img src="assets/founder-john.jpg" alt="John Roberts, LotLink Indiana founder" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+      <div class="founder-photo-fallback" style="display:none;" aria-hidden="true">
+        <span>👤</span>
+        <small>Add /assets/founder-john.jpg</small>
+      </div>
+    </div>
+    <div class="founder-quote">
+      <p>"I personally answer every concierge inquiry within 60 minutes. No bots, no call center."</p>
+      <div class="founder-byline">
+        <strong>John Roberts</strong>
+        <span>Founder · Licensed Indiana Auto Broker</span>
+      </div>
+    </div>
+  </aside>
+</section>
+
+<!-- SEARCH -->
+<div class="search-wrap">
+  <form class="search-bar" onsubmit="doSearch(event)" role="search" aria-label="Search inventory">
+    <label class="sr-only" for="sb-make">Make</label>
+    <select id="sb-make"><option value="">Any Make</option><option>Cadillac</option><option>Chevrolet</option><option>Chrysler</option><option>Ford</option><option>GMC</option><option>Honda</option><option>Hyundai</option><option>Jeep</option><option>Kia</option><option>Lincoln</option><option>Nissan</option><option>Ram</option><option>Tesla</option><option>Toyota</option><option>Volkswagen</option></select>
+    <label class="sr-only" for="sb-price">Max price</label>
+    <select id="sb-price"><option value="">Any Price</option><option value="10000">Under $10,000</option><option value="15000">Under $15,000</option><option value="20000">Under $20,000</option><option value="25000">Under $25,000</option><option value="30000">Under $30,000</option><option value="40000">Under $40,000</option></select>
+    <label class="sr-only" for="sb-keyword">Keyword</label>
+    <input type="text" id="sb-keyword" placeholder="Keyword — e.g. F-150, 4WD, Crew Cab…">
+    <button type="submit">Search Inventory</button>
+  </form>
+</div>
+
+<!-- DEALER PARTNER STRIP — placeholder name pills until John drops real
+     SVG/PNG logos in /assets/dealers/. Doubled to fill the marquee. -->
+<div class="partner-strip" aria-label="LotLink dealer partners">
+  <div class="partner-strip-eyebrow">Trusted by Northern Indiana dealers</div>
+  <div class="partner-strip-track">
+    <span class="partner-pill">House of Carz</span>
+    <span class="partner-pill">Mike D's Auto</span>
+    <span class="partner-pill">Rochester Motors</span>
+    <span class="partner-pill">Warsaw Auto Group</span>
+    <span class="partner-pill">Plymouth Pre-Owned</span>
+    <span class="partner-pill">Logansport Auto</span>
+    <span class="partner-pill">Peru Family Motors</span>
+    <span class="partner-pill">Wabash Auto Sales</span>
+    <span class="partner-pill">Kokomo Used Cars</span>
+    <span class="partner-pill">Indiana Auto Direct</span>
+    <span class="partner-pill">Northern IN Trucks</span>
+    <span class="partner-pill">+ More Each Month</span>
+    <!-- Duplicate set for seamless infinite scroll -->
+    <span class="partner-pill" aria-hidden="true">House of Carz</span>
+    <span class="partner-pill" aria-hidden="true">Mike D's Auto</span>
+    <span class="partner-pill" aria-hidden="true">Rochester Motors</span>
+    <span class="partner-pill" aria-hidden="true">Warsaw Auto Group</span>
+    <span class="partner-pill" aria-hidden="true">Plymouth Pre-Owned</span>
+    <span class="partner-pill" aria-hidden="true">Logansport Auto</span>
+    <span class="partner-pill" aria-hidden="true">Peru Family Motors</span>
+    <span class="partner-pill" aria-hidden="true">Wabash Auto Sales</span>
+    <span class="partner-pill" aria-hidden="true">Kokomo Used Cars</span>
+    <span class="partner-pill" aria-hidden="true">Indiana Auto Direct</span>
+    <span class="partner-pill" aria-hidden="true">Northern IN Trucks</span>
+    <span class="partner-pill" aria-hidden="true">+ More Each Month</span>
+  </div>
+</div>
+
+<!-- FEATURED VEHICLES — live-rendered from the BDC scraper. Hydrates on
+     window.LOTLINK_INVENTORY_READY (see assets/inventory.js). -->
+<section class="featured-section" aria-label="Featured vehicles">
+  <div class="featured-header">
+    <div>
+      <div class="section-label">Featured This Week</div>
+      <div class="section-title" style="margin-bottom:0;">Cars Moving <em>Fast</em></div>
+    </div>
+    <a href="inventory.html" class="featured-link">See All 300+ Vehicles &rsaquo;</a>
+  </div>
+  <div class="featured-grid" id="featuredGrid" aria-live="polite">
+    <div class="featured-loading">Loading current inventory…</div>
+  </div>
+</section>
+
+<!-- AUDIENCE ROUTER -->
+<section class="audience-router">
+  <div class="audience-grid">
+    <a href="inventory.html" class="audience-card">
+      <div class="audience-eyebrow">I'm Shopping for a Car</div>
+      <h2 class="audience-headline">Find the right vehicle without driving lot to lot.</h2>
+      <p class="audience-body">Browse every participating dealer's inventory in one search, or let our concierge service source and deliver the exact vehicle you want.</p>
+      <span class="audience-arrow">Browse Inventory &rsaquo;</span>
+    </a>
+    <a href="dealers.html" class="audience-card dealer">
+      <div class="audience-eyebrow">I Own a Dealership</div>
+      <h2 class="audience-headline">List your lot + let Jordan work every lead 24/7.</h2>
+      <p class="audience-body">AI-powered BDC that responds in under a minute, books appointments, and runs outbound campaigns. Free marketplace listing included with every plan.</p>
+      <span class="audience-arrow">See Dealer Plans &rsaquo;</span>
+    </a>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section">
+  <div class="section-label">Simple Process</div>
+  <div class="section-title">How <em>LotLink</em> Works</div>
+  <p class="section-sub">We've removed every frustration from the car buying process. Here's how simple it is.</p>
+  <div class="steps-grid">
+    <div class="step"><div class="step-num" aria-hidden="true">01</div><div class="step-icon" aria-hidden="true">🔍</div><h3>Search the Region</h3><p>Browse hundreds of vehicles from multiple Northern Indiana dealers in one unified search. Filter by make, model, price, and more.</p></div>
+    <div class="step"><div class="step-num" aria-hidden="true">02</div><div class="step-icon" aria-hidden="true">💬</div><h3>Talk to a Real Person</h3><p>No bots, no runaround. When you reach out you get a real local auto professional who knows the inventory and is ready to help.</p></div>
+    <div class="step"><div class="step-num" aria-hidden="true">03</div><div class="step-icon" aria-hidden="true">✅</div><h3>Get Pre-Approved Fast</h3><p>We work with multiple lenders for all credit situations. Know exactly what you can drive before you ever leave the house.</p></div>
+    <div class="step"><div class="step-num" aria-hidden="true">04</div><div class="step-icon" aria-hidden="true">🚗</div><h3>Drive — or Get Delivered</h3><p>Pick up at the dealership or upgrade to our Concierge Service and have your vehicle delivered right to your door.</p></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WHY LOTLINK -->
+<section class="section" style="background:linear-gradient(135deg, rgba(27,58,107,0.25), transparent);">
+  <div class="why-grid">
+    <div class="why-left">
+      <div class="section-label">Why LotLink Indiana</div>
+      <div class="section-title">A Better Way to <em>Buy a Car</em></div>
+      <p class="section-sub">We're not a national platform. We're a local team that knows Northern Indiana dealers, lenders, and buyers personally.</p>
+      <ul class="why-points">
+        <li><div class="check-circle">✓</div><span>One search across every participating dealer in Northern Indiana — no more lot hopping</span></li>
+        <li><div class="check-circle">✓</div><span>A real person actively working to find you the right vehicle at the right price</span></li>
+        <li><div class="check-circle">✓</div><span>All credit situations welcome — we work with lenders others won't</span></li>
+        <li><div class="check-circle">✓</div><span>Optional white-glove concierge service — paperwork handled, vehicle delivered to you</span></li>
+        <li><div class="check-circle">✓</div><span>No pressure, no games — just honest local auto buying the way it should be</span></li>
+      </ul>
+      <a href="inventory.html" class="btn-gold">Start Your Search ›</a>
+    </div>
+    <div class="why-right">
+      <div class="why-card"><div class="why-card-num">12+</div><div class="why-card-label">Dealer partners across Northern Indiana</div></div>
+      <div class="why-card"><div class="why-card-num">300+</div><div class="why-card-label">Vehicles available right now</div></div>
+      <div class="why-card"><div class="why-card-num">All</div><div class="why-card-label">Credit situations welcome</div></div>
+      <div class="why-card"><div class="why-card-num">$0</div><div class="why-card-label">Cost to search and get pre-approved</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- THREE PILLARS -->
+<section class="pillars-strip">
+  <div class="section-label" style="justify-content:center;">What We Do</div>
+  <div class="section-title" style="text-align:center;">Three Pillars. <em>One</em> <span class="gold">Platform.</span></div>
+  <p class="section-sub" style="max-width:680px;margin:12px auto 0 auto;text-align:center;">LotLink is a regional marketplace at its core. Built around it: an AI BDC that works leads for dealers, and a concierge service that sources vehicles for buyers.</p>
+
+  <div class="pillars-grid">
+
+    <!-- PILLAR 1: Marketplace (serves both audiences) -->
+    <div class="pillar-card">
+      <span class="pillar-pill pill-both">For Buyers &amp; Dealers</span>
+      <div class="pillar-icon" aria-hidden="true">🗂️</div>
+      <h3 class="pillar-name">The Marketplace</h3>
+      <p class="pillar-tagline">One regional search across every participating Northern Indiana dealer. Buyers find the right vehicle faster; dealers get their inventory in front of buyers across the whole region, not just their ZIP code.</p>
+      <div class="pillar-anchor">300+ vehicles live · 12+ dealer partners · Updated daily</div>
+      <a href="inventory.html" class="pillar-cta">Browse the Marketplace &rsaquo;</a>
+    </div>
+
+    <!-- PILLAR 2: AI BDC (for dealers) -->
+    <div class="pillar-card featured">
+      <span class="pillar-pill pill-dealers">For Dealers</span>
+      <div class="pillar-icon" aria-hidden="true">🤖</div>
+      <h3 class="pillar-name">Jordan, Your AI BDC</h3>
+      <p class="pillar-tagline">Responds to every lead in under a minute, qualifies buyers over SMS/email/voice, and books appointments on your calendar 24/7. Plugs into your existing CRM — no workflow changes required.</p>
+      <div class="pillar-anchor"><strong>$499–$1,999/mo</strong> · 14-day free trial · No contract</div>
+      <a href="dealers.html" class="pillar-cta">See Plans &amp; Pricing &rsaquo;</a>
+    </div>
+
+    <!-- PILLAR 3: Concierge (for buyers) -->
+    <div class="pillar-card">
+      <span class="pillar-pill pill-buyers">For Buyers</span>
+      <div class="pillar-icon" aria-hidden="true">⭐</div>
+      <h3 class="pillar-name">Concierge Service</h3>
+      <p class="pillar-tagline">Tell us what you want; we source it, negotiate on your behalf, handle the paperwork electronically, and deliver to your driveway. Perfect for busy professionals who don't want to spend a Saturday at the dealership.</p>
+      <div class="pillar-anchor"><strong>$499–$1,499 flat</strong> · 3–14 day delivery · No finder's fee</div>
+      <a href="concierge.html" class="pillar-cta">How the Concierge Works &rsaquo;</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- TESTIMONIALS — three real customer quotes when John has them. Until
+     then these placeholders signal "this is where the social proof goes"
+     so it doesn't ship blank. Swap quote-by-quote as text messages /
+     email replies come in from real buyers. -->
+<section class="testimonials" aria-label="What buyers say about LotLink Indiana">
+  <div class="testimonials-header">
+    <div class="section-label" style="justify-content:center;">Real Buyers · Real Indiana</div>
+    <div class="section-title" style="text-align:center;">What our <em>customers</em> say.</div>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="testimonial-stars" aria-label="5 out of 5 stars">★★★★★</div>
+      <p class="testimonial-quote">[ Replace with a real customer text or email — short, specific, mentions a vehicle or a dollar amount saved. Keep it under three sentences. ]</p>
+      <div class="testimonial-byline">
+        <strong>First Name L.</strong>
+        <span>Plymouth, IN · Bought a 2020 F-150</span>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars" aria-label="5 out of 5 stars">★★★★★</div>
+      <p class="testimonial-quote">[ Replace — best ones name a specific moment ("called me back in 4 minutes") rather than vague praise. ]</p>
+      <div class="testimonial-byline">
+        <strong>First Name L.</strong>
+        <span>Warsaw, IN · Concierge delivery</span>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars" aria-label="5 out of 5 stars">★★★★★</div>
+      <p class="testimonial-quote">[ Replace — credit-challenged customers landing approvals are gold here ("got me approved when 3 other places turned me down"). ]</p>
+      <div class="testimonial-byline">
+        <strong>First Name L.</strong>
+        <span>Rochester, IN · All credit welcome</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEALER BAND (compact dealer handle before the buyer CTA) -->
+<section class="dealer-band">
+  <div class="dealer-band-inner">
+    <div class="dealer-band-text">
+      Run a dealership? <strong>Jordan answers every lead in under a minute — 24/7.</strong> See how the AI BDC works for your shop.
+    </div>
+    <a href="dealers.html" class="dealer-band-cta">FOR DEALERS &rsaquo;</a>
+  </div>
+</section>
+
+<!-- FOUNDER-DIRECT CTA — replaces the generic "Ready to find your next
+     vehicle?" with a founder-personal hook. CarEdge ends every page with
+     Ray-on-camera. This is John's equivalent. -->
+<section class="founder-cta" aria-label="Talk to John directly">
+  <div class="founder-cta-inner">
+    <div class="founder-cta-photo">
+      <img src="assets/founder-john.jpg" alt="John Roberts, LotLink Indiana founder" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+      <div class="founder-cta-photo-fallback" style="display:none;" aria-hidden="true">👤</div>
+    </div>
+    <div class="founder-cta-text">
+      <h2>Call me direct. I pick up.</h2>
+      <p>I'm John — born and raised in Indiana, licensed auto broker, and the guy who personally answers every concierge inquiry. If you'd rather talk than browse, hit the button. If we can't find what you want on a partner lot today, we'll source it for you within the week.</p>
+      <p class="signature">— John Roberts, Founder</p>
+    </div>
+    <div class="founder-cta-actions">
+      <a href="tel:2602299393" class="btn-white">📞 260-229-9393</a>
+      <a href="contact.html#credit" class="btn-outline-white">Get Pre-Approved ›</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <a href="index.html" class="footer-logo">Lot<span>Link</span> Indiana</a>
+    <p class="footer-tagline">Northern Indiana's Regional<br>Auto Brokerage & Marketplace</p>
+  </div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="dealers.html">For Dealers</a>
+    <a href="concierge.html">Concierge Service</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="contact.html#credit">Get Pre-Approved</a>
+  </div>
+  <div class="footer-contact">
+    <p>John Roberts<br><a href="tel:2602299393">260-229-9393</a><br><a href="mailto:john@lotlinkin.com">john@lotlinkin.com</a><br>Serving Rochester, Warsaw,<br>Plymouth & all of Northern Indiana</p>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <div class="footer-bottom-left">
+    <p>© 2026 LotLink Indiana. All rights reserved.</p>
+    <p class="footer-legal">Indiana Licensed Auto Broker · License #<span class="license-placeholder">PENDING</span> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></p>
+  </div>
+  <p class="footer-disclaimer">lotlinkin.com</p>
+</div>
+
+
+<script>
+function doSearch(e) {
+  if (e && e.preventDefault) e.preventDefault();
+  const make = document.getElementById('sb-make').value;
+  const price = document.getElementById('sb-price').value;
+  const keyword = document.getElementById('sb-keyword').value.trim();
+  const params = new URLSearchParams();
+  if (make) params.set('make', make);
+  if (price) params.set('price', price);
+  if (keyword) params.set('q', keyword);
+  window.location.href = 'inventory.html' + (params.toString() ? '?' + params.toString() : '');
+}
+
+// ── Featured Vehicles ────────────────────────────────────────────────────
+// Pulls 6 vehicles from the live BDC inventory feed (assets/inventory.js)
+// and renders them as cards on the homepage. If the live feed is slow or
+// down, the fallback list inside inventory.js still populates window
+// .LOTLINK_INVENTORY so the homepage never shows an empty grid.
+//
+// Selection rule: prefer photographed vehicles with a real price first
+// (they convert better visually), then fill remaining slots from the rest.
+function renderFeaturedVehicles() {
+  const grid = document.getElementById('featuredGrid');
+  if (!grid) return;
+
+  const inventory = (window.LOTLINK_INVENTORY || []).slice();
+  if (!inventory.length) {
+    grid.innerHTML = '<div class="featured-loading">No inventory available right now. <a href="inventory.html" style="color:var(--gold);">Browse all vehicles</a> &rsaquo;</div>';
+    return;
+  }
+
+  // Score each vehicle so the most visually-converting ones float to the
+  // top: real photo > priced > newer year. Then take the first 6.
+  const scored = inventory.map(v => ({
+    v,
+    score: (v.img ? 100 : 0) + (v.price ? 50 : 0) + (v.year || 0) / 100,
+  })).sort((a, b) => b.score - a.score);
+  const featured = scored.slice(0, 6).map(s => s.v);
+
+  const fmt$ = n => '$' + n.toLocaleString();
+  grid.innerHTML = featured.map(v => {
+    const detailHref = `vehicle.html?stock=${encodeURIComponent(v.stock)}`;
+    const trim = v.trim ? `<div class="featured-card-trim">${v.trim}</div>` : '';
+    const imgHtml = v.img
+      ? `<img src="${v.img}" alt="${v.year} ${v.make} ${v.model}" loading="lazy" decoding="async" />`
+      : `<div class="featured-card-empty" aria-hidden="true">🚗</div>`;
+    const priceHtml = v.price
+      ? `<span class="featured-card-price">${fmt$(v.price)}</span>`
+      : `<span class="featured-card-price call">Call for Price</span>`;
+    return `
+      <a class="featured-card" href="${detailHref}" aria-label="View ${v.year} ${v.make} ${v.model}, stock ${v.stock}">
+        <div class="featured-card-img">${imgHtml}</div>
+        <div class="featured-card-body">
+          <div class="featured-card-title">${v.year} ${v.make} ${v.model}</div>
+          ${trim}
+          <div class="featured-card-meta">
+            ${priceHtml}
+            <span class="featured-card-stock">Stock #${v.stock}</span>
+          </div>
+        </div>
+      </a>
+    `;
+  }).join('');
+}
+
+// Wait for the live feed if it's still resolving; otherwise render whatever
+// LOTLINK_INVENTORY currently holds (could be the static fallback).
+if (window.LOTLINK_INVENTORY_READY && typeof window.LOTLINK_INVENTORY_READY.then === 'function') {
+  window.LOTLINK_INVENTORY_READY.then(renderFeaturedVehicles).catch(renderFeaturedVehicles);
+} else {
+  // inventory.js loaded with `defer`, so DOMContentLoaded fires after it's
+  // already executed — but if for any reason the promise isn't there yet,
+  // try once on DOMContentLoaded.
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', renderFeaturedVehicles);
+  } else {
+    renderFeaturedVehicles();
+  }
+}
+</script>
+
+<!-- LotLink AI web chat — routes to the marketplace concierge inbox -->
+<script
+  src="https://lotlink-api-production.up.railway.app/widget.js"
+  data-dealership="cfff76a7-6385-4e2c-b4ee-63418198a564"
+  defer></script>
+</body>
+</html>
