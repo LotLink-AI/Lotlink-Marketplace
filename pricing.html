@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing — LotLink Indiana</title>
+<meta name="description" content="Simple, transparent pricing. Concierge auto buying from $499 flat. Dealer BDC software from $499/month. Published prices, no contact-sales games. 14-day free trial for dealers.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://lotlinkin.com/pricing.html">
+
+<!-- Open Graph / Twitter -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="LotLink Indiana">
+<meta property="og:title" content="Pricing — LotLink Indiana">
+<meta property="og:description" content="Concierge auto buying from $499 flat. Dealer BDC software from $499/month. Transparent prices, no games.">
+<meta property="og:url" content="https://lotlinkin.com/pricing.html">
+<meta property="og:image" content="https://lotlinkin.com/assets/og-default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<script src="assets/site.js" defer></script>
+
+<!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Pricing — LotLink Indiana",
+  "url": "https://lotlinkin.com/pricing.html",
+  "description": "Concierge auto buying from $499 flat. Dealer BDC software from $499/month."
+}
+</script>
+
+<style>
+/* PRICING SPECIFIC */
+
+/* Audience picker — two big buttons at the top of the page so a
+   visitor can self-route in one click. Anchors jump to the relevant
+   section instead of toggling so SEO still indexes both. */
+.audience-picker {
+  display:grid; grid-template-columns:1fr 1fr; gap:16px;
+  max-width:760px; margin:0 auto 64px;
+}
+.audience-card {
+  background:rgba(255,255,255,0.03);
+  border:1px solid var(--border); border-radius:8px;
+  padding:28px 32px; text-decoration:none;
+  display:flex; flex-direction:column; gap:6px;
+  transition:transform 0.2s, border-color 0.2s, background 0.2s;
+}
+.audience-card:hover { transform:translateY(-2px); border-color:var(--border-hover); background:rgba(46,117,182,0.08); }
+.audience-card .label { font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--sky); }
+.audience-card .headline { font-family:'Bebas Neue',sans-serif; font-size:30px; letter-spacing:1px; color:var(--white); line-height:1; }
+.audience-card .sub { font-size:13px; color:var(--text-muted); line-height:1.55; margin-top:6px; }
+.audience-card .from { font-size:12px; color:var(--gold); margin-top:10px; font-weight:600; letter-spacing:0.4px; }
+
+/* Pricing cards reuse the model-card pattern from dealers.html /
+   concierge.html so the visual language is consistent across the site. */
+.pricing-grid {
+  display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-bottom:36px;
+}
+.pricing-grid.three-up { grid-template-columns:repeat(3,1fr); }
+
+.tier-card {
+  background:rgba(255,255,255,0.03);
+  border:1px solid var(--border); border-radius:6px;
+  padding:32px 28px; position:relative; overflow:hidden;
+  transition:0.3s; display:flex; flex-direction:column;
+}
+.tier-card:hover { background:rgba(46,117,182,0.1); border-color:var(--border-hover); transform:translateY(-3px); }
+.tier-card.featured { border-color:rgba(232,160,32,0.4); background:rgba(232,160,32,0.05); }
+.tier-card.featured::before {
+  content:'⭐ MOST POPULAR'; position:absolute; top:14px; right:14px;
+  font-size:9.5px; font-weight:700; letter-spacing:1.5px; color:var(--gold);
+}
+.tier-price { font-family:'Bebas Neue',sans-serif; font-size:42px; color:var(--white); line-height:1; margin-bottom:4px; }
+.tier-price span { font-size:16px; color:var(--gray); font-family:'DM Sans',sans-serif; font-weight:300; letter-spacing:0; }
+.tier-name { font-size:12px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--sky); margin-bottom:18px; }
+.tier-features { list-style:none; flex:1; }
+.tier-features li {
+  font-size:13px; color:rgba(255,255,255,0.65); padding:8px 0;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex; align-items:flex-start; gap:8px; line-height:1.5;
+}
+.tier-features li:last-child { border-bottom:none; }
+.tier-features li::before { content:'✓'; color:var(--sky); font-weight:700; flex-shrink:0; margin-top:1px; }
+.tier-features li.gold-check::before { color:var(--gold); }
+.tier-cta {
+  margin-top:20px; padding:11px 18px; border-radius:4px;
+  font-size:13px; font-weight:600; letter-spacing:0.4px;
+  text-decoration:none; text-align:center;
+  background:rgba(91,163,217,0.12); color:var(--sky);
+  border:1px solid rgba(91,163,217,0.3);
+  transition:0.2s;
+}
+.tier-cta:hover { background:rgba(91,163,217,0.2); color:var(--white); border-color:var(--sky); }
+.tier-card.featured .tier-cta { background:var(--gold); color:var(--dark); border-color:var(--gold); }
+.tier-card.featured .tier-cta:hover { background:var(--gold-light); }
+
+/* Inline math / explainer box that sits below each pricing grid. */
+.math-box {
+  background:linear-gradient(135deg,rgba(91,163,217,0.07),rgba(46,117,182,0.04));
+  border:1px solid var(--border); border-radius:8px;
+  padding:24px 28px; max-width:760px; margin:0 auto 24px;
+}
+.math-box strong { color:var(--gold); }
+.math-box .label { font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--sky); margin-bottom:8px; }
+.math-box p { font-size:14px; color:rgba(255,255,255,0.78); line-height:1.7; }
+
+/* FAQ accordion */
+.faq-list { max-width:780px; margin:0 auto; }
+.faq-item { border:1px solid var(--border); border-radius:6px; margin-bottom:10px; overflow:hidden; }
+.faq-q {
+  padding:16px 22px; background:rgba(255,255,255,0.03);
+  font-size:14px; font-weight:600; color:var(--white);
+  cursor:pointer; display:flex; justify-content:space-between; align-items:center;
+  transition:background 0.2s; width:100%; border:none; text-align:left; font-family:inherit;
+}
+.faq-q:hover { background:rgba(46,117,182,0.1); }
+.faq-q span { color:var(--sky); font-size:18px; transition:transform 0.2s; display:inline-block; }
+.faq-a { padding:18px 22px; font-size:13.5px; color:var(--text-muted); line-height:1.75; border-top:1px solid var(--border); background:rgba(0,0,0,0.1); display:none; }
+.faq-item.open .faq-a { display:block; }
+.faq-item.open .faq-q span { transform:rotate(45deg); }
+
+/* Bottom comparison table — quick "what's the difference" answer
+   for visitors who arrived here unsure which product they want. */
+.compare-table {
+  width:100%; max-width:780px; margin:0 auto;
+  border-collapse:separate; border-spacing:0;
+  background:rgba(255,255,255,0.02); border:1px solid var(--border); border-radius:8px;
+  overflow:hidden;
+}
+.compare-table th, .compare-table td {
+  padding:14px 18px; text-align:left; font-size:13px;
+  border-bottom:1px solid var(--border);
+}
+.compare-table th {
+  background:rgba(91,163,217,0.1); color:var(--white);
+  font-weight:600; letter-spacing:0.4px;
+}
+.compare-table td { color:rgba(255,255,255,0.72); }
+.compare-table tr:last-child td { border-bottom:none; }
+.compare-table .feature-label { color:var(--white); font-weight:500; }
+
+/* Final CTA — two roads, one button each. Mirrors the audience-picker
+   at the top so visitors who scrolled all the way down still self-route. */
+.final-cta {
+  text-align:center; padding:80px 32px;
+  background:linear-gradient(135deg,rgba(27,58,107,0.4),rgba(15,36,68,0.6));
+  border-top:1px solid var(--border);
+}
+.final-cta h2 { font-family:'DM Serif Display',serif; font-size:clamp(28px,3vw,40px); color:var(--white); margin-bottom:12px; }
+.final-cta p { font-size:14px; color:var(--text-muted); max-width:480px; margin:0 auto 28px; line-height:1.7; }
+.final-cta .actions { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+
+@media(max-width:900px) {
+  .pricing-grid, .pricing-grid.three-up { grid-template-columns:repeat(2,1fr); }
+}
+@media(max-width:640px) {
+  .audience-picker { grid-template-columns:1fr; }
+  .pricing-grid, .pricing-grid.three-up { grid-template-columns:1fr; }
+  .compare-table { font-size:12px; }
+  .compare-table th, .compare-table td { padding:10px 12px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Lot<span>Link</span> Indiana</a>
+  <ul id="nav-links" class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="inventory.html">Inventory</a></li>
+    <li><a href="dealers.html">For Dealers</a></li>
+    <li><a href="concierge.html">Concierge</a></li>
+    <li><a href="pricing.html" class="active">Pricing</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="contact.html#credit" class="nav-cta">Get Pre-Approved</a></li>
+  </ul>
+  <button class="nav-mobile-btn" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+    <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+  </button>
+</nav>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Pricing</div>
+    <h1>Simple Prices.<br><em>No</em> <span class="gold">Games.</span></h1>
+    <p class="hero-sub">Most concierge services charge $999. Most BDC software hides behind "contact sales." We publish everything because we'd rather earn your trust than waste your time. Start where it makes sense for you.</p>
+  </div>
+</section>
+
+<!-- AUDIENCE PICKER -->
+<section class="section-sm" style="padding-top:24px;">
+  <div class="audience-picker">
+    <a href="#concierge-pricing" class="audience-card">
+      <span class="label">For Buyers</span>
+      <span class="headline">I want to <em style="color:var(--sky); font-style:italic;">buy</em> a car</span>
+      <span class="sub">We shop the region, negotiate, handle paperwork, deliver to your door. No dealership visit required.</span>
+      <span class="from">Flat fees from $499 ›</span>
+    </a>
+    <a href="#dealer-pricing" class="audience-card">
+      <span class="label">For Dealerships</span>
+      <span class="headline">I'm a <span style="color:var(--gold);">dealer</span></span>
+      <span class="sub">AI-powered BDC that answers every lead in under a second. Email, voice, and SMS — 24/7. No human burnout, no missed calls.</span>
+      <span class="from">From $499 / month ›</span>
+    </a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═════════════════════════════════════════════════════════
+     CONCIERGE PRICING
+     ═════════════════════════════════════════════════════════ -->
+<section id="concierge-pricing" class="section">
+  <div class="section-label">Concierge Service</div>
+  <div class="section-title">For <em>Buyers</em> Who'd Rather <span class="gold">Skip the Lot</span></div>
+  <p class="section-sub">Pick the service level that fits your timeline and budget. Flat fees, no surprises, no percentage-of-savings games. Most national concierges charge $999 — we start at $499 because we're based in Indiana, not California.</p>
+
+  <div class="pricing-grid">
+    <div class="tier-card">
+      <div class="tier-price">$499 <span>flat</span></div>
+      <div class="tier-name">Essential</div>
+      <ul class="tier-features">
+        <li>Vehicle search across regional dealers</li>
+        <li>Light price negotiation on your behalf</li>
+        <li>Paperwork prep + e-sign coordination</li>
+        <li>You pick up at the dealership</li>
+        <li>Up to $30,000 vehicle</li>
+      </ul>
+      <a href="concierge.html#consultation" class="tier-cta">Start with Essential</a>
+    </div>
+    <div class="tier-card featured">
+      <div class="tier-price">$799 <span>flat</span></div>
+      <div class="tier-name">Standard</div>
+      <ul class="tier-features">
+        <li class="gold-check">Everything in Essential</li>
+        <li class="gold-check">Full negotiation on price + financing</li>
+        <li class="gold-check">Trade-in valuation &amp; coordination</li>
+        <li class="gold-check">Vehicle delivered to your door</li>
+        <li class="gold-check">Up to $50,000 vehicle</li>
+      </ul>
+      <a href="concierge.html#consultation" class="tier-cta">Most People Pick This</a>
+    </div>
+    <div class="tier-card">
+      <div class="tier-price">$899 <span>flat</span></div>
+      <div class="tier-name">Premium</div>
+      <ul class="tier-features">
+        <li>Everything in Standard</li>
+        <li>Multi-vehicle search (compare 3+)</li>
+        <li>Pre-purchase inspection arranged</li>
+        <li>Extended warranty negotiation</li>
+        <li>Up to $80,000 vehicle</li>
+      </ul>
+      <a href="concierge.html#consultation" class="tier-cta">Choose Premium</a>
+    </div>
+    <div class="tier-card">
+      <div class="tier-price">$1,499 <span>flat</span></div>
+      <div class="tier-name">Luxury</div>
+      <ul class="tier-features">
+        <li>Vehicles over $80,000 MSRP</li>
+        <li>Dedicated negotiator + vault pricing</li>
+        <li>Nationwide search (not just Indiana)</li>
+        <li>Concierge delivery anywhere in IN</li>
+        <li>White-glove handling end-to-end</li>
+      </ul>
+      <a href="concierge.html#consultation" class="tier-cta">Book a Luxury Call</a>
+    </div>
+  </div>
+
+  <div class="math-box">
+    <div class="label">The Math</div>
+    <p>Most independent shoppers save <strong>$1,500–$3,500</strong> on the deal compared to walking into a dealership cold — even after our flat fee. CarEdge charges $999 for the same service nationally. We charge less because we're local, we know the dealers, and our overhead is a Mentone office, not a Bay Area headquarters. <strong>You don't pay until you decide to proceed.</strong> If we can't find your vehicle, you don't pay.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═════════════════════════════════════════════════════════
+     DEALER BDC PRICING
+     ═════════════════════════════════════════════════════════ -->
+<section id="dealer-pricing" class="section" style="background:linear-gradient(135deg,rgba(27,58,107,0.18),transparent);">
+  <div class="section-label">For Dealerships</div>
+  <div class="section-title">AI-Powered <em>BDC</em> That Doesn't <span class="gold">Sleep</span></div>
+  <p class="section-sub">Three plans. Transparent monthly pricing — published because we'd rather earn your trust than hide behind a "contact sales" wall. <strong style="color:var(--gold);">14-day free trial</strong> on every plan. No contract. Cancel anytime.</p>
+
+  <div class="pricing-grid three-up">
+    <div class="tier-card">
+      <div class="tier-price">$499 <span>/ mo</span></div>
+      <div class="tier-name">Starter</div>
+      <ul class="tier-features">
+        <li>Up to 300 leads / month</li>
+        <li>SMS + voice answering (24/7 inbound)</li>
+        <li>1 active campaign at a time</li>
+        <li>Business-hours outbound calling</li>
+        <li>Standard analytics dashboard</li>
+        <li>For small independents (10–40 cars)</li>
+      </ul>
+      <a href="dealers.html#partner-form" class="tier-cta">Start the Free Trial</a>
+    </div>
+    <div class="tier-card featured">
+      <div class="tier-price">$999 <span>/ mo</span></div>
+      <div class="tier-name">Growth</div>
+      <ul class="tier-features">
+        <li class="gold-check">Up to 1,000 leads / month</li>
+        <li class="gold-check">24/7 inbound + outbound AI</li>
+        <li class="gold-check">Unlimited concurrent campaigns</li>
+        <li class="gold-check">Custom AI rules + voice persona</li>
+        <li class="gold-check">Inventory-aware AI responses</li>
+        <li class="gold-check">Free LotLink marketplace listing</li>
+        <li class="gold-check">For 40–150 car independents</li>
+      </ul>
+      <a href="dealers.html#partner-form" class="tier-cta">Start the Free Trial</a>
+    </div>
+    <div class="tier-card">
+      <div class="tier-price">$1,999+ <span>/ mo</span></div>
+      <div class="tier-name">Enterprise</div>
+      <ul class="tier-features">
+        <li>Unlimited leads, multi-rooftop</li>
+        <li>Everything in Growth</li>
+        <li>API access &amp; white-label option</li>
+        <li>DealerSocket / VinSolutions sync</li>
+        <li>Dedicated onboarding + SLA</li>
+        <li>For dealer groups &amp; franchise</li>
+      </ul>
+      <a href="dealers.html#partner-form" class="tier-cta">Talk to John Direct</a>
+    </div>
+  </div>
+
+  <div class="math-box">
+    <div class="label">The Math</div>
+    <p>A fully-loaded human BDC rep costs about <strong>$2,900/month</strong> — and they take lunch, sleep, and call out sick. Jordan answers every call in under a second, books appointments at 2am, and never has a bad day. Most dealerships land on <strong>Growth</strong> because it's the sweet spot for the volume a typical independent sees. Prepay annually and save <strong>15%</strong> on Growth or Enterprise.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═════════════════════════════════════════════════════════
+     SIDE-BY-SIDE COMPARISON
+     ═════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-label">Quick Comparison</div>
+  <div class="section-title">Concierge vs. <em>Dealer Software</em></div>
+  <p class="section-sub">Two different products for two different people. Most folks know which one they need before they get here, but if you're not sure:</p>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Concierge (Buyers)</th>
+        <th>BDC Software (Dealers)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="feature-label">Who it's for</td>
+        <td>Individual car buyers</td>
+        <td>Independent &amp; franchise auto dealerships</td>
+      </tr>
+      <tr>
+        <td class="feature-label">Pricing model</td>
+        <td>Flat fee per purchase</td>
+        <td>Monthly subscription</td>
+      </tr>
+      <tr>
+        <td class="feature-label">Starting price</td>
+        <td>$499 flat</td>
+        <td>$499 / month</td>
+      </tr>
+      <tr>
+        <td class="feature-label">Trial / risk</td>
+        <td>Pay on completion only</td>
+        <td>14-day free trial, no contract</td>
+      </tr>
+      <tr>
+        <td class="feature-label">What you get</td>
+        <td>A real person who shops, negotiates, and delivers</td>
+        <td>An AI agent that answers every lead 24/7 across email, voice, SMS</td>
+      </tr>
+      <tr>
+        <td class="feature-label">Coverage</td>
+        <td>Northern Indiana (nationwide on Luxury)</td>
+        <td>Anywhere in the US</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═════════════════════════════════════════════════════════
+     FAQ
+     ═════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-label">Common Questions</div>
+  <div class="section-title">Quick <em>Answers</em></div>
+
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-q" type="button" aria-expanded="false">When does the dealer free trial start? <span aria-hidden="true">+</span></button>
+      <div class="faq-a">The 14-day clock starts the day Jordan sends his first message on your behalf — not the day you sign up. So if onboarding takes a week, that week doesn't count against your trial. We want you to actually see results before you decide.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" type="button" aria-expanded="false">What happens if I cancel my dealer plan? <span aria-hidden="true">+</span></button>
+      <div class="faq-a">No early-termination fees. You can cancel anytime in the dealer portal — your account runs until the end of the current billing month, then deactivates. Your conversation history stays intact for 90 days in case you change your mind.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" type="button" aria-expanded="false">Are the concierge fees really flat? Any extras? <span aria-hidden="true">+</span></button>
+      <div class="faq-a">Yes, completely flat. The fee covers our work — not the vehicle, sales tax, registration, doc fees, or financing rate. Those are between you and the dealership, just like any normal purchase. We tell you exactly what each line item is before you sign anything.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" type="button" aria-expanded="false">What if I'm not ready to buy yet — can I still talk? <span aria-hidden="true">+</span></button>
+      <div class="faq-a">Absolutely. The concierge consultation call is free with no commitment. We'll talk through what you want, what your timeline is, and whether we can actually help. If we can't, we'll tell you straight up.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" type="button" aria-expanded="false">Do dealer plans include the Twilio / SendGrid / Vapi costs? <span aria-hidden="true">+</span></button>
+      <div class="faq-a">Yes — all carrier and AI provider costs are included in the monthly price up to your plan's lead cap. If you exceed the cap, voice minutes are billed at a transparent per-minute rate (we'll show you the math in the dashboard before any overage hits). No hidden fees.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" type="button" aria-expanded="false">Can I switch plans later? <span aria-hidden="true">+</span></button>
+      <div class="faq-a">Anytime. Upgrade and the difference prorates to the same billing period. Downgrade and the change kicks in at the start of the next billing month. No phone calls, no "talk to your account manager" gates — it's all in the portal.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" type="button" aria-expanded="false">Do you require a contract for dealers? <span aria-hidden="true">+</span></button>
+      <div class="faq-a">No. Month-to-month, cancel anytime. We charge based on results, not commitment. The 15% annual discount on Growth and Enterprise is opt-in if you want it; otherwise stay flexible.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" type="button" aria-expanded="false">I run a 5-rooftop dealer group. Where do I land? <span aria-hidden="true">+</span></button>
+      <div class="faq-a">Enterprise. The base $1,999 covers your first rooftop; additional rooftops are negotiated based on your volume. Reach out — John handles every Enterprise conversation personally.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA — mirrors the audience picker so scrolled-down visitors
+     can still self-route without scrolling back to the top. -->
+<section class="final-cta">
+  <h2>Ready When You Are.</h2>
+  <p>No high-pressure sales. No 30-minute "discovery calls" with someone who'll never touch your account again. Just a real conversation about what you need.</p>
+  <div class="actions">
+    <a href="concierge.html#consultation" class="btn-gold">Book a Concierge Call</a>
+    <a href="dealers.html#partner-form" class="btn-outline">Start a Dealer Trial</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-brand">
+    <a href="index.html" class="footer-logo">Lot<span>Link</span> Indiana</a>
+    <p class="footer-tagline">Northern Indiana's regional auto marketplace, AI-powered BDC, and white-glove concierge service. One platform. Built local. Built right.</p>
+  </div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="inventory.html">Inventory</a>
+    <a href="dealers.html">For Dealers</a>
+    <a href="concierge.html">Concierge</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+  </div>
+  <div class="footer-contact">
+    <p>📞 <a href="tel:2602299393">260-229-9393</a></p>
+    <p>✉️ <a href="mailto:john@lotlinkin.com">john@lotlinkin.com</a></p>
+    <p>Rochester, Indiana</p>
+  </div>
+</footer>
+
+<script>
+// Tiny FAQ accordion — vanilla, no framework. Aria-expanded toggles for
+// screen readers. Same pattern as the dealers.html objections list.
+document.querySelectorAll('.faq-q').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+});
+</script>
+
+</body>
+</html>
