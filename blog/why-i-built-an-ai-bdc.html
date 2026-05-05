@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why I Built an AI BDC for My Own Dealership — LotLink Indiana</title>
+<meta name="description" content="A Sunday-night lead I didn't see until Tuesday. The cost of every missed call at an independent dealership. Why I stopped waiting and built an AI BDC for House of Carz myself.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://lotlinkin.com/blog/why-i-built-an-ai-bdc.html">
+
+<meta property="og:type" content="article">
+<meta property="article:author" content="John Roberts">
+<meta property="article:published_time" content="2026-05-05">
+<meta property="og:site_name" content="LotLink Indiana">
+<meta property="og:title" content="Why I Built an AI BDC for My Own Dealership">
+<meta property="og:description" content="A Sunday-night lead I didn't see until Tuesday. The cost of every missed call. Why I built an AI BDC for House of Carz myself.">
+<meta property="og:url" content="https://lotlinkin.com/blog/why-i-built-an-ai-bdc.html">
+<meta property="og:image" content="https://lotlinkin.com/assets/og-default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<script src="../assets/site.js" defer></script>
+
+<!-- Article structured data — helps Google show rich snippets. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Why I Built an AI BDC for My Own Dealership",
+  "author": { "@type": "Person", "name": "John Roberts" },
+  "datePublished": "2026-05-05",
+  "image": "https://lotlinkin.com/assets/og-default.jpg",
+  "url": "https://lotlinkin.com/blog/why-i-built-an-ai-bdc.html",
+  "publisher": { "@type": "Organization", "name": "LotLink Indiana" }
+}
+</script>
+
+<style>
+/* ARTICLE SPECIFIC */
+
+.article-hero { padding:140px 32px 48px; max-width:760px; margin:0 auto; }
+.article-hero .meta {
+  font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--gold);
+  margin-bottom:18px; display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+}
+.article-hero .meta .dot { width:3px; height:3px; background:var(--gray); border-radius:50%; }
+.article-hero h1 {
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(34px,4.5vw,56px); line-height:1.15; color:var(--white);
+  margin-bottom:20px;
+}
+.article-hero .lede {
+  font-size:18px; font-weight:300; color:rgba(255,255,255,0.78); line-height:1.65;
+}
+
+/* Author byline strip — small founder photo + name + date so the
+   reader knows immediately this is a person, not a company blog. */
+.byline-strip {
+  max-width:760px; margin:32px auto 0;
+  padding:20px 32px; display:flex; align-items:center; gap:14px;
+  border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+}
+.byline-photo {
+  width:44px; height:44px; border-radius:50%;
+  background:linear-gradient(135deg, rgba(46,117,182,0.4), rgba(232,160,32,0.3));
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Bebas Neue',sans-serif; font-size:18px; color:var(--white); letter-spacing:1px;
+  flex-shrink:0; overflow:hidden;
+}
+.byline-photo img { width:100%; height:100%; object-fit:cover; }
+.byline-text .name { font-size:14px; font-weight:600; color:var(--white); }
+.byline-text .role { font-size:12px; color:var(--text-muted); }
+
+/* Article body — readable line-length, generous spacing, real
+   typography. The whole point of writing a long post is that
+   someone actually reads it. Don't undermine that with cramped CSS. */
+article.post-body {
+  max-width:680px; margin:0 auto; padding:48px 32px 80px;
+  font-size:17px; line-height:1.8; color:rgba(255,255,255,0.82);
+}
+article.post-body p { margin-bottom:24px; }
+article.post-body h2 {
+  font-family:'DM Serif Display',serif;
+  font-size:28px; color:var(--white); line-height:1.3;
+  margin:48px 0 18px;
+}
+article.post-body h3 {
+  font-size:18px; font-weight:600; color:var(--white);
+  margin:32px 0 14px; letter-spacing:0.2px;
+}
+article.post-body ul, article.post-body ol {
+  margin:0 0 24px 24px;
+}
+article.post-body li { margin-bottom:8px; }
+article.post-body strong { color:var(--white); font-weight:600; }
+article.post-body em { color:rgba(255,255,255,0.92); }
+article.post-body a { color:var(--sky); text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:3px; }
+article.post-body a:hover { color:var(--gold); }
+article.post-body blockquote {
+  border-left:3px solid var(--gold);
+  padding:6px 0 6px 22px; margin:32px 0;
+  font-family:'DM Serif Display',serif; font-style:italic;
+  font-size:20px; color:rgba(255,255,255,0.9); line-height:1.55;
+}
+article.post-body hr {
+  border:none; height:1px; background:var(--border);
+  margin:48px 0;
+}
+
+/* Pull-quote callouts for the most quotable lines */
+.pull-quote {
+  margin:36px 0; padding:24px 28px;
+  background:linear-gradient(135deg,rgba(232,160,32,0.06),rgba(46,117,182,0.04));
+  border-left:3px solid var(--gold); border-radius:4px;
+  font-family:'DM Serif Display',serif; font-size:22px; line-height:1.4;
+  color:var(--white);
+}
+
+/* Share / "talk to John" footer */
+.post-footer {
+  max-width:680px; margin:0 auto; padding:0 32px 80px;
+  display:flex; flex-direction:column; gap:28px;
+}
+.share-row {
+  display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+  padding:20px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+  font-size:13px; color:var(--text-muted);
+}
+.share-row .share-btn {
+  background:rgba(91,163,217,0.12); color:var(--sky);
+  border:1px solid rgba(91,163,217,0.3);
+  padding:7px 14px; border-radius:4px;
+  font-size:12px; font-weight:600; letter-spacing:0.4px;
+  text-decoration:none; transition:0.2s;
+  display:inline-flex; align-items:center; gap:6px;
+}
+.share-row .share-btn:hover { background:rgba(91,163,217,0.22); color:var(--white); border-color:var(--sky); }
+
+.cta-block {
+  background:rgba(255,255,255,0.03);
+  border:1px solid var(--border); border-radius:8px;
+  padding:32px;
+}
+.cta-block h3 { font-family:'DM Serif Display',serif; font-size:22px; color:var(--white); margin-bottom:8px; }
+.cta-block p { font-size:14px; color:var(--text-muted); line-height:1.7; margin-bottom:18px; }
+.cta-block .actions { display:flex; gap:12px; flex-wrap:wrap; }
+
+@media(max-width:640px) {
+  article.post-body { font-size:16px; padding:36px 24px 60px; }
+  .article-hero { padding:120px 24px 36px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">Lot<span>Link</span> Indiana</a>
+  <ul id="nav-links" class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../inventory.html">Inventory</a></li>
+    <li><a href="../dealers.html">For Dealers</a></li>
+    <li><a href="../concierge.html">Concierge</a></li>
+    <li><a href="../pricing.html">Pricing</a></li>
+    <li><a href="../blog/" class="active">Blog</a></li>
+    <li><a href="../faq.html">FAQ</a></li>
+    <li><a href="../contact.html">Contact</a></li>
+    <li><a href="../contact.html#credit" class="nav-cta">Get Pre-Approved</a></li>
+  </ul>
+  <button class="nav-mobile-btn" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+    <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+  </button>
+</nav>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="article-hero">
+  <div class="meta">
+    <span>Founder Story</span>
+    <span class="dot"></span>
+    <span>May 5, 2026</span>
+    <span class="dot"></span>
+    <span>6 min read</span>
+  </div>
+  <h1>Why I Built an AI BDC for My Own Dealership</h1>
+  <p class="lede">A Sunday-night lead I didn't see until Tuesday morning. The cost of every missed call at a small lot. And why I stopped waiting for the dealer software industry to figure out independents like me.</p>
+</section>
+
+<!-- BYLINE -->
+<div class="byline-strip">
+  <div class="byline-photo">
+    <!-- Drop a real photo at /assets/founder-john.jpg later. Until then,
+         the gradient + initials placeholder doesn't look broken. -->
+    <span>JR</span>
+  </div>
+  <div class="byline-text">
+    <div class="name">John Roberts</div>
+    <div class="role">Founder, LotLink LLC · Owner, House of Carz</div>
+  </div>
+</div>
+
+<!-- ARTICLE BODY -->
+<article class="post-body">
+
+<p>I'm a car broker in Rochester, Indiana. I run a small lot called House of Carz, and the whole operation is, for the most part, me. I'm the salesperson, the BDC rep, the trade appraiser, the title runner, and the guy who sweeps the showroom on Saturday morning. If you've ever owned a small dealership, you know exactly what I'm describing.</p>
+
+<p>About six months ago, on a Sunday evening around 9pm, a customer filled out a lead form on AutoTrader for a vehicle on my lot. He had real intent — a specific truck, financing pre-qualified, ready to come in. The lead landed in my inbox while I was watching a movie with my family. I didn't see it.</p>
+
+<p>I caught it Tuesday morning. By then he'd already bought the same truck two towns over.</p>
+
+<p>That moment — looking at a $24,000 truck that should've been mine and wasn't — is the moment LotLink started.</p>
+
+<h2>What I knew about the BDC business</h2>
+
+<p>Speed-to-lead is the whole game. The data on this isn't subtle: a lead contacted within 5 minutes is roughly <strong>9× more likely to convert</strong> than one contacted within an hour. After 24 hours, you might as well not call.</p>
+
+<p>I knew this. Every dealer knows this. The problem isn't knowledge — it's that human BDCs are expensive, sleep, eat lunch, and aren't there at 9pm on a Sunday when a customer is finally home from work and ready to shop. A typical BDC rep at an independent runs $2,500 to $3,500 a month fully loaded. I couldn't justify that for the lead volume I was getting.</p>
+
+<p>So I started looking at what was on the market.</p>
+
+<h2>What was already out there (and why none of it fit)</h2>
+
+<p>The big players in dealer software — DealerSocket, VinSolutions, the rest — are built for franchised dealers with 200+ cars on the lot, multiple sales people, and dedicated BDC departments. Their pricing reflects that. Their workflows assume you have a CRM admin, an inventory manager, and a finance team. I am all three of those people, and I work between phone calls.</p>
+
+<p>The newer "AI lead response" tools were closer in spirit, but they were either:</p>
+
+<ul>
+  <li><strong>Stupidly templated</strong> — a generic auto-reply that any customer could spot in two seconds</li>
+  <li><strong>Built for franchise dealer groups</strong> with $30k onboarding fees and minimum-volume requirements</li>
+  <li><strong>Only one channel</strong> — usually SMS — when real conversations happen across email, voice, and text together</li>
+</ul>
+
+<p>I'd email a few of these companies asking about pricing. The responses always started with "let's get on a call." That's the universal sign that you can't afford the product.</p>
+
+<div class="pull-quote">
+"Let's get on a call" is the universal sign that you can't afford the product.
+</div>
+
+<h2>The decision to build it myself</h2>
+
+<p>I'd written code in past lives. Not professionally — but enough to know what was possible. And the parts that used to be hard about an AI assistant — natural-sounding speech, real-time conversation, integrating with phone networks — had become solved problems in the last two years. Vapi handles voice. Twilio handles SMS. Anthropic handles the actual reasoning. SendGrid handles email.</p>
+
+<p>I wasn't building anything novel. I was assembling parts that already existed into something nobody had bothered to assemble for an independent dealer like me.</p>
+
+<p>So I started writing.</p>
+
+<h2>What it does now</h2>
+
+<p>The result is Jordan — an AI BDC agent named after a friend who used to work the desk at my dealership. Jordan does the things I used to do at 2am, on Sundays, and during family dinners:</p>
+
+<ul>
+  <li>Answers every inbound lead within seconds, on the channel the customer used (email, voice, or SMS)</li>
+  <li>Asks the right qualifying questions — what vehicle, what timeline, financing situation</li>
+  <li>Sets test-drive appointments straight into my calendar</li>
+  <li>Follows up automatically when a lead goes quiet, three times over a week, then closes the conversation</li>
+  <li>Hands off to me (or whoever's on staff) the moment a customer wants to talk to a human</li>
+</ul>
+
+<p>Jordan doesn't sleep. He answers in under a second. He doesn't have a bad Tuesday because his kid was sick. And — this is the part that matters most — he doesn't use the words "let's get on a call" with anybody.</p>
+
+<h2>Day 7 numbers (the early read)</h2>
+
+<p>I went live with Jordan at House of Carz on April 28, 2026. As I write this, we're seven days in.</p>
+
+<p>This past Sunday, around noon, a customer named Brianna emailed about a 2018 Chevy Silverado on the lot. She wanted to test-drive it but had work conflicts during the week. Twelve minutes and four emails later, Jordan had her booked for Saturday May 16 at 1pm. I read the whole exchange afterwards. It read like a conversation I would've had — except I was at lunch with my wife when it happened.</p>
+
+<p>That's the first AI-booked appointment in House of Carz history. I'll write more about it once it actually happens (or doesn't).</p>
+
+<p>The honest answer to "how is it going" at Day 7: I don't have enough data yet. The 30-day window — leads handled, appointments set, sold/lost outcomes — completes around May 28. I'll write a real numbers post then. Until then, anyone who tells you 7 days of data means anything is selling you something.</p>
+
+<h2>Why I'm building it for other dealers, not just me</h2>
+
+<p>I get asked this a lot, mostly by people who think it's a crazy idea to give your competitive advantage away. Here's how I think about it:</p>
+
+<p>House of Carz is a small lot in Rochester, Indiana, about 4,000 people. Even if I 10x my sales because Jordan is great, I'm still a small lot in Rochester, Indiana. The opportunity to make Jordan available to other independent dealers in Northern Indiana, the Midwest, and beyond is bigger than anything I'll ever do moving cars one at a time.</p>
+
+<p>And — selfishly — I want to see what happens. Two dealers using Jordan tells me something one dealer can't. Five dealers tells me something two can't. The data only gets useful at scale, and the only way to get there is to let other people run the thing.</p>
+
+<p>I formed LotLink LLC last weekend specifically so I could do this — separate the platform from House of Carz, register the carrier paperwork properly, and start onboarding dealer #2.</p>
+
+<h2>What this blog is for</h2>
+
+<p>I'm going to write here as I build. The plan is one post a week, give or take, covering whatever's actually on my desk that week:</p>
+
+<ul>
+  <li>Real numbers — what's working at HoC, what isn't</li>
+  <li>Decisions I'm making and why (pricing, product cuts, what I refused to build)</li>
+  <li>Mistakes — the bugs that shipped, the customers I confused, the things I'd undo</li>
+  <li>What it's like running a SaaS while also selling cars in person</li>
+</ul>
+
+<p>I'm not running this blog to "build my personal brand" or any of the LinkedIn nonsense. I'm running it because if I were a dealer thinking about LotLink, the only thing I'd actually want is to read what the founder really thinks. So I'm going to try to give you that — straight, no marketing voice, no "thought leadership."</p>
+
+<p>If you're a dealer who's tired of paying $3,000 a month for software you barely use, or you're the only person at your shop and you're losing leads at midnight: I'm probably writing this for you.</p>
+
+<hr>
+
+<p>I sell cars in Rochester, Indiana. You can call me at <a href="tel:2602299393">260-229-9393</a> or email <a href="mailto:john@lotlinkin.com">john@lotlinkin.com</a>. If you want to see what LotLink costs, the <a href="../pricing.html">pricing page</a> has everything.</p>
+
+</article>
+
+<!-- FOOTER OF POST -->
+<div class="post-footer">
+
+  <div class="share-row">
+    <span>Found this useful?</span>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://lotlinkin.com/blog/why-i-built-an-ai-bdc.html" target="_blank" rel="noopener" class="share-btn">Share on LinkedIn</a>
+    <a href="https://twitter.com/intent/tweet?text=Why%20I%20Built%20an%20AI%20BDC%20for%20My%20Own%20Dealership&url=https://lotlinkin.com/blog/why-i-built-an-ai-bdc.html" target="_blank" rel="noopener" class="share-btn">Share on X</a>
+    <a href="mailto:?subject=Why%20I%20Built%20an%20AI%20BDC%20for%20My%20Own%20Dealership&body=Thought%20you%20might%20like%20this%3A%20https%3A%2F%2Flotlinkin.com%2Fblog%2Fwhy-i-built-an-ai-bdc.html" class="share-btn">Email</a>
+  </div>
+
+  <div class="cta-block">
+    <h3>Curious what LotLink looks like in practice?</h3>
+    <p>The pricing page has all three dealer plans, what's included, and the math behind the numbers. Or call me directly at 260-229-9393 — I answer my own phone.</p>
+    <div class="actions">
+      <a href="../pricing.html" class="btn-gold">See Pricing</a>
+      <a href="../dealers.html" class="btn-outline">Learn More for Dealers</a>
+    </div>
+  </div>
+
+  <a href="./" style="font-size:13px; color:var(--sky); text-decoration:none;">← Back to all posts</a>
+
+</div>
+
+</main>
+
+<footer>
+  <div class="footer-brand">
+    <a href="../index.html" class="footer-logo">Lot<span>Link</span> Indiana</a>
+    <p class="footer-tagline">Northern Indiana's regional auto marketplace, AI-powered BDC, and white-glove concierge service. One platform. Built local. Built right.</p>
+  </div>
+  <div class="footer-links">
+    <a href="../index.html">Home</a>
+    <a href="../inventory.html">Inventory</a>
+    <a href="../dealers.html">For Dealers</a>
+    <a href="../concierge.html">Concierge</a>
+    <a href="../pricing.html">Pricing</a>
+    <a href="../blog/">Blog</a>
+    <a href="../faq.html">FAQ</a>
+    <a href="../contact.html">Contact</a>
+    <a href="../privacy.html">Privacy</a>
+    <a href="../terms.html">Terms</a>
+  </div>
+  <div class="footer-contact">
+    <p>📞 <a href="tel:2602299393">260-229-9393</a></p>
+    <p>✉️ <a href="mailto:john@lotlinkin.com">john@lotlinkin.com</a></p>
+    <p>Rochester, Indiana</p>
+  </div>
+</footer>
+
+</body>
+</html>
