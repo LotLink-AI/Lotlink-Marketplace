@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Off the Rails: What I Refused to Let My AI Say — LotLink Indiana</title>
+<meta name="description" content="The first question every dealer asks me about Jordan: 'What stops it from quoting a $1 truck or telling some kid he's pre-approved?' Answer: a guardrail layer I built before I let Jordan say a single word to a real customer.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://lotlinkin.com/blog/off-the-rails.html">
+
+<meta property="og:type" content="article">
+<meta property="article:author" content="John Roberts">
+<meta property="article:published_time" content="2026-05-07">
+<meta property="og:site_name" content="LotLink Indiana">
+<meta property="og:title" content="Off the Rails: What I Refused to Let My AI Say">
+<meta property="og:description" content="The first question every dealer asks about an AI BDC: what stops it from quoting prices or telling people they're approved? Here's how I built the answer.">
+<meta property="og:url" content="https://lotlinkin.com/blog/off-the-rails.html">
+<meta property="og:image" content="https://lotlinkin.com/assets/og-default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<script src="../assets/site.js" defer></script>
+
+<!-- Article structured data — helps Google show rich snippets. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Off the Rails: What I Refused to Let My AI Say",
+  "author": { "@type": "Person", "name": "John Roberts" },
+  "datePublished": "2026-05-07",
+  "image": "https://lotlinkin.com/assets/og-default.jpg",
+  "url": "https://lotlinkin.com/blog/off-the-rails.html",
+  "publisher": { "@type": "Organization", "name": "LotLink Indiana" }
+}
+</script>
+
+<style>
+/* ARTICLE SPECIFIC — same shell as the founder-story post so the
+   second post visually inherits the established blog look. */
+
+.article-hero { padding:140px 32px 48px; max-width:760px; margin:0 auto; }
+.article-hero .meta {
+  font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--gold);
+  margin-bottom:18px; display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+}
+.article-hero .meta .dot { width:3px; height:3px; background:var(--gray); border-radius:50%; }
+.article-hero h1 {
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(34px,4.5vw,56px); line-height:1.15; color:var(--white);
+  margin-bottom:20px;
+}
+.article-hero .lede {
+  font-size:18px; font-weight:300; color:rgba(255,255,255,0.78); line-height:1.65;
+}
+
+.byline-strip {
+  max-width:760px; margin:32px auto 0;
+  padding:20px 32px; display:flex; align-items:center; gap:14px;
+  border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+}
+.byline-photo {
+  width:44px; height:44px; border-radius:50%;
+  background:linear-gradient(135deg, rgba(46,117,182,0.4), rgba(232,160,32,0.3));
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Bebas Neue',sans-serif; font-size:18px; color:var(--white); letter-spacing:1px;
+  flex-shrink:0; overflow:hidden;
+}
+.byline-photo img { width:100%; height:100%; object-fit:cover; }
+.byline-text .name { font-size:14px; font-weight:600; color:var(--white); }
+.byline-text .role { font-size:12px; color:var(--text-muted); }
+
+article.post-body {
+  max-width:680px; margin:0 auto; padding:48px 32px 80px;
+  font-size:17px; line-height:1.8; color:rgba(255,255,255,0.82);
+}
+article.post-body p { margin-bottom:24px; }
+article.post-body h2 {
+  font-family:'DM Serif Display',serif;
+  font-size:28px; color:var(--white); line-height:1.3;
+  margin:48px 0 18px;
+}
+article.post-body h3 {
+  font-size:18px; font-weight:600; color:var(--white);
+  margin:32px 0 14px; letter-spacing:0.2px;
+}
+article.post-body ul, article.post-body ol {
+  margin:0 0 24px 24px;
+}
+article.post-body li { margin-bottom:8px; }
+article.post-body strong { color:var(--white); font-weight:600; }
+article.post-body em { color:rgba(255,255,255,0.92); }
+article.post-body a { color:var(--sky); text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:3px; }
+article.post-body a:hover { color:var(--gold); }
+article.post-body blockquote {
+  border-left:3px solid var(--gold);
+  padding:6px 0 6px 22px; margin:32px 0;
+  font-family:'DM Serif Display',serif; font-style:italic;
+  font-size:20px; color:rgba(255,255,255,0.9); line-height:1.55;
+}
+article.post-body hr {
+  border:none; height:1px; background:var(--border);
+  margin:48px 0;
+}
+
+.pull-quote {
+  margin:36px 0; padding:24px 28px;
+  background:linear-gradient(135deg,rgba(232,160,32,0.06),rgba(46,117,182,0.04));
+  border-left:3px solid var(--gold); border-radius:4px;
+  font-family:'DM Serif Display',serif; font-size:22px; line-height:1.4;
+  color:var(--white);
+}
+
+/* Guardrail "won't say / will say" comparison block — visually
+   reinforces the central claim of the post without leaning on
+   bullet lists for everything. */
+.rail-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:18px;
+  margin:32px 0;
+}
+.rail-card {
+  background:rgba(255,255,255,0.03);
+  border:1px solid var(--border); border-radius:8px;
+  padding:20px 22px;
+}
+.rail-card.no  { border-color:rgba(220,80,80,0.35); }
+.rail-card.yes { border-color:rgba(80,180,120,0.35); }
+.rail-card .head {
+  font-size:11px; font-weight:700; letter-spacing:1.8px;
+  text-transform:uppercase; margin-bottom:10px;
+}
+.rail-card.no .head  { color:#e57878; }
+.rail-card.yes .head { color:#7ed1a1; }
+.rail-card ul { margin:0 0 0 18px; }
+.rail-card li { margin-bottom:6px; font-size:14px; color:rgba(255,255,255,0.78); line-height:1.55; }
+
+@media(max-width:640px) {
+  article.post-body { font-size:16px; padding:36px 24px 60px; }
+  .article-hero { padding:120px 24px 36px; }
+  .rail-grid { grid-template-columns:1fr; }
+}
+
+/* Share / footer — copy of the founder-story styles to keep parity. */
+.post-footer {
+  max-width:680px; margin:0 auto; padding:0 32px 80px;
+  display:flex; flex-direction:column; gap:28px;
+}
+.share-row {
+  display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+  padding:20px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+  font-size:13px; color:var(--text-muted);
+}
+.share-row .share-btn {
+  background:rgba(91,163,217,0.12); color:var(--sky);
+  border:1px solid rgba(91,163,217,0.3);
+  padding:7px 14px; border-radius:4px;
+  font-size:12px; font-weight:600; letter-spacing:0.4px;
+  text-decoration:none; transition:0.2s;
+  display:inline-flex; align-items:center; gap:6px;
+}
+.share-row .share-btn:hover { background:rgba(91,163,217,0.22); color:var(--white); border-color:var(--sky); }
+
+.cta-block {
+  background:rgba(255,255,255,0.03);
+  border:1px solid var(--border); border-radius:8px;
+  padding:32px;
+}
+.cta-block h3 { font-family:'DM Serif Display',serif; font-size:22px; color:var(--white); margin-bottom:8px; }
+.cta-block p { font-size:14px; color:var(--text-muted); line-height:1.7; margin-bottom:18px; }
+.cta-block .actions { display:flex; gap:12px; flex-wrap:wrap; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">Lot<span>Link</span> Indiana</a>
+  <ul id="nav-links" class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../inventory.html">Inventory</a></li>
+    <li><a href="../dealers.html">For Dealers</a></li>
+    <li><a href="../concierge.html">Concierge</a></li>
+    <li><a href="../pricing.html">Pricing</a></li>
+    <li><a href="../blog/" class="active">Blog</a></li>
+    <li><a href="../faq.html">FAQ</a></li>
+    <li><a href="../contact.html">Contact</a></li>
+    <li><a href="../contact.html#credit" class="nav-cta">Get Pre-Approved</a></li>
+  </ul>
+  <button class="nav-mobile-btn" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+    <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+  </button>
+</nav>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="article-hero">
+  <div class="meta">
+    <span>Behind the Build</span>
+    <span class="dot"></span>
+    <span>May 7, 2026</span>
+    <span class="dot"></span>
+    <span>7 min read</span>
+  </div>
+  <h1>Off the Rails: What I Refused to Let My AI Say</h1>
+  <p class="lede">The first question every dealer asks me about Jordan isn't "how does it work." It's some version of: <em>"Yeah, but what stops your AI from telling some kid he's pre-approved, or quoting a $1 truck on the lot?"</em> Here's the answer, in detail. Built before Jordan said a single word to a real customer.</p>
+</section>
+
+<!-- BYLINE -->
+<div class="byline-strip">
+  <div class="byline-photo">
+    <span>JR</span>
+  </div>
+  <div class="byline-text">
+    <div class="name">John Roberts</div>
+    <div class="role">Founder, LotLink LLC · Owner, House of Carz</div>
+  </div>
+</div>
+
+<!-- ARTICLE BODY -->
+<article class="post-body">
+
+<p>If you've been around dealer Twitter (or whatever we're calling it these days) for the last twelve months, you've seen the screenshots.</p>
+
+<p>A national brand's chatbot agreeing — in writing — to sell a 2024 Tahoe for one dollar. Another one promising a customer "definite approval, regardless of credit." Another quoting a 1.9% APR on a brand the manufacturer hasn't subvented in three years. Each one went viral. Each one got the dealer a phone call from corporate, a visit from the state attorney general's office, or both.</p>
+
+<p>None of those dealers <em>wanted</em> their AI to say those things. They just plugged a chatbot into their website, trusted that the model would be "smart enough not to" — and learned the hard way that smart isn't the same as accountable.</p>
+
+<p>I knew before I let Jordan answer a single inbound lead at House of Carz that I was going to have to solve this myself. So I did. The result is a layer in the codebase called <strong>aiGuardrails</strong>, and it runs in front of every word Jordan tries to send.</p>
+
+<p>This is the post about what it does, why each piece exists, and the design choice underneath all of it.</p>
+
+<h2>The four things Jordan will never say on his own</h2>
+
+<p>Guardrails is a deliberately dumb wall — by design. There are four categories of statement Jordan is forbidden from sending without a human being in the loop. They're the four things I, as a dealer, would never let a brand-new BDC rep say on day one of their job either.</p>
+
+<h3>1. Hard guarantees and "you're approved"</h3>
+
+<p>Anything that sounds like a binding promise. "I guarantee," "I promise," "you're definitely approved," "we'll approve you," "regardless of credit," "no credit check." Also: "lifetime warranty," "warranty is covered," "free car." If Jordan tries to write any of those, the message is held back and a human takes over.</p>
+
+<p>Why these specifically? Because they're the phrases that turn a sales conversation into a contract dispute. The FTC's CARS Rule went into effect for exactly this category of language. A salesperson who says "you're approved" to a customer — and then F&I can't actually deliver — has just handed that customer a complaint to file.</p>
+
+<h3>2. Made-up financing terms</h3>
+
+<p>Anything resembling an APR, an interest rate, or a monthly-payment quote. "2.9% APR," "at 3.5 percent," "monthly payment of $389," "$295/mo." Jordan doesn't have access to your lender approval system. He doesn't know what tier the customer's going to land in. So he doesn't get to guess.</p>
+
+<p>This is the one that gets a dealer in trouble fastest, in my opinion. State attorneys general love a financing-misrepresentation case — they're easy to prove and they generate good press for the AG. The same applies under the federal Truth in Lending Act. It is not worth the math.</p>
+
+<h3>3. Trade-in values without an appraisal</h3>
+
+<p>"I can give you $8,000 for your trade." "Your truck is worth $14,500." Anything that puts a number on a vehicle Jordan has never seen. Trade values are the most contested number in the whole car business — they depend on photos, history reports, condition checks, and the day's wholesale market. A bot quoting one is a bot writing checks the dealership can't cash.</p>
+
+<h3>4. Prices that aren't actually on the lot</h3>
+
+<p>This one is the most subtle and the one I spent the most time on. Jordan can absolutely tell a customer that the 2018 Silverado is listed at $24,495 — because it <em>is</em> listed at $24,495 in inventory. What he <strong>can't</strong> do is invent a number. If Jordan tries to send a price, the guardrail layer pulls live inventory from the database and confirms that the dollar figure he's about to send actually matches a real vehicle on the lot, within a $100 tolerance. If it doesn't match, the message gets blocked.</p>
+
+<p>That tolerance exists for one reason: I don't want Jordan blocked because he wrote "about $24k" instead of "$24,495." The point isn't to be a regex bully. The point is to make sure no number leaves the building that isn't backed by a real listing.</p>
+
+<div class="rail-grid">
+  <div class="rail-card no">
+    <div class="head">Jordan won't say</div>
+    <ul>
+      <li>"You're approved" / "we'll approve you"</li>
+      <li>"Guaranteed financing, regardless of credit"</li>
+      <li>Specific APRs, rates, or monthly payments</li>
+      <li>Trade-in dollar values without an appraisal</li>
+      <li>Prices below your minimum vehicle floor</li>
+      <li>Prices that don't match real inventory</li>
+    </ul>
+  </div>
+  <div class="rail-card yes">
+    <div class="head">Jordan will say</div>
+    <ul>
+      <li>"Let me grab our sales manager on this one"</li>
+      <li>The actual listed price of a vehicle on the lot</li>
+      <li>Vehicle specs, mileage, options, availability</li>
+      <li>"Want me to set up an appraisal on your trade?"</li>
+      <li>"Our finance team will pull a soft credit check first"</li>
+      <li>Times, dates, and confirmed appointment slots</li>
+    </ul>
+  </div>
+</div>
+
+<h2>Why I didn't use AI to police the AI</h2>
+
+<p>Here's the part that took me the longest to be honest with myself about.</p>
+
+<p>The fashionable way to build this kind of safety layer right now is to make a <em>second</em> AI call. You take the message Jordan wants to send, you hand it back to a model with a prompt like "is this dealer-safe? answer yes or no." Then you only let the message through if the second model says yes.</p>
+
+<p>I tried that. It works most of the time. But "most of the time" isn't the standard a dealer should hold an AI to, and here's what I learned: a model can be talked into approving its own bad answer. Customers don't even have to be malicious. The wrong combination of context and a confident-sounding phrasing, and the second-pass model nods along.</p>
+
+<div class="pull-quote">
+A model can be talked into approving its own bad answer. Regex can't.
+</div>
+
+<p>So Jordan's guardrails are not powered by AI. They're powered by old-fashioned, deterministic pattern matching. Regular expressions and dollar-amount comparisons against a SQL query. The detectors are pure functions — they don't make API calls, they don't reason, they don't have feelings about context. If your message matches "you're approved," it gets stopped. Every time. Forever. There is no prompt you can write that turns the wall off.</p>
+
+<p>This is, in software-engineering terms, the dumbest possible solution. That's the whole point.</p>
+
+<h2>What happens when Jordan gets blocked</h2>
+
+<p>The interesting question isn't "how do you catch the bad message" — it's "what do you do once you've caught it." A bot that just refuses to respond is its own kind of disaster. The customer on the other end is sitting there waiting and getting nothing.</p>
+
+<p>So the guardrail layer doesn't just block. It rewrites and escalates, in three steps:</p>
+
+<ol>
+  <li><strong>The customer gets a real reply, immediately.</strong> Something to the effect of: "Let me grab our sales manager on this — they'll text you back shortly." It's tailored to the channel — the SMS version is shorter, the email version reads like email. The customer is never left hanging.</li>
+  <li><strong>The conversation is flagged for human handoff.</strong> Inside the dealer dashboard, that thread now has a "needs human" badge on it. The next time someone on the team opens the inbox, it's the first one they see.</li>
+  <li><strong>The dealer gets an alert email.</strong> Subject line: "Guardrail HIGH: [Dealer Name] — unauthorized_guarantee." Body: what the customer asked, what Jordan was about to send, why it was blocked, and the conversation ID. So you can review and continue manually without hunting for the thread.</li>
+</ol>
+
+<p>Every single one of these events is logged to a `guardrail_violations` table in the database. We track when they fire, what category, what severity, what the proposed text was, what we replaced it with, and whether the alert email actually delivered. That table is the audit trail that says: when something close to going wrong almost went wrong, here's exactly what happened and what we did about it.</p>
+
+<h2>The configurable parts (because not every dealer is the same)</h2>
+
+<p>I'm an independent. My policy at House of Carz is "the AI never quotes prices that aren't on the lot, period." But I know franchise dealers and bigger groups have different needs — some want a small discount window the AI can play in; some want every price question routed to a human no matter what.</p>
+
+<p>So three things are configurable per-dealer:</p>
+
+<ul>
+  <li><strong>Price mode</strong> — pick one: <em>no_prices</em> (every dollar amount triggers a handoff), <em>inventory_only</em> (must match a real listing — the default I run), or <em>allow_small_discounts</em> (within X% of listing).</li>
+  <li><strong>Action when violated</strong> — <em>block_handoff</em> (replace the message, escalate to human — the default), <em>strip_and_warn</em> (strip the offending sentence, send the rest), or <em>log_only</em> (let it through but record it; useful for auditing your existing process before you flip the switch).</li>
+  <li><strong>Alert recipient</strong> — which email address gets pinged when a violation fires. Defaults to the dealership's primary contact.</li>
+</ul>
+
+<p>The defaults are the strict ones. You have to explicitly opt into looser behavior, and even <em>log_only</em> still records every violation — so the dealer can come back the next morning and see exactly what would have been blocked.</p>
+
+<h2>The design rule under all of it</h2>
+
+<p>There's a comment in the source file for this layer that I think captures the whole philosophy in one line:</p>
+
+<blockquote>It is better to be briefly embarrassing than to legally commit a dealership to a dollar Tahoe.</blockquote>
+
+<p>If Jordan ever has to say "let me grab our sales manager on this one," the worst case is that the customer waits ten minutes for a human reply. That's annoying. It's not catastrophic. It's recoverable.</p>
+
+<p>The other failure mode — Jordan confidently telling a customer they're approved for a loan they aren't going to get, or quoting a price the dealer can't honor — that one isn't recoverable. That's a refund, a complaint, a Better Business Bureau ding, maybe a lawsuit, maybe a state regulator calling. There's no "oh, sorry, the bot was confused" version of that conversation that ends well.</p>
+
+<p>So I biased every decision in favor of "Jordan shuts up and gets a human." Every false positive — every time Jordan hands off a thread he probably could've handled — is a feature, not a bug. The cost of being too cautious is a slightly slower reply. The cost of not being cautious enough is a regulator on the phone.</p>
+
+<p>I'd rather be early to the handoff than late to the lawsuit.</p>
+
+<h2>Why this is the dealer-AI question that matters most</h2>
+
+<p>Most of the AI tools being sold to dealerships right now are CRM features bolted into a chat window. The team that built them isn't a car dealer. They didn't grow up around F&I. They've never sat across from a customer holding a deal jacket and explaining why the rate is what it is. So the safety layer, when one exists at all, is generic.</p>
+
+<p>That isn't enough. Selling a car is a regulated transaction. The federal CARS Rule, the FTC, your state AG, the lender, the manufacturer, your insurance carrier — all of them care about what gets said to a customer in writing during the lead-to-close window. The bot is talking on your behalf. Whatever it says is going to be treated, by every one of those parties, like <em>you</em> said it.</p>
+
+<p>An AI BDC without serious guardrails is malpractice. I'm not being cute when I say that. The risk is real, and most of the things being sold right now don't take it seriously enough.</p>
+
+<p>That's the gap LotLink is trying to fill. Not "AI for dealers" — built by an ad-tech company with a side dealer vertical. <strong>AI built for dealers</strong>, by someone who has to live with what gets said on his own lot first.</p>
+
+<hr>
+
+<p>I sell cars in Rochester, Indiana. If you want to see Jordan's guardrails working in your own dealership, the <a href="../pricing.html">pricing page</a> has every plan and what's included. Or call me at <a href="tel:2602299393">260-229-9393</a> — I answer my own phone, and I'm happy to walk you through what we block, what we don't, and why.</p>
+
+</article>
+
+<!-- FOOTER OF POST -->
+<div class="post-footer">
+
+  <div class="share-row">
+    <span>Found this useful?</span>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://lotlinkin.com/blog/off-the-rails.html" target="_blank" rel="noopener" class="share-btn">Share on LinkedIn</a>
+    <a href="https://twitter.com/intent/tweet?text=Off%20the%20Rails%3A%20What%20I%20Refused%20to%20Let%20My%20AI%20Say&url=https://lotlinkin.com/blog/off-the-rails.html" target="_blank" rel="noopener" class="share-btn">Share on X</a>
+    <a href="mailto:?subject=Off%20the%20Rails%3A%20What%20I%20Refused%20to%20Let%20My%20AI%20Say&body=Worth%20a%20read%20if%20you%27re%20a%20dealer%20looking%20at%20AI%20tools%3A%20https%3A%2F%2Flotlinkin.com%2Fblog%2Foff-the-rails.html" class="share-btn">Email</a>
+  </div>
+
+  <div class="cta-block">
+    <h3>Want to see exactly what Jordan can and can't say?</h3>
+    <p>The dealer pricing page lays out every plan, what's included, and the math. Or call me at 260-229-9393 — I'll walk you through the guardrail config live. If you're a dealer who's been burned by an AI tool before, I want to hear about it.</p>
+    <div class="actions">
+      <a href="../pricing.html" class="btn-gold">See Pricing</a>
+      <a href="../dealers.html" class="btn-outline">Learn More for Dealers</a>
+    </div>
+  </div>
+
+  <a href="./" style="font-size:13px; color:var(--sky); text-decoration:none;">← Back to all posts</a>
+
+</div>
+
+</main>
+
+<footer>
+  <div class="footer-brand">
+    <a href="../index.html" class="footer-logo">Lot<span>Link</span> Indiana</a>
+    <p class="footer-tagline">Northern Indiana's regional auto marketplace, AI-powered BDC, and white-glove concierge service. One platform. Built local. Built right.</p>
+  </div>
+  <div class="footer-links">
+    <a href="../index.html">Home</a>
+    <a href="../inventory.html">Inventory</a>
+    <a href="../dealers.html">For Dealers</a>
+    <a href="../concierge.html">Concierge</a>
+    <a href="../pricing.html">Pricing</a>
+    <a href="../blog/">Blog</a>
+    <a href="../faq.html">FAQ</a>
+    <a href="../contact.html">Contact</a>
+    <a href="../privacy.html">Privacy</a>
+    <a href="../terms.html">Terms</a>
+  </div>
+  <div class="footer-contact">
+    <p>📞 <a href="tel:2602299393">260-229-9393</a></p>
+    <p>✉️ <a href="mailto:john@lotlinkin.com">john@lotlinkin.com</a></p>
+    <p>Rochester, Indiana</p>
+  </div>
+</footer>
+
+</body>
+</html>
