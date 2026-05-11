@@ -47,6 +47,10 @@
 .featured-post .img-wrap .placeholder-icon {
   font-size:64px; color:rgba(255,255,255,0.18); position:relative;
 }
+.featured-post .img-wrap img {
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; object-position:center;
+}
 .featured-post .body { padding:36px 36px 36px 0; display:flex; flex-direction:column; justify-content:center; }
 .featured-post .post-meta { font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:14px; }
 .featured-post h2 { font-family:'DM Serif Display',serif; font-size:clamp(26px,2.6vw,38px); color:var(--white); line-height:1.15; margin-bottom:14px; }
@@ -146,7 +150,7 @@
        pitch for a dealer prospect's first impression. -->
   <a href="the-first-truck.html" class="featured-post">
     <div class="img-wrap">
-      <span class="placeholder-icon">🛻</span>
+      <img src="../assets/brianna-first-truck.jpg" alt="Brianna with her 2018 Chevy Silverado outside House of Carz" loading="lazy">
     </div>
     <div class="body">
       <div class="post-meta">Case Study · 6 min read</div>

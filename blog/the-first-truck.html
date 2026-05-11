@@ -153,6 +153,24 @@ article.post-body hr {
   font-size:16px; color:rgba(255,255,255,0.85); line-height:1.6;
 }
 
+/* Hero photo for the case study — sits between the byline strip and
+   the article body. Caption beneath gives credit and context. Sized
+   to play nicely on mobile + desktop without dominating the page. */
+.case-photo {
+  max-width:760px; margin:32px auto 0;
+  padding:0 32px;
+}
+.case-photo img {
+  width:100%; height:auto; display:block;
+  border-radius:8px;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,0.02);
+}
+.case-photo .caption {
+  font-size:13px; color:var(--text-muted); font-style:italic;
+  margin-top:12px; line-height:1.6; text-align:center;
+}
+
 .post-footer {
   max-width:760px; margin:48px auto 0;
   padding:32px 32px 80px;
@@ -230,6 +248,13 @@ article.post-body hr {
     <div class="name">John Roberts</div>
     <div class="role">Founder, LotLink LLC · Owner, House of Carz</div>
   </div>
+</div>
+
+<!-- HERO PHOTO — Brianna with her truck, in front of the House of
+     Carz sign, paperwork in hand. The whole story in one frame. -->
+<div class="case-photo">
+  <img src="../assets/brianna-first-truck.jpg" alt="Brianna standing next to her newly-purchased 2018 Chevrolet Silverado in front of the House of Carz dealership in Rochester, Indiana, holding the paperwork from her purchase on May 9, 2026." loading="lazy">
+  <p class="caption">Brianna with her 2018 Chevy Silverado, taken at House of Carz the morning she picked it up — May 9, 2026.</p>
 </div>
 
 <!-- ARTICLE BODY -->
