@@ -154,10 +154,12 @@
   }
 
   // ── Submit handler ───────────────────────────────────
-  // The API lives on app.lotlinkin.com. Marketing site is at lotlinkin.com
-  // so we POST cross-origin. Backend route allows it because it's a public
-  // endpoint by design.
-  const API_BASE = 'https://app.lotlinkin.com';
+  // The API lives on the Railway production deploy. We POST cross-origin
+  // because the marketing site (lotlinkin.com) and the API are on
+  // different origins. Backend route allows it (CORS open + public
+  // endpoint by design). Once the app.lotlinkin.com custom domain has
+  // a valid SSL cert provisioned in Railway, we can switch back.
+  const API_BASE = 'https://lotlink-api-production.up.railway.app';
 
   const form = document.getElementById('signupForm');
   const btn = document.getElementById('submitBtn');
