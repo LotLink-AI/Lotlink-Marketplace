@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You're in — LotLink AI BDC</title>
+<meta name="description" content="Your LotLink AI BDC subscription is active. Check your email for the dashboard setup link.">
+<meta name="robots" content="noindex,follow">
+
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<script src="assets/site.js" defer></script>
+
+<style>
+.success-wrap { max-width: 580px; margin: 0 auto; padding: 60px 20px; text-align: center; }
+.success-icon {
+  width: 72px; height: 72px; margin: 0 auto 24px;
+  background: rgba(34,197,94,0.12); border: 2px solid rgba(34,197,94,0.5);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 36px;
+}
+.success-title { font-family: 'Bebas Neue', sans-serif; font-size: 44px; color: var(--white); letter-spacing: 1px; line-height: 1.05; margin-bottom: 12px; }
+.success-title em { color: var(--gold); font-style: normal; }
+.success-sub { color: var(--text-muted); font-size: 16px; line-height: 1.6; margin-bottom: 32px; }
+.next-steps {
+  background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+  border-radius: 8px; padding: 24px 28px; text-align: left;
+  margin-bottom: 28px;
+}
+.next-steps h2 { font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--sky); margin-bottom: 16px; }
+.next-steps ol { padding-left: 22px; }
+.next-steps li { font-size: 14px; color: var(--white); line-height: 1.7; margin-bottom: 10px; }
+.next-steps li strong { color: var(--gold); }
+.help-line { font-size: 13px; color: var(--text-muted); margin-top: 24px; }
+.help-line a { color: var(--sky); }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="index.html" class="nav-logo">Lot<span>Link</span> Indiana</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="dealers.html">For Dealers</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="blog/">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<main class="success-wrap">
+  <div class="success-icon">✓</div>
+  <h1 class="success-title">Welcome to <em>LotLink</em>.</h1>
+  <p class="success-sub">Your subscription is active and your 14-day free trial just started. Check your inbox — we just sent you a one-click link to finish setting up your dashboard.</p>
+
+  <div class="next-steps">
+    <h2>What happens next</h2>
+    <ol>
+      <li><strong>Check your email</strong> for "Welcome to LotLink." Click the button to set your password and access the dashboard.</li>
+      <li><strong>I'll personally call you within one business hour</strong> to walk you through phone forwarding, voice AI setup, and inventory feed.</li>
+      <li><strong>Your trial doesn't start until Jordan sends his first message</strong> — so onboarding time doesn't count against your 14 days.</li>
+    </ol>
+  </div>
+
+  <p class="help-line">Don't see the email in 5 minutes? Check spam, or email <a href="mailto:john@lotlinkin.com">john@lotlinkin.com</a> and I'll get you in directly.</p>
+</main>
+
+<footer class="footer">
+  <p>&copy; <span id="year">2026</span> LotLink LLC · Rochester, IN · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></p>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</footer>
+
+</body>
+</html>

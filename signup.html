@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Start Your Trial — LotLink AI BDC</title>
+<meta name="description" content="Start your 14-day free trial of LotLink AI BDC. Voice + SMS + email lead handling for independent auto dealerships. No contract, cancel anytime.">
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://lotlinkin.com/signup.html">
+
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<script src="assets/site.js" defer></script>
+
+<style>
+.signup-wrap {
+  max-width: 540px; margin: 0 auto; padding: 32px 20px 64px;
+}
+.plan-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 8px 14px; border-radius: 999px;
+  background: rgba(232,160,32,0.1); border: 1px solid rgba(232,160,32,0.35);
+  color: var(--gold); font-size: 12px; font-weight: 600; letter-spacing: 0.5px;
+  text-transform: uppercase; margin-bottom: 14px;
+}
+.signup-title { font-family: 'Bebas Neue', sans-serif; font-size: 42px; line-height: 1.05; color: var(--white); letter-spacing: 1px; margin-bottom: 8px; }
+.signup-title em { color: var(--gold); font-style: normal; }
+.signup-sub { color: var(--text-muted); font-size: 15px; line-height: 1.6; margin-bottom: 32px; }
+.signup-form {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border); border-radius: 8px;
+  padding: 28px;
+}
+.field { margin-bottom: 18px; }
+.field label { display: block; font-size: 12px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; color: var(--sky); margin-bottom: 7px; }
+.field input, .field select {
+  width: 100%; padding: 12px 14px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border); border-radius: 4px;
+  color: var(--white); font-size: 14px; font-family: inherit;
+}
+.field input:focus, .field select:focus {
+  outline: none; border-color: var(--sky);
+  background: rgba(46,117,182,0.08);
+}
+.field .hint { font-size: 11px; color: var(--text-muted); margin-top: 6px; }
+.submit-btn {
+  width: 100%; padding: 14px 22px; margin-top: 10px;
+  background: var(--gold); color: var(--dark);
+  border: none; border-radius: 4px;
+  font-size: 14px; font-weight: 700; letter-spacing: 0.5px;
+  text-transform: uppercase; cursor: pointer; transition: 0.2s;
+}
+.submit-btn:hover:not(:disabled) { background: var(--gold-light); }
+.submit-btn:disabled { opacity: 0.5; cursor: wait; }
+.fine-print { font-size: 12px; color: var(--text-muted); margin-top: 16px; line-height: 1.6; text-align: center; }
+.fine-print a { color: var(--sky); }
+.err-box {
+  background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.4);
+  color: #fca5a5; font-size: 13px; padding: 12px 14px; border-radius: 4px;
+  margin-bottom: 18px; line-height: 1.5; display: none;
+}
+.err-box.visible { display: block; }
+.trust-strip {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px;
+  margin-top: 28px;
+}
+.trust-card { text-align: center; font-size: 11px; color: var(--text-muted); line-height: 1.5; }
+.trust-card .num { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 2px; }
+@media (max-width: 600px) {
+  .trust-strip { grid-template-columns: 1fr; }
+  .signup-title { font-size: 32px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="index.html" class="nav-logo">Lot<span>Link</span> Indiana</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="dealers.html">For Dealers</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="blog/">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<main id="main" class="signup-wrap">
+  <span class="plan-badge" id="planBadge">⚡ Growth Plan · $999/mo</span>
+  <h1 class="signup-title">Start your <em>14-day free trial</em>.</h1>
+  <p class="signup-sub">Four fields. Then add your card on Stripe (we won't charge for 14 days). I'll personally reach out within the hour to finish setup — voice, phone forwarding, inventory feed.</p>
+
+  <form class="signup-form" id="signupForm" novalidate>
+    <div class="err-box" id="errBox" role="alert"></div>
+
+    <div class="field">
+      <label for="dealership_name">Dealership Name</label>
+      <input type="text" id="dealership_name" name="dealership_name" required autocomplete="organization" placeholder="House of Carz">
+    </div>
+
+    <div class="field">
+      <label for="contact_name">Your Name</label>
+      <input type="text" id="contact_name" name="contact_name" required autocomplete="name" placeholder="Jane Smith">
+    </div>
+
+    <div class="field">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required autocomplete="email" placeholder="jane@dealership.com">
+      <div class="hint">We'll send the dashboard setup link here right after checkout.</div>
+    </div>
+
+    <div class="field">
+      <label for="phone">Phone</label>
+      <input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="(574) 555-0123">
+    </div>
+
+    <button type="submit" class="submit-btn" id="submitBtn">Continue to Stripe →</button>
+
+    <p class="fine-print">
+      You'll be taken to Stripe's secure checkout to add your card. No charge for 14 days. Cancel anytime. Need a different plan? <a href="pricing.html">See all options</a>.
+    </p>
+  </form>
+
+  <div class="trust-strip">
+    <div class="trust-card"><span class="num">14</span>day free trial — no card charged today</div>
+    <div class="trust-card"><span class="num">$0</span>setup fees, no long-term contracts</div>
+    <div class="trust-card"><span class="num">1h</span>personal onboarding call with the founder</div>
+  </div>
+</main>
+
+<script>
+(function () {
+  // ── Plan from URL → badge + form submission ──────────
+  const PLANS = {
+    starter: { id: 'starter', label: 'Starter Plan · $499/mo', icon: '🚀' },
+    growth:  { id: 'growth',  label: 'Growth Plan · $999/mo',  icon: '⚡' },
+  };
+  const params = new URLSearchParams(window.location.search);
+  const planId = (params.get('plan') || 'growth').toLowerCase();
+  const plan = PLANS[planId] || PLANS.growth;
+  document.getElementById('planBadge').textContent = `${plan.icon} ${plan.label}`;
+
+  // Show the "You canceled, try again" message if Stripe redirected back here.
+  if (params.get('canceled') === '1') {
+    const e = document.getElementById('errBox');
+    e.textContent = 'No worries — your card wasn’t charged. Hit Continue when you’re ready.';
+    e.style.background = 'rgba(56,189,248,0.1)';
+    e.style.borderColor = 'rgba(56,189,248,0.4)';
+    e.style.color = '#7dd3fc';
+    e.classList.add('visible');
+  }
+
+  // ── Submit handler ───────────────────────────────────
+  // The API lives on app.lotlinkin.com. Marketing site is at lotlinkin.com
+  // so we POST cross-origin. Backend route allows it because it's a public
+  // endpoint by design.
+  const API_BASE = 'https://app.lotlinkin.com';
+
+  const form = document.getElementById('signupForm');
+  const btn = document.getElementById('submitBtn');
+  const errBox = document.getElementById('errBox');
+
+  function showError(msg) {
+    errBox.textContent = msg;
+    errBox.classList.add('visible');
+    btn.disabled = false;
+    btn.textContent = 'Continue to Stripe →';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    errBox.classList.remove('visible');
+    errBox.textContent = '';
+    btn.disabled = true;
+    btn.textContent = 'Working…';
+
+    const payload = {
+      dealership_name: document.getElementById('dealership_name').value.trim(),
+      contact_name:    document.getElementById('contact_name').value.trim(),
+      email:           document.getElementById('email').value.trim().toLowerCase(),
+      phone:           document.getElementById('phone').value.trim(),
+      plan:            plan.id,
+    };
+
+    // Client-side gut check before bothering the server.
+    if (!payload.dealership_name) return showError('Please enter your dealership name.');
+    if (!payload.contact_name)    return showError('Please enter your name.');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)) return showError('That email doesn’t look right.');
+    if (payload.phone.replace(/\D/g, '').length < 10)      return showError('Please enter a 10-digit phone number.');
+
+    try {
+      const res = await fetch(`${API_BASE}/api/public/signup`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        return showError(data.error || `Something went wrong (HTTP ${res.status}). Try again or email john@lotlinkin.com.`);
+      }
+      if (data.checkout_url) {
+        window.location.href = data.checkout_url;
+      } else {
+        showError('Couldn’t open Stripe checkout. Please email john@lotlinkin.com — we’ll get you in personally.');
+      }
+    } catch (err) {
+      showError('Network error reaching the server. Please try again or email john@lotlinkin.com.');
+    }
+  });
+})();
+</script>
+
+<footer class="footer">
+  <p>&copy; <span id="year">2026</span> LotLink LLC · Rochester, IN · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></p>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</footer>
+
+</body>
+</html>
