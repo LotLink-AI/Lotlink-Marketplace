@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LotLink — AI BDC for Independent Car Dealers</title>
-<meta name="description" content="LotLink is an AI BDC that answers every lead in under a minute — voice, text, and email — 24/7. Built by a 13-year car guy at a real dealership. 14-day free trial. No contract.">
+<meta name="description" content="LotLink is an AI BDC that answers every lead in under a minute — voice, text, and email — 24/7. Built by a 15-year car guy at a real dealership. 14-day free trial. No contract.">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://lotlinkin.com/">
 
@@ -249,6 +249,66 @@
 .feat-card h4 { font-size:16px; font-weight:600; color:var(--white); line-height:1.25; }
 .feat-card p { font-size:13px; color:var(--text-muted); line-height:1.65; }
 
+/* ── Founding Partner Program (between Features and Pricing) ────────── */
+.founder-program {
+  padding:72px 48px;
+  background:linear-gradient(135deg, rgba(232,160,32,0.09), rgba(46,117,182,0.05));
+  border-top:1px solid rgba(232,160,32,0.2); border-bottom:1px solid rgba(232,160,32,0.2);
+  position:relative; overflow:hidden;
+}
+.founder-program::before {
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(circle at 18% 30%, rgba(232,160,32,0.08), transparent 45%);
+  pointer-events:none;
+}
+.founder-program-inner {
+  max-width:1100px; margin:0 auto; text-align:center;
+  position:relative;
+}
+.fp-badge {
+  display:inline-block;
+  font-size:11px; letter-spacing:2px; text-transform:uppercase;
+  color:var(--gold); font-weight:700;
+  background:rgba(232,160,32,0.12); border:1px solid rgba(232,160,32,0.4);
+  padding:8px 16px; border-radius:999px;
+  margin-bottom:18px;
+}
+.founder-program-inner h2 {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(36px,5vw,58px);
+  letter-spacing:1px; line-height:1; color:var(--white);
+  margin-bottom:14px;
+}
+.founder-program-inner h2 em { color:var(--gold); font-style:normal; }
+.founder-program-sub {
+  font-size:16px; color:rgba(255,255,255,0.8);
+  max-width:660px; margin:0 auto 40px auto; line-height:1.6;
+}
+.fp-grid {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:20px;
+  max-width:980px; margin:0 auto;
+}
+.fp-card {
+  background:rgba(255,255,255,0.05);
+  border:1px solid var(--border);
+  border-radius:8px; padding:28px 24px;
+  text-align:left;
+  transition:0.3s;
+}
+.fp-card:hover { background:rgba(232,160,32,0.06); border-color:rgba(232,160,32,0.35); transform:translateY(-3px); }
+.fp-icon { font-size:28px; margin-bottom:10px; line-height:1; }
+.fp-card h3 { font-family:'DM Serif Display',serif; font-size:18px; color:var(--white); margin-bottom:8px; line-height:1.25; }
+.fp-card p { font-size:13px; color:var(--text-muted); line-height:1.65; }
+.fp-counter {
+  display:inline-flex; align-items:center; gap:14px;
+  margin-top:36px; padding:14px 22px;
+  background:rgba(0,0,0,0.25);
+  border:1px solid rgba(232,160,32,0.35); border-radius:999px;
+}
+.fp-counter .l { font-size:11px; color:rgba(255,255,255,0.65); letter-spacing:1px; text-transform:uppercase; font-weight:600; }
+.fp-counter .n { font-family:'Bebas Neue',sans-serif; font-size:22px; color:var(--gold); letter-spacing:0.5px; line-height:1; }
+.fp-cta { display:inline-block; margin-top:20px; }
+
 /* ── Pricing tiers (inline on homepage) ──────────────────────────────── */
 .home-pricing-grid {
   display:grid; grid-template-columns:repeat(3,1fr); gap:18px;
@@ -346,6 +406,8 @@
   .steps-saas { grid-template-columns:1fr; gap:14px; }
   .numbers-grid { grid-template-columns:1fr 1fr; gap:32px; }
   .feat-grid { grid-template-columns:1fr; gap:12px; }
+  .fp-grid { grid-template-columns:1fr; gap:14px; }
+  .founder-program { padding:48px 20px; }
   .home-pricing-grid { grid-template-columns:1fr; gap:14px; }
   .case-inner { grid-template-columns:1fr; gap:28px; }
   .case-photo { max-width:280px; margin:0 auto; }
@@ -585,7 +647,43 @@
   </p>
 </section>
 
-<div class="divider"></div>
+<!-- ═════════════════════════════════════════════════════════
+     FOUNDING PARTNER PROGRAM — scarcity + partnership pitch
+     for the first 10 dealerships
+     ═════════════════════════════════════════════════════════ -->
+<section class="founder-program" id="founding-partners">
+  <div class="founder-program-inner">
+    <div class="fp-badge">⚡ Founding Partner Program · Limited to 10</div>
+    <h2>Be one of our first <em>10 dealerships.</em></h2>
+    <p class="founder-program-sub">We're hand-picking the first 10 floors to run on LotLink. Founding partners get treated like co-builders, not customers — and the deal is permanent. Once you're in, you're in for good.</p>
+
+    <div class="fp-grid">
+      <div class="fp-card">
+        <div class="fp-icon">🔒</div>
+        <h3>Pricing locked for life</h3>
+        <p>Today's rate is your rate forever. When we raise prices for new dealers — and we will — your bill doesn't move. No annual increases, no surprise upcharges, no "loyalty discount expired" emails.</p>
+      </div>
+      <div class="fp-card">
+        <div class="fp-icon">🤝</div>
+        <h3>Direct line to the founder</h3>
+        <p>You text me. I text back. Weekly office hours, feature requests that ship instead of sitting in a queue, and a sales floor that gets shaped by your feedback — not by a roadmap committee in San Francisco.</p>
+      </div>
+      <div class="fp-card">
+        <div class="fp-icon">🚀</div>
+        <h3>Every upgrade, included</h3>
+        <p>The platform gets sharper every week. New channels, smarter AI, deeper integrations. You don't pay extra for what we ship — your subscription scales with the product, not against it.</p>
+      </div>
+    </div>
+
+    <div class="fp-counter">
+      <span class="l">Spots remaining</span>
+      <span class="n">10 of 10</span>
+    </div>
+    <div>
+      <a href="signup.html" class="btn-gold fp-cta">Claim Your Spot ›</a>
+    </div>
+  </div>
+</section>
 
 <!-- ═════════════════════════════════════════════════════════
      PRICING — 3 tiers, link to /pricing for full detail
@@ -648,17 +746,17 @@
   <div class="case-inner">
     <div class="case-text">
       <div class="eyebrow">Real Customer Story</div>
-      <h3>Brianna bought her dream Bronco — Jordan worked the lead at 9pm on a Saturday.</h3>
+      <h3>Brianna bought her dream Silverado — Jordan worked the lead at 9pm on a Saturday.</h3>
       <p class="lede">She'd been shopping for months. Submitted a form on a Saturday night, expecting to wait until Monday. Jordan replied in 47 seconds, answered three follow-up questions, sent her the vehicle's full photo gallery, and booked her test drive for Sunday morning. She drove off the lot that afternoon.</p>
       <blockquote class="quote">"I honestly thought I was texting a real person. By the time I figured out I wasn't, I was already at the dealership."</blockquote>
-      <p class="byline"><strong>Brianna H.</strong> · Ford Bronco buyer · Bought at House of Carz, Rochester IN</p>
+      <p class="byline"><strong>Brianna H.</strong> · Chevy Silverado buyer · Bought at House of Carz, Rochester IN</p>
       <a href="blog/the-first-truck.html" class="case-cta">Read the full story ›</a>
     </div>
     <div class="case-photo">
-      <img src="assets/brianna-first-truck.jpg" alt="Brianna with her new Ford Bronco at House of Carz" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+      <img src="assets/brianna-first-truck.jpg" alt="Brianna with her new Chevy Silverado at House of Carz" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
       <div class="ph-fallback" style="display:none;" aria-hidden="true">
         <span>🚙</span>
-        <small style="font-size:10px;letter-spacing:1px;text-transform:uppercase;">Brianna · Ford Bronco</small>
+        <small style="font-size:10px;letter-spacing:1px;text-transform:uppercase;">Brianna · Chevy Silverado</small>
       </div>
     </div>
   </div>
@@ -675,7 +773,7 @@
     </div>
     <div class="founder-cta-text">
       <h2>Built by a Car Guy. Used at a <em>Real</em> Dealership.</h2>
-      <p>I've worked the floor for 13 years. I built LotLink because the human-only BDC math stops working when leads come in at 2am. Now Jordan handles every one of mine. Want the same for your floor?</p>
+      <p>I've worked the floor for 15 years. I built LotLink because the human-only BDC math stops working when leads come in at 2am. Now Jordan handles every one of mine. Want the same for your floor?</p>
       <p class="signature">— John Roberts, Founder · Sales & F&amp;I Manager, House of Carz</p>
     </div>
     <div class="founder-cta-actions">
