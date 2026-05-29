@@ -3,72 +3,145 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FAQ — LotLink Indiana</title>
-<meta name="description" content="Everything you wanted to know about LotLink Indiana — how it works, what it costs, what it takes to get started. Straight answers for Northern Indiana dealers.">
+<title>Dealer FAQ — LotLink AI BDC</title>
+<meta name="description" content="Straight answers about LotLink's AI BDC: what Jordan does, what she costs, how fast you go live, what happens to your leads, how it handles your data. Built by a dealer, for dealers.">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://lotlinkin.com/faq.html">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="LotLink Indiana">
-<meta property="og:title" content="Dealer FAQ — LotLink Indiana">
-<meta property="og:description" content="Everything you wanted to know about LotLink Indiana. Straight answers — no marketing fluff.">
+<meta property="og:site_name" content="LotLink">
+<meta property="og:title" content="Dealer FAQ — LotLink AI BDC">
+<meta property="og:description" content="Everything you wanted to know about Jordan. Straight answers, no fluff.">
 <meta property="og:url" content="https://lotlinkin.com/faq.html">
 <meta property="og:image" content="https://lotlinkin.com/assets/og-default.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="style.css">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <script src="assets/site.js" defer></script>
-<style>
-/* FAQ-specific styling — mirrors the dealers.html objection list so this
-   page feels like the same product, not a bolt-on help center. */
-.faq-intro { max-width:760px; margin:0 auto 48px auto; text-align:center; }
-.faq-intro p { font-size:16px; color:var(--text-muted); line-height:1.7; }
 
-.faq-layout { display:grid; grid-template-columns:220px 1fr; gap:48px; max-width:1040px; margin:0 auto; }
+<!-- Schema.org FAQPage — eligible for rich results in Google search.
+     Each question + answer is one FAQ pair; we copy the same questions
+     and answers into the visible page so Google can verify they match. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does Jordan actually do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Jordan is your AI BDC rep. She answers your dealership's phone 24/7, replies to every SMS, responds to every email lead, and books appointments straight to your calendar. She knows your inventory because she pulls live from your VDP — when a customer asks if the silver Silverado is still there, she's checking, not guessing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does it cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Three tiers: Starter at $499/month covers a single store with voice, SMS, and email follow-up on every lead. Growth at $999/month adds full cadence customization, web chat, and the multi-channel workflow tuning most floors actually want. Pro at $1,999+ is custom for larger groups. Every plan is month-to-month — no contract — and starts with a 14-day free trial."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take to go live?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Usually 48 hours from sign-up. The SMS number provisioning takes 2-3 weeks at the carrier level for new dealers — that's a federal regulation, not us — but voice and email start working immediately. We coach you through the SMS verification on a 15-minute call."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will it replace my BDC staff?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It replaces the gap your BDC staff can't cover — nights, weekends, lunch breaks, the lead that came in while someone was on another call. The dealers having the most success run Jordan alongside one or two human BDC reps, not instead of them. Jordan catches and qualifies; your humans close."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who owns my data?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You do. Every lead, every conversation, every recording is yours. Export to CSV any time, no questions, no fee. If you ever cancel, you get the data and we delete our copy within 30 days."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can Jordan agree to something she shouldn't?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. There's a deliberately-dumb regex + SQL guardrail layer that blocks Jordan from promising prices, approving financing, quoting trade values, or claiming a vehicle is in stock that isn't. If a customer pushes, Jordan hands off to a human and logs why. Read 'Off the Rails' on the blog for the full design."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the Founding Partner Program?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "First ten dealers to sign get locked pricing for life, no setup fee, and a direct line to me. There's a counter on the homepage that decrements as each spot fills. It's an actual program, not a marketing gimmick — those ten dealers are getting the best price LotLink will ever offer."
+      }
+    }
+  ]
+}
+</script>
+
+<style>
+/* FAQ-specific styling. Two-column on desktop: sticky left-side nav
+   for the question groups, expandable accordion rows on the right.
+   Mobile collapses to a single column with nav above. */
+.faq-hero { max-width:1040px; margin:0 auto; padding:130px 48px 32px; text-align:center; }
+.faq-hero .eyebrow { display:inline-flex; align-items:center; gap:12px; font-size:11px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--sky); margin-bottom:16px; }
+.faq-hero .eyebrow::before, .faq-hero .eyebrow::after { content:''; display:block; width:28px; height:1px; background:var(--sky); }
+.faq-hero h1 { font-family:'DM Serif Display', serif; font-size:clamp(36px,5vw,52px); line-height:1.06; color:var(--white); margin-bottom:14px; }
+.faq-hero p { max-width:640px; margin:0 auto; font-size:16px; color:var(--text-muted); line-height:1.7; }
+
+.faq-layout { display:grid; grid-template-columns:220px 1fr; gap:48px; max-width:1040px; margin:48px auto 80px auto; padding:0 48px; }
 .faq-nav { position:sticky; top:96px; align-self:start; }
 .faq-nav h4 { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--sky); margin-bottom:14px; }
 .faq-nav a { display:block; font-size:13px; color:var(--text-muted); padding:6px 0; text-decoration:none; transition:color 0.2s; }
 .faq-nav a:hover { color:var(--white); }
-.faq-nav a.active { color:var(--gold); }
 
 .faq-group { margin-bottom:48px; }
-.faq-group h2 { font-family:'DM Serif Display',serif; font-size:26px; color:var(--white); margin-bottom:6px; }
+.faq-group h2 { font-family:'DM Serif Display', serif; font-size:26px; color:var(--white); margin-bottom:6px; }
 .faq-group .group-sub { font-size:13px; color:var(--text-muted); margin-bottom:20px; }
 
-.objections { list-style:none; }
-.objection-item { border:1px solid var(--border); border-radius:6px; margin-bottom:12px; overflow:hidden; }
-.objection-q { padding:16px 20px; background:rgba(255,255,255,0.03); font-size:14px; font-weight:600; color:var(--white); cursor:pointer; display:flex; justify-content:space-between; align-items:center; transition:background 0.2s; width:100%; border:none; text-align:left; font-family:inherit; }
-.objection-q:hover { background:rgba(46,117,182,0.1); }
-.objection-q span { color:var(--sky); font-size:18px; display:inline-block; transition:transform 0.2s; }
-.objection-a { padding:18px 20px; font-size:13px; color:var(--text-muted); line-height:1.75; border-top:1px solid var(--border); background:rgba(0,0,0,0.1); display:none; }
-.objection-a strong { color:var(--white); }
-.objection-item.open .objection-a { display:block; }
-.objection-item.open .objection-q span { transform:rotate(45deg); }
+.qa-list { list-style:none; padding:0; margin:0; }
+.qa-item { border:1px solid var(--border); border-radius:6px; margin-bottom:12px; overflow:hidden; }
+.qa-q { padding:16px 20px; background:rgba(255,255,255,0.03); font-size:14px; font-weight:600; color:var(--white); cursor:pointer; display:flex; justify-content:space-between; align-items:center; transition:background 0.2s; width:100%; border:none; text-align:left; font-family:inherit; }
+.qa-q:hover { background:rgba(46,117,182,0.1); }
+.qa-q .indicator { color:var(--sky); font-size:18px; display:inline-block; transition:transform 0.2s; }
+.qa-a { padding:18px 20px; font-size:13.5px; color:var(--text-muted); line-height:1.75; border-top:1px solid var(--border); background:rgba(0,0,0,0.1); display:none; }
+.qa-a strong { color:var(--white); }
+.qa-a a { color:var(--sky); }
+.qa-item.open .qa-a { display:block; }
+.qa-item.open .qa-q .indicator { transform:rotate(45deg); }
 
-.cta-card { background:linear-gradient(135deg, rgba(232,160,32,0.08), rgba(46,117,182,0.06)); border:1px solid rgba(232,160,32,0.3); border-radius:8px; padding:40px; text-align:center; max-width:720px; margin:0 auto; }
-.cta-card h3 { font-family:'DM Serif Display',serif; font-size:28px; color:var(--white); margin-bottom:10px; }
+.cta-card { background:linear-gradient(135deg, rgba(232,160,32,0.08), rgba(46,117,182,0.06)); border:1px solid rgba(232,160,32,0.3); border-radius:8px; padding:40px; text-align:center; max-width:720px; margin:0 auto 80px auto; }
+.cta-card h3 { font-family:'DM Serif Display', serif; font-size:28px; color:var(--white); margin-bottom:10px; }
 .cta-card p { font-size:14px; color:var(--text-muted); margin-bottom:24px; line-height:1.7; }
 .cta-card .btn-row { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
 
-@media(max-width:768px) {
-  .faq-layout { grid-template-columns:1fr; gap:24px; }
+@media (max-width:768px) {
+  .faq-layout { grid-template-columns:1fr; gap:24px; padding:0 24px; }
   .faq-nav { position:static; }
+  .faq-hero { padding:110px 24px 24px; }
 }
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="index.html" class="nav-logo">Lot<span>Link</span> Indiana</a>
+  <a href="index.html" class="nav-logo">Lot<span>Link</span></a>
   <ul id="nav-links" class="nav-links">
     <li><a href="index.html">Home</a></li>
-    <li><a href="inventory.html">Inventory</a></li>
-    <li><a href="dealers.html">For Dealers</a></li>
-    <li><a href="concierge.html">Concierge</a></li>
+    <li><a href="index.html#features">Features</a></li>
     <li><a href="pricing.html">Pricing</a></li>
     <li><a href="blog/">Blog</a></li>
     <li><a href="faq.html" class="active">FAQ</a></li>
     <li><a href="contact.html">Contact</a></li>
-    <li><a href="contact.html#credit" class="nav-cta">Get Pre-Approved</a></li>
+    <li><a href="https://app.lotlinkin.com/portal.html" class="nav-login" aria-label="Log in to your LotLink dashboard">Log in</a></li>
+    <li><a href="signup.html" class="nav-cta">Start Free Trial</a></li>
   </ul>
   <button class="nav-mobile-btn" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
     <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
@@ -79,355 +152,255 @@
 
 <main id="main">
 
-<!-- HERO -->
-<section class="page-hero">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
-  <div class="hero-content">
-    <div class="hero-eyebrow">Dealer FAQ</div>
-    <h1>Straight Answers.<br><em>No Sales</em> <span class="gold">Pitch.</span></h1>
-    <p class="hero-sub">Everything dealers ask before they partner with us — what LotLink is, what it costs, what it takes to get started, and what results you should actually expect. If the answer isn't here, call John directly at 260-229-9393.</p>
-  </div>
+<section class="faq-hero">
+  <div class="eyebrow">Dealer FAQ</div>
+  <h1>Straight answers about Jordan</h1>
+  <p>What she does, what she costs, what happens to your data, how fast you go live. Written by a dealer in plain English. If something isn't here, <a href="contact.html" style="color:var(--gold);">ask me directly</a>.</p>
 </section>
 
-<!-- FAQ -->
-<section class="section">
-  <div class="faq-intro">
-    <p>We built LotLink because Northern Indiana dealers kept telling us the same thing: <em>leads are expensive, half of them are junk, and the good ones go cold before anyone calls them back</em>. So we built the thing we wished existed — a local marketplace plus an AI that works every lead inside five minutes, 24/7. These are the questions dealers ask us before signing on.</p>
+<div class="faq-layout">
+  <aside class="faq-nav">
+    <h4>Jump to</h4>
+    <a href="#product">The product</a>
+    <a href="#pricing">Pricing &amp; trial</a>
+    <a href="#setup">Setup &amp; integration</a>
+    <a href="#guardrails">Guardrails &amp; safety</a>
+    <a href="#data">Your data</a>
+    <a href="#program">Founding Partners</a>
+  </aside>
+
+  <div>
+
+    <!-- ─── THE PRODUCT ─── -->
+    <section class="faq-group" id="product">
+      <h2>The product</h2>
+      <p class="group-sub">What Jordan does on day one and how it fits with the people you already have.</p>
+      <ul class="qa-list">
+
+        <li class="qa-item">
+          <button class="qa-q" type="button">What does Jordan actually do? <span class="indicator">+</span></button>
+          <div class="qa-a">Jordan is your AI BDC rep. She answers your dealership's phone 24/7, replies to every SMS, responds to every email lead, and books appointments straight to your calendar. She knows your inventory because she pulls live from your VDP — when a customer asks if the silver Silverado is still there, she's checking, not guessing. When a lead's hot, she warm-transfers the call right to your floor. When it's after hours, she sets the appointment and hands you a confirmed customer at 9 AM with the coffee.</div>
+        </li>
+
+        <li class="qa-item">
+          <button class="qa-q" type="button">Will it replace my BDC staff? <span class="indicator">+</span></button>
+          <div class="qa-a">It replaces the gap your BDC staff can't cover — nights, weekends, lunch breaks, the lead that came in while someone was on another call. The dealers having the most success run Jordan alongside one or two human BDC reps, not instead of them. Jordan catches and qualifies; your humans close.</div>
+        </li>
+
+        <li class="qa-item">
+          <button class="qa-q" type="button">Can I customize what Jordan says? <span class="indicator">+</span></button>
+          <div class="qa-a">Yes. Starter gets a tuned default voice; Growth and above unlock the cadence editor (number and timing of touches per campaign), custom prompts, multi-channel workflow rules, and per-vehicle messaging. You're not editing AI code — you're filling out a settings page that updates Jordan in real time.</div>
+        </li>
+
+        <li class="qa-item">
+          <button class="qa-q" type="button">What channels does it work across? <span class="indicator">+</span></button>
+          <div class="qa-a">Inbound voice calls (Jordan answers in a real voice), outbound voice follow-up, two-way SMS, email — both inbound parsing of ADF leads and outbound replies — and web chat (Growth tier and above). Every conversation is unified in one inbox so your team sees the full thread no matter what channel it came in on.</div>
+        </li>
+
+        <li class="qa-item">
+          <button class="qa-q" type="button">Does Jordan transfer calls to my team? <span class="indicator">+</span></button>
+          <div class="qa-a">Yes — warm transfer. You give Jordan a list of your sales floor (per-rep numbers, sales vs. service routing, after-hours line). When a caller's ready, Jordan rings the right person, announces who it is and what they want, and stays on the line until the handoff completes. If the rep doesn't pick up, she falls back to the next rep on the list or takes a message.</div>
+        </li>
+
+      </ul>
+    </section>
+
+    <!-- ─── PRICING & TRIAL ─── -->
+    <section class="faq-group" id="pricing">
+      <h2>Pricing &amp; trial</h2>
+      <p class="group-sub">Three tiers, month-to-month, no contract. 14-day free trial on every plan.</p>
+      <ul class="qa-list">
+
+        <li class="qa-item">
+          <button class="qa-q" type="button">What does it cost? <span class="indicator">+</span></button>
+          <div class="qa-a"><strong>Starter — $499/month.</strong> Single store, voice + SMS + email coverage on every lead, 24/7 AI answering. <strong>Growth — $999/month.</strong> Adds cadence customization, web chat widget, multi-channel workflow tuning. Most dealers land here. <strong>Pro — $1,999+/month.</strong> Custom build for groups, multi-store rollouts, white-glove onboarding. <a href="pricing.html">Full breakdown on the pricing page.</a></div>
+        </li>
+
+        <li class="qa-item">
+          <button class="qa-q" type="button">Is there really no contract? <span class="indicator">+</span></button>
+          <div class="qa-a">No contract. Month-to-month. Cancel any time from your dashboard. If Jordan isn't delivering more booked appointments inside of 30 days, you shouldn't be paying for her — and I don't want to be the guy holding a dealer to a contract they're not happy with.</div>
+        </li>
+
+        <li class="qa-item">
+          <button class="qa-q" type="button">How does the free trial work? <span class="indicator">+</span></button>
+          <div class="qa-a">14 days, full product. We provision your numbers, hook up your lead sources, and you run live with real leads from day one. No credit card required to start the trial. At the end of 14 days you decide whether to keep going or stop — no auto-renew gotchas.</div>
+        </li>
+
+        <li class="qa-item">
+          <button class="qa-q" type="button">Is there a setup fee? <span class="indicator">+</span></button>
+          <div class="qa-a">Standard plans have a one-time setup fee that covers number provisioning and onboarding. Founding Partners get it waived — see the Founding Partner section below.</div>
+        </li>
+
+        <li class="qa-item">
+          <button class="qa-q" type="button">What happens if I outgrow Starter? <span class="indicator">+</span></button>
+          <div class="qa-a">Upgrade any time from your dashboard. We prorate the month. No re-onboarding required — your data, leads, and Jordan's tuning carry forward.</div>
+        </li>
+
+      </ul>
+    </section>
+
+    <!-- ─── SETUP & INTEGRATION ─── -->
+    <section class="faq-group" id="setup">
+      <h2>Setup &amp; integration</h2>
+      <p class="group-sub">How fast you go live and what you have to give us to make it work.</p>
+      <ul class="qa-list">
+
+        <li class="qa-item">
+          <button class="qa-q" type="button">How long does it take to go live? <span class="indicator">+</span></button>
+          <div class="qa-a">Voice and email start working within 48 hours of sign-up. SMS takes 2-3 weeks at the carrier level because of federal regulations on business texting (A2P 10DLC verification) — that's not us, that's every business in America trying to text customers since 2023. We coach you through it on a 15-minute call so it's painless.</div>
+        </li>
+
+        <li class="qa-item">
+          <button class="qa-q" type="button">Will it work with my existing CRM? <span class="indicator">+</span></button>
+          <div class="qa-a">Lead ingestion works with anything that sends ADF/XML lead emails — that covers virtually every third-party CRM, lead provider, and OEM lead source. We can also receive direct webhook integrations from CarGurus, AutoTrader, Cars.com, TrueCar, Capital One Auto Navigator, and Carvana. For outbound CRM sync (so your CRM sees the conversation), that's a Pro-tier integration.</div>
+        </li>
+
+        <li class="qa-item">
+          <button class="qa-q" type="button">What do you need from me to onboard? <span class="indicator">+</span></button>
+          <div class="qa-a">Dealership info (hours, address, timezone), the URL of your inventory page so Jordan can pull live VDPs, your team roster with cell numbers for warm transfers, and access to your lead sources to point them at our intake email. That's it — about 20 minutes of forms in our self-serve wizard, or 45 minutes on a call with me if you'd rather not type.</div>
+        </li>
+
+        <li class="qa-item">
+          <button class="qa-q" type="button">Do I need a new phone number? <span class="indicator">+</span></button>
+          <div class="qa-a">You get a dedicated Jordan number — that's where Jordan lives. You can either forward your existing main line to it (cleanest), or use the new number directly on your website + marketing. Most dealers forward; it keeps your printed/online phone number stable.</div>
+        </li>
+
+      </ul>
+    </section>
+
+    <!-- ─── GUARDRAILS ─── -->
+    <section class="faq-group" id="guardrails">
+      <h2>Guardrails &amp; safety</h2>
+      <p class="group-sub">What Jordan won't say, and why.</p>
+      <ul class="qa-list">
+
+        <li class="qa-item">
+          <button class="qa-q" type="button">Can Jordan agree to something she shouldn't? <span class="indicator">+</span></button>
+          <div class="qa-a">No. There's a deliberately-dumb regex + SQL guardrail layer that runs before any AI-generated message goes out. Jordan can't promise prices, approve financing, quote trade values, or claim a vehicle is in stock that isn't. If a customer pushes, Jordan hands off to a human and logs why. <a href="blog/off-the-rails.html">Full design walkthrough on the blog.</a></div>
+        </li>
+
+        <li class="qa-item">
+          <button class="qa-q" type="button">Can Jordan book an appointment when we're closed? <span class="indicator">+</span></button>
+          <div class="qa-a">No. The booking tool checks your dealership's hours and refuses any slot that lands on a closed day or outside that day's open hours. If a customer asks for Sunday and you're closed Sunday, Jordan offers the next open day instead.</div>
+        </li>
+
+        <li class="qa-item">
+          <button class="qa-q" type="button">What if Jordan gets something wrong? <span class="indicator">+</span></button>
+          <div class="qa-a">Every conversation is logged with the full transcript, the AI's reasoning, and which guardrails fired. If something escapes, you see it in the inbox, and a quick prompt update fixes it across every future conversation. You also have an instant kill switch — pause Jordan on a single contact or the whole dealership with one click.</div>
+        </li>
+
+        <li class="qa-item">
+          <button class="qa-q" type="button">Does Jordan respect customer opt-outs? <span class="indicator">+</span></button>
+          <div class="qa-a">Yes. STOP, UNSUBSCRIBE, and quiet-hours rules are enforced at the carrier level and in our own send-time checks. We never message a customer who opted out, and SMS is automatically deferred during your dealership's quiet hours (default 9 PM – 9 AM local). TCPA-floor compliant.</div>
+        </li>
+
+      </ul>
+    </section>
+
+    <!-- ─── DATA ─── -->
+    <section class="faq-group" id="data">
+      <h2>Your data</h2>
+      <p class="group-sub">Who owns it, what happens if you leave, who else sees it.</p>
+      <ul class="qa-list">
+
+        <li class="qa-item">
+          <button class="qa-q" type="button">Who owns the data? <span class="indicator">+</span></button>
+          <div class="qa-a">You do. Every lead, every conversation, every recording is yours. Export to CSV any time from the dashboard, no fee, no questions. We never sell, rent, or share your customer data with anyone.</div>
+        </li>
+
+        <li class="qa-item">
+          <button class="qa-q" type="button">What happens to my data if I cancel? <span class="indicator">+</span></button>
+          <div class="qa-a">You can export everything before you cancel. After cancellation, your data is retained for 30 days (in case you change your mind), then permanently deleted from our systems. We send you a confirmation email when deletion completes.</div>
+        </li>
+
+        <li class="qa-item">
+          <button class="qa-q" type="button">Is it secure? <span class="indicator">+</span></button>
+          <div class="qa-a">Everything runs on Railway's infrastructure with Postgres on encrypted-at-rest disks, daily snapshots, and TLS in transit. Access to the dashboard is JWT-authenticated with role-based controls. No customer PII is ever shared with the AI model — we use Anthropic's API with zero-retention turned on, so your conversations don't get used to train anything.</div>
+        </li>
+
+      </ul>
+    </section>
+
+    <!-- ─── FOUNDING PARTNERS ─── -->
+    <section class="faq-group" id="program">
+      <h2>Founding Partner Program</h2>
+      <p class="group-sub">The first ten dealers in get the best deal LotLink will ever offer.</p>
+      <ul class="qa-list">
+
+        <li class="qa-item">
+          <button class="qa-q" type="button">What is it? <span class="indicator">+</span></button>
+          <div class="qa-a">First ten dealers to sign up get locked pricing for life on whatever tier they're on, no setup fee, and a direct line to me. There's a counter on the homepage that decrements as each spot fills.</div>
+        </li>
+
+        <li class="qa-item">
+          <button class="qa-q" type="button">Why are you doing this? <span class="indicator">+</span></button>
+          <div class="qa-a">I'd rather have ten dealers who feel like partners than a hundred who feel like customers. The Founding Partners get extra access because their feedback shapes what gets built next. If you've got opinions on what an AI BDC should do, this is the program for you.</div>
+        </li>
+
+        <li class="qa-item">
+          <button class="qa-q" type="button">Does locked pricing really mean for life? <span class="indicator">+</span></button>
+          <div class="qa-a">Yes — for as long as you're an active subscriber, your price doesn't go up. If you cancel and come back later, you'd come back at standard pricing.</div>
+        </li>
+
+        <li class="qa-item">
+          <button class="qa-q" type="button">How do I claim a Founding Partner spot? <span class="indicator">+</span></button>
+          <div class="qa-a">Sign up for a trial through the regular flow, then <a href="contact.html">email or call me</a> and mention you want a Founding Partner spot. As long as the counter on the homepage isn't at zero, you're in.</div>
+        </li>
+
+      </ul>
+    </section>
+
   </div>
+</div>
 
-  <div class="faq-layout">
-    <aside class="faq-nav">
-      <h4>Jump To</h4>
-      <a href="#basics">The Basics</a>
-      <a href="#jordan">About Jordan (AI)</a>
-      <a href="#pricing">Pricing &amp; Contracts</a>
-      <a href="#getting-started">Getting Started</a>
-      <a href="#leads">Leads &amp; Compliance</a>
-      <a href="#results">Results &amp; ROI</a>
-    </aside>
-
-    <div class="faq-content">
-
-      <!-- ── THE BASICS ── -->
-      <div class="faq-group" id="basics">
-        <h2>The Basics</h2>
-        <p class="group-sub">What LotLink actually is.</p>
-        <ul class="objections">
-
-          <li class="objection-item open">
-            <button type="button" class="objection-q" aria-expanded="true" onclick="toggleFAQ(this)">What is LotLink Indiana? <span aria-hidden="true">+</span></button>
-            <div class="objection-a">
-              We're a Northern-Indiana-only vehicle marketplace plus an AI BDC — business development center. Think of us as two things in one: a regional shopping site where buyers across the area find your inventory, and an always-on sales assistant named <strong>Jordan</strong> that responds to every lead within a minute, qualifies them, and books appointments on your lot. We don't own inventory. We don't compete with you. We make the phone ring.
-            </div>
-          </li>
-
-          <li class="objection-item">
-            <button type="button" class="objection-q" aria-expanded="false" onclick="toggleFAQ(this)">How is this different from CarGurus, AutoTrader, Cars.com? <span aria-hidden="true">+</span></button>
-            <div class="objection-a">
-              Those are national lead platforms. You pay a monthly fee to appear in a search result alongside hundreds of out-of-state dealers, and when a lead comes in it sits in your inbox while you're with another customer. LotLink is <strong>regional</strong> (buyers here, not in Nevada) and <strong>active</strong> (Jordan works every lead the moment it arrives, instead of waiting for you). You can keep your existing platforms — nothing about LotLink requires you to drop them.
-            </div>
-          </li>
-
-          <li class="objection-item">
-            <button type="button" class="objection-q" aria-expanded="false" onclick="toggleFAQ(this)">How is this different from my existing CRM (ProMax, VinSolutions, eLead)? <span aria-hidden="true">+</span></button>
-            <div class="objection-a">
-              Your CRM is where leads sit and wait for a human to work them. Jordan is the human — except Jordan doesn't sleep, take lunch, or miss a 7pm lead. LotLink plugs into your existing CRM instead of replacing it: leads still get forwarded through your normal workflow, and Jordan's replies and call transcripts flow back so the CRM stays in sync. Nobody at your dealership changes how they work.
-            </div>
-          </li>
-
-          <li class="objection-item">
-            <button type="button" class="objection-q" aria-expanded="false" onclick="toggleFAQ(this)">Who runs LotLink? <span aria-hidden="true">+</span></button>
-            <div class="objection-a">
-              LotLink is built and operated by John Roberts out of Rochester, Indiana. John ran a dealership-side BDC for years before building this, and every dealer on the platform has his cell number. You're not buying from a call center in Austin — you're buying from a neighbor who knows what it's like to chase a ghost lead at 9pm.
-            </div>
-          </li>
-
-        </ul>
-      </div>
-
-      <!-- ── ABOUT JORDAN ── -->
-      <div class="faq-group" id="jordan">
-        <h2>About Jordan (the AI)</h2>
-        <p class="group-sub">What the AI actually does and doesn't do.</p>
-        <ul class="objections">
-
-          <li class="objection-item">
-            <button type="button" class="objection-q" aria-expanded="false" onclick="toggleFAQ(this)">Is Jordan really AI, or is it a call center? <span aria-hidden="true">+</span></button>
-            <div class="objection-a">
-              Jordan is real AI — natural-language voice, SMS, and email — running on the same kind of models that power ChatGPT and Claude. There's no call center behind it, which is why it can respond in under a minute 24/7 without the overhead of a human BDC. For the edge cases where a lead needs a human (complex trade-in questions, negotiation), Jordan escalates to you directly.
-            </div>
-          </li>
-
-          <li class="objection-item">
-            <button type="button" class="objection-q" aria-expanded="false" onclick="toggleFAQ(this)">Will my customers know they're talking to AI? <span aria-hidden="true">+</span></button>
-            <div class="objection-a">
-              Jordan is upfront about being an AI assistant if asked — it won't lie about it — but it sounds natural and courteous, not robotic. The transcripts we publish with every customer show why this works: people ask questions, Jordan answers, people book appointments. Nobody hangs up because "an AI picked up." What they actually hate is leaving a voicemail that never gets returned, which is what happens when they call your lot after 6pm.
-            </div>
-          </li>
-
-          <li class="objection-item">
-            <button type="button" class="objection-q" aria-expanded="false" onclick="toggleFAQ(this)">What if Jordan can't answer a customer's question? <span aria-hidden="true">+</span></button>
-            <div class="objection-a">
-              Jordan escalates. If a customer asks something Jordan isn't sure about — trade-in valuation, specific finance terms, a part replacement question — Jordan takes the customer's info, tells them a human will follow up, and pushes the request to you inside the portal with full context. You never lose a lead to "I don't know."
-            </div>
-          </li>
-
-          <li class="objection-item">
-            <button type="button" class="objection-q" aria-expanded="false" onclick="toggleFAQ(this)">How does Jordan know what's on my lot? <span aria-hidden="true">+</span></button>
-            <div class="objection-a">
-              We pull your inventory from your dealership website every hour. When you list a new Silverado or sell your last Civic, Jordan knows about it within the next sync. Jordan can answer specific questions about price, miles, trim level, photos — whatever's on your vehicle detail pages. No manual CRM updates required.
-            </div>
-          </li>
-
-          <li class="objection-item">
-            <button type="button" class="objection-q" aria-expanded="false" onclick="toggleFAQ(this)">Can Jordan book appointments on my actual calendar? <span aria-hidden="true">+</span></button>
-            <div class="objection-a">
-              Yes. Jordan sets the appointment during the call or text thread, writes it into your LotLink portal, and — if you've connected Google Calendar or Outlook — drops it directly on your team's calendar with the customer's name, phone, and the vehicle they're interested in. You show up, they show up, you sell a car.
-            </div>
-          </li>
-
-          <li class="objection-item">
-            <button type="button" class="objection-q" aria-expanded="false" onclick="toggleFAQ(this)">How fast does Jordan actually respond? <span aria-hidden="true">+</span></button>
-            <div class="objection-a">
-              First outbound SMS goes out within <strong>one minute</strong> of the lead hitting our intake. Industry research says dealers who respond in five minutes close deals at about three times the rate of those who respond in an hour. Jordan beats five minutes on every lead, every time, without fail.
-            </div>
-          </li>
-
-        </ul>
-      </div>
-
-      <!-- ── PRICING ── -->
-      <div class="faq-group" id="pricing">
-        <h2>Pricing &amp; Contracts</h2>
-        <p class="group-sub">Straightforward numbers. No small print.</p>
-        <ul class="objections">
-
-          <li class="objection-item">
-            <button type="button" class="objection-q" aria-expanded="false" onclick="toggleFAQ(this)">What does it cost? <span aria-hidden="true">+</span></button>
-            <div class="objection-a">
-              Three tiers. <strong>Starter</strong> ($499/month) covers the AI BDC on SMS and email for a single dealership. <strong>Pro</strong> ($999/month) adds outbound voice calling, the campaign engine, and the concierge lead-matching feed. <strong>Scale</strong> ($1,999+/month) is for multi-rooftop dealer groups and white-label deployments. Concierge-only (marketplace listing + manual matchmaking, no AI) is $799/month. Every plan starts with a <strong>14-day free trial</strong> — no card required.
-            </div>
-          </li>
-
-          <li class="objection-item">
-            <button type="button" class="objection-q" aria-expanded="false" onclick="toggleFAQ(this)">Is there a contract? <span aria-hidden="true">+</span></button>
-            <div class="objection-a">
-              No. Month-to-month. Cancel anytime with a click in the billing portal. We're betting that if the product is working, you'll stay — and if it isn't, we'd rather lose you than trap you. That's the only way we get better.
-            </div>
-          </li>
-
-          <li class="objection-item">
-            <button type="button" class="objection-q" aria-expanded="false" onclick="toggleFAQ(this)">What if it doesn't work for my dealership? <span aria-hidden="true">+</span></button>
-            <div class="objection-a">
-              Cancel. You'll pay for the days you used and nothing more. We'll export your leads and conversation history so you don't lose anything. Your Twilio phone number is yours — we'll port it out to wherever you want it. No exit fee, no "we'll keep charging you for three more months" clause.
-            </div>
-          </li>
-
-          <li class="objection-item">
-            <button type="button" class="objection-q" aria-expanded="false" onclick="toggleFAQ(this)">Do I own my leads and conversation data? <span aria-hidden="true">+</span></button>
-            <div class="objection-a">
-              Yes. Every lead Jordan handles is <strong>your</strong> lead — we're just the pipes. Your contact list, message history, call recordings, and appointment data belong to your dealership and can be exported in full anytime. We never sell your data to anyone, ever, for any reason.
-            </div>
-          </li>
-
-        </ul>
-      </div>
-
-      <!-- ── GETTING STARTED ── -->
-      <div class="faq-group" id="getting-started">
-        <h2>Getting Started</h2>
-        <p class="group-sub">What it takes to go live.</p>
-        <ul class="objections">
-
-          <li class="objection-item">
-            <button type="button" class="objection-q" aria-expanded="false" onclick="toggleFAQ(this)">How do I sign up? <span aria-hidden="true">+</span></button>
-            <div class="objection-a">
-              Call John at 260-229-9393 or fill out the form on the <a href="dealers.html#partner-form" style="color:var(--sky);">For Dealers</a> page. We'll get on a 20-minute call, walk you through a live demo with Jordan calling your cell phone, and if it's a fit we can have you live the same day. No procurement process, no 90-day IT onboarding.
-            </div>
-          </li>
-
-          <li class="objection-item">
-            <button type="button" class="objection-q" aria-expanded="false" onclick="toggleFAQ(this)">How long does onboarding take? <span aria-hidden="true">+</span></button>
-            <div class="objection-a">
-              Ten minutes of your time. We provision a dedicated phone number, clone our Jordan configuration to your dealership, connect your inventory feed, and give you a portal login. The only thing that takes longer is <strong>you</strong> pasting your new intake email into CarGurus, Cars.com, AutoTrader, etc. — each one is a 30-second copy/paste in their dealer portal.
-            </div>
-          </li>
-
-          <li class="objection-item">
-            <button type="button" class="objection-q" aria-expanded="false" onclick="toggleFAQ(this)">Do I have to change my current CRM? <span aria-hidden="true">+</span></button>
-            <div class="objection-a">
-              No. LotLink works alongside whatever CRM you already run. We can forward every new lead back to your CRM so nothing gets lost from your existing workflow. Your salespeople don't have to learn a new system — only the dealer manager logs into LotLink to see how Jordan's doing.
-            </div>
-          </li>
-
-          <li class="objection-item">
-            <button type="button" class="objection-q" aria-expanded="false" onclick="toggleFAQ(this)">What if my website doesn't have an inventory feed? <span aria-hidden="true">+</span></button>
-            <div class="objection-a">
-              Almost every dealer website platform (DealerOn, DealerInspire, ProMax, Dealer.com, EpicVIN, etc.) generates an inventory feed automatically — we just need the URL. If yours somehow doesn't, we'll scrape your inventory pages directly. One way or another, your inventory is in the system by the end of setup day.
-            </div>
-          </li>
-
-          <li class="objection-item">
-            <button type="button" class="objection-q" aria-expanded="false" onclick="toggleFAQ(this)">Do you need a login to my CarGurus / Cars.com / AutoTrader account? <span aria-hidden="true">+</span></button>
-            <div class="objection-a">
-              No. You just add our intake email as another "lead delivery" address on each of your lead platforms — it's a field they already provide, takes 30 seconds per platform. No passwords, no API integrations, no security review required. You stay in full control of every account.
-            </div>
-          </li>
-
-        </ul>
-      </div>
-
-      <!-- ── LEADS & COMPLIANCE ── -->
-      <div class="faq-group" id="leads">
-        <h2>Leads &amp; Compliance</h2>
-        <p class="group-sub">The legal stuff, answered plainly.</p>
-        <ul class="objections">
-
-          <li class="objection-item">
-            <button type="button" class="objection-q" aria-expanded="false" onclick="toggleFAQ(this)">What about TCPA and SMS compliance? <span aria-hidden="true">+</span></button>
-            <div class="objection-a">
-              Every SMS Jordan sends includes the required HELP/STOP footer and goes out from a TCR-registered A2P 10DLC short code tied to your dealership. We track opt-in source, opt-out events, and consent timestamps for every message — fully auditable if you ever get a compliance complaint. The rules are the same whether a human or an AI sends the text; we just don't forget to follow them.
-            </div>
-          </li>
-
-          <li class="objection-item">
-            <button type="button" class="objection-q" aria-expanded="false" onclick="toggleFAQ(this)">What happens when a customer replies STOP? <span aria-hidden="true">+</span></button>
-            <div class="objection-a">
-              They get an immediate confirmation and are unenrolled from every active campaign in the system — past, current, and future. Jordan will never text or call that number again, period. No human override, no "oh they probably didn't mean it." Opt-out is automatic and absolute.
-            </div>
-          </li>
-
-          <li class="objection-item">
-            <button type="button" class="objection-q" aria-expanded="false" onclick="toggleFAQ(this)">How do you handle spam or junk leads? <span aria-hidden="true">+</span></button>
-            <div class="objection-a">
-              Two ways. First, Jordan recognizes obvious junk patterns (bot emails, solicitors pitching you SEO services) and never engages. Second — and this is the safety net — when you run a campaign enrollment from the portal, every lead appears as a checkbox. You uncheck spam, junk, or test numbers before clicking Enroll. Your campaigns stay clean without any extra work.
-            </div>
-          </li>
-
-          <li class="objection-item">
-            <button type="button" class="objection-q" aria-expanded="false" onclick="toggleFAQ(this)">Will you ever sell or share my leads with another dealer? <span aria-hidden="true">+</span></button>
-            <div class="objection-a">
-              Never. Each dealership's data is walled off — a salesperson at one dealer cannot see a single lead from another. We don't run a lead-resale operation. The only leads you see are your own, and the only leads we route to you are your own.
-            </div>
-          </li>
-
-        </ul>
-      </div>
-
-      <!-- ── RESULTS ── -->
-      <div class="faq-group" id="results">
-        <h2>Results &amp; ROI</h2>
-        <p class="group-sub">What to actually expect.</p>
-        <ul class="objections">
-
-          <li class="objection-item">
-            <button type="button" class="objection-q" aria-expanded="false" onclick="toggleFAQ(this)">How do I know it's actually working? <span aria-hidden="true">+</span></button>
-            <div class="objection-a">
-              The portal shows you every message Jordan sends, every call Jordan makes, every appointment Jordan books — in real time, with full transcripts. There's a Speed-to-Lead KPI that tracks how fast you and Jordan respond vs. the 5-minute industry benchmark. If Jordan ever goes silent, you'll see it before a customer does. Transparency isn't a feature — it's the product.
-            </div>
-          </li>
-
-          <li class="objection-item">
-            <button type="button" class="objection-q" aria-expanded="false" onclick="toggleFAQ(this)">What kind of results should I expect? <span aria-hidden="true">+</span></button>
-            <div class="objection-a">
-              Industry research says dealers responding to leads within five minutes close deals at roughly <strong>3×</strong> the rate of those who respond after an hour. Most dealers we talk to are averaging 30–60+ minutes on their best days. The math is simple: faster response + consistent follow-up = more appointments on the lot. We can't promise specific numbers because every dealership is different, but we <em>can</em> promise the volume of appointments your team actually shows up to will go up.
-            </div>
-          </li>
-
-          <li class="objection-item">
-            <button type="button" class="objection-q" aria-expanded="false" onclick="toggleFAQ(this)">How long before I see results? <span aria-hidden="true">+</span></button>
-            <div class="objection-a">
-              Within the first 24 hours you'll see Jordan responding to new leads. Within the first week you'll see the first appointments Jordan booked. The 14-day free trial is specifically long enough for you to see real appointments show up on your lot before you decide. We're not asking you to take it on faith — we're asking you to watch.
-            </div>
-          </li>
-
-          <li class="objection-item">
-            <button type="button" class="objection-q" aria-expanded="false" onclick="toggleFAQ(this)">What if Jordan gets something wrong? <span aria-hidden="true">+</span></button>
-            <div class="objection-a">
-              It happens. We built the portal so you can see every interaction and jump in any time — intercept a thread, send a manual SMS, stop all campaigns for one contact with one click. When something breaks, you'll often catch it before we do, and a quick screenshot to <strong>support@lotlinkin.com</strong> usually means a same-day fix. This is still new technology; we'd rather be honest about that than pretend otherwise.
-            </div>
-          </li>
-
-        </ul>
-      </div>
-
-    </div>
-  </div>
-
-</section>
-
-<div class="divider"></div>
-
-<!-- CTA -->
-<section class="section">
-  <div class="cta-card">
-    <h3>Ready to see Jordan work a lead?</h3>
-    <p>The fastest way to understand LotLink is to watch Jordan respond to a test lead in real time. 20 minutes on the phone with John, live demo, no commitment.</p>
-    <div class="btn-row">
-      <a href="dealers.html#partner-form" class="btn-gold">Request a Demo ›</a>
-      <a href="tel:2602299393" class="btn-outline">📞 Call John: 260-229-9393</a>
-    </div>
+<section class="cta-card">
+  <h3>Still have questions?</h3>
+  <p>If something isn't covered above, I'd rather you ask than guess. I usually reply same day.</p>
+  <div class="btn-row">
+    <a href="https://calendly.com/john-lotlinkin/demo" class="btn-gold" target="_blank" rel="noopener">Book a demo</a>
+    <a href="contact.html" class="btn-outline">Send John a note</a>
   </div>
 </section>
-
-<script>
-function toggleFAQ(btn) {
-  const item = btn.parentElement;
-  item.classList.toggle('open');
-  btn.setAttribute('aria-expanded', item.classList.contains('open') ? 'true' : 'false');
-}
-
-// Highlight the jump-nav link for the section currently in view. Small
-// quality-of-life thing on a long FAQ — dealers know where they are.
-document.addEventListener('DOMContentLoaded', () => {
-  const navLinks = document.querySelectorAll('.faq-nav a');
-  const sections = Array.from(navLinks).map((a) => {
-    const id = a.getAttribute('href').replace('#', '');
-    return { id, el: document.getElementById(id), link: a };
-  });
-  function onScroll() {
-    const y = window.scrollY + 160;
-    let current = sections[0];
-    for (const s of sections) {
-      if (s.el && s.el.offsetTop <= y) current = s;
-    }
-    navLinks.forEach((a) => a.classList.remove('active'));
-    if (current) current.link.classList.add('active');
-  }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-});
-</script>
 
 </main>
 
 <footer>
-  <div class="footer-content">
-    <div class="footer-col">
-      <div class="footer-logo">Lot<span>Link</span> Indiana</div>
-      <p class="footer-desc">Northern Indiana's local vehicle marketplace and AI-powered dealer BDC.</p>
-      <p class="footer-contact">📞 260-229-9393<br>📧 john@lotlinkin.com</p>
-    </div>
-    <div class="footer-col">
-      <h4>Explore</h4>
-      <a href="index.html">Home</a>
-      <a href="inventory.html">Inventory</a>
-      <a href="concierge.html">Concierge</a>
-      <a href="dealers.html">For Dealers</a>
-      <a href="faq.html">FAQ</a>
-    </div>
-    <div class="footer-col">
-      <h4>Company</h4>
-      <a href="contact.html">Contact</a>
-      <a href="privacy.html">Privacy</a>
-      <a href="terms.html">Terms</a>
-    </div>
+  <div>
+    <a href="index.html" class="footer-logo">Lot<span>Link</span></a>
+    <p class="footer-tagline">AI BDC for<br>Independent Car Dealers</p>
   </div>
-  <div class="footer-bottom">
-    <p>© 2026 LotLink Indiana. Rochester, IN.</p>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="index.html#features">Features</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="blog/">Blog</a>
+    <a href="faq.html">FAQ</a>
+    <a href="https://app.lotlinkin.com/portal.html">Log in</a>
+    <a href="signup.html">Start Free Trial</a>
+  </div>
+  <div class="footer-contact">
+    <p>John Roberts<br><a href="tel:2602299393">260-229-9393</a><br><a href="mailto:john@lotlinkin.com">john@lotlinkin.com</a><br>LotLink LLC · Indiana</p>
   </div>
 </footer>
+<div class="footer-bottom">
+  <div class="footer-bottom-left">
+    <p>© 2026 LotLink LLC. All rights reserved.</p>
+    <p class="footer-legal"><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></p>
+  </div>
+  <p class="footer-disclaimer">lotlinkin.com</p>
+</div>
+
+<!-- Accordion toggle for the FAQ questions. Vanilla JS so we don't ship
+     a framework for one interaction. -->
+<script>
+document.querySelectorAll('.qa-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.qa-item');
+    if (!item) return;
+    item.classList.toggle('open');
+  });
+});
+</script>
 
 </body>
 </html>

@@ -1,0 +1,32 @@
+# Short-link redirects for SMS / email engagement tracking.
+#
+# Customer taps lotlinkin.com/v/<vehicleShort>?c=<contactShort> in an SMS
+# from Jordan. Netlify 302's the path to the BDC API, which logs the click
+# (vehicle_link_clicks table) and then 302's to the dealer's VDP page.
+# Two hops, both fast, both transparent to the customer.
+#
+# The :splat placeholder forwards everything after /v/ including query
+# string. The :splat reference in the destination expands to that.
+# 302 (not 301) because we want browsers to re-resolve every time —
+# stops vehicle URLs from getting cached if the destination changes.
+/v/*  https://lotlink-api-production.up.railway.app/v/:splat  302
+
+# 2026-05-28: Concierge / marketplace pivot is complete. The site is
+# now SaaS-only (AI BDC for independent dealers). These four pages were
+# the consumer-buyer / marketplace-dealer artifacts; redirect any
+# leftover inbound traffic (Google index, social links, old SMS) to the
+# homepage with a permanent 301 so search engines drop them from the
+# index over the next few crawls. Trailing-slash variants included
+# because Netlify treats them as distinct paths.
+/concierge.html  /  301
+/concierge       /  301
+/concierge/      /  301
+/dealers.html    /  301
+/dealers         /  301
+/dealers/        /  301
+/vehicle.html    /  301
+/vehicle         /  301
+/vehicle/        /  301
+/inventory.html  /  301
+/inventory       /  301
+/inventory/      /  301

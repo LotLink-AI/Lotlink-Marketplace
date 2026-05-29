@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="LotLink mark">
+  <title>LotLink</title>
+  <rect x="0" y="0" width="120" height="120" rx="22" fill="#0f2444"/>
+  <rect x="20" y="28" width="42" height="30" rx="15" fill="none" stroke="#5BA3D9" stroke-width="6"/>
+  <rect x="58" y="60" width="42" height="30" rx="15" fill="none" stroke="#E8A020" stroke-width="6"/>
+</svg>
