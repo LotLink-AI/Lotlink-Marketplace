@@ -89,7 +89,7 @@
 <a href="#main" class="skip-link">Skip to main content</a>
 
 <main id="main" class="signup-wrap">
-  <span class="plan-badge" id="planBadge">⚡ Growth Plan · $999/mo</span>
+  <span class="plan-badge" id="planBadge">⚡ Growth Plan · $1,499/mo</span>
   <h1 class="signup-title">Start your <em>14-day free trial</em>.</h1>
   <p class="signup-sub">Four fields. Then add your card on Stripe (we won't charge for 14 days). I'll personally reach out within the hour to finish setup — voice, phone forwarding, inventory feed.</p>
 
@@ -135,8 +135,9 @@
 (function () {
   // ── Plan from URL → badge + form submission ──────────
   const PLANS = {
-    starter: { id: 'starter', label: 'Starter Plan · $499/mo', icon: '🚀' },
-    growth:  { id: 'growth',  label: 'Growth Plan · $999/mo',  icon: '⚡' },
+    starter: { id: 'starter', label: 'Starter Plan · $899/mo',   icon: '🚀' },
+    growth:  { id: 'growth',  label: 'Growth Plan · $1,499/mo',  icon: '⚡' },
+    pro:     { id: 'pro',     label: 'Pro Plan · $1,999/mo (Founding Partner) · $2,499/mo Standard', icon: '👑' },
   };
   const params = new URLSearchParams(window.location.search);
   const planId = (params.get('plan') || 'growth').toLowerCase();

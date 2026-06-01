@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pricing — LotLink AI BDC</title>
-<meta name="description" content="Transparent pricing for LotLink's AI BDC. Starter from $499/month. Growth at $999/month. Enterprise from $1,999/month. 14-day free trial. No contract. Cancel anytime.">
+<meta name="description" content="Transparent pricing for LotLink's AI BDC. Starter $899/month. Growth $1,499/month. Pro $2,499/month — Founding Partner price $1,999 locked for life (10 spots only). 14-day free trial.">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://lotlinkin.com/pricing.html">
 
@@ -12,7 +12,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="LotLink">
 <meta property="og:title" content="Pricing — LotLink AI BDC">
-<meta property="og:description" content="From $499/month for an AI BDC that works every lead 24/7. 14-day free trial, no contract.">
+<meta property="og:description" content="From $899/month for an AI BDC that works every lead 24/7. Founding Partner pricing on Pro tier ($1,999/mo locked for life) — only 10 spots.">
 <meta property="og:url" content="https://lotlinkin.com/pricing.html">
 <meta property="og:image" content="https://lotlinkin.com/assets/og-default.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -28,7 +28,7 @@
   "@type": "WebPage",
   "name": "Pricing — LotLink AI BDC",
   "url": "https://lotlinkin.com/pricing.html",
-  "description": "Three transparent tiers for an AI BDC built for independent car dealers. From $499/month."
+  "description": "Three transparent tiers for an AI BDC built for independent car dealers. From $899/month. Founding Partner pricing on Pro tier locked at $1,999/mo for life — only 10 spots."
 }
 </script>
 
@@ -73,6 +73,40 @@
 .tier-card.featured::before {
   content:'⭐ MOST POPULAR'; position:absolute; top:14px; right:14px;
   font-size:9.5px; font-weight:700; letter-spacing:1.5px; color:var(--gold);
+}
+
+/* Founding Partner treatment for Pro tier — the strategic anchor.
+   Pro is the only tier eligible for Founding Partner pricing, so we
+   give it the most visually striking card. Locked rate, scarcity counter,
+   gold border + glow to pull the eye. */
+.tier-card.founding {
+  border:2px solid var(--gold);
+  background:linear-gradient(135deg,rgba(232,160,32,0.12),rgba(232,160,32,0.04));
+  box-shadow:0 0 30px rgba(232,160,32,0.18);
+}
+.tier-card.founding::before {
+  content:'👑 FOUNDING PARTNER'; position:absolute; top:14px; right:14px;
+  font-size:9.5px; font-weight:700; letter-spacing:1.5px; color:var(--gold);
+}
+.tier-card.founding .tier-price { color:var(--gold); }
+.tier-card.founding .tier-cta {
+  background:var(--gold); color:var(--dark); border-color:var(--gold);
+  font-weight:700;
+}
+.tier-card.founding .tier-cta:hover { background:var(--gold-light); }
+.fp-locked-line {
+  font-size:11px; font-weight:600; letter-spacing:0.4px;
+  color:var(--gold); margin:6px 0 2px;
+}
+.fp-strikethrough {
+  font-size:12px; color:rgba(255,255,255,0.45);
+  text-decoration:line-through; margin-bottom:14px;
+}
+.fp-spots {
+  background:rgba(232,160,32,0.18); border:1px solid rgba(232,160,32,0.4);
+  border-radius:4px; padding:6px 10px;
+  font-size:11px; font-weight:600; letter-spacing:0.6px;
+  color:var(--gold); text-align:center; margin-bottom:14px;
 }
 .tier-price { font-family:'Bebas Neue',sans-serif; font-size:42px; color:var(--white); line-height:1; margin-bottom:4px; }
 .tier-price span { font-size:16px; color:var(--gray); font-family:'DM Sans',sans-serif; font-weight:300; letter-spacing:0; }
@@ -195,7 +229,7 @@
   <div class="hero-content">
     <div class="hero-eyebrow">Pricing</div>
     <h1>Simple Prices.<br><em>No</em> <span class="gold">Games.</span></h1>
-    <p class="hero-sub">Most BDC software hides behind "contact sales." We publish everything because we'd rather earn your trust than waste your time. Three tiers, month-to-month, 14-day free trial on every plan.</p>
+    <p class="hero-sub">Most BDC software hides behind "contact sales." We publish everything because we'd rather earn your trust than waste your time. Three tiers, month-to-month, 14-day free trial on every plan. <strong style="color:var(--gold);">Founding Partner pricing</strong> on our Pro tier — locked for life, only 10 spots.</p>
   </div>
 </section>
 
@@ -211,14 +245,11 @@
 
   <div class="pricing-grid three-up">
     <div class="tier-card">
-      <div class="tier-price">$499 <span>/ mo</span></div>
+      <div class="tier-price">$899 <span>/ mo</span></div>
       <div class="tier-name">Starter</div>
-      <div style="font-size:11px; color:rgba(255,255,255,0.55); margin:6px 0 14px; letter-spacing:0.3px;">
-        <span style="text-decoration:line-through;">+ $499 setup</span>
-        <span style="color:var(--gold); font-weight:600;"> · Free for Founding Partners</span>
-      </div>
       <ul class="tier-features">
         <li>Up to 300 leads / month</li>
+        <li>500 voice minutes / month included</li>
         <li>Jordan 24/7 — voice, SMS, and email</li>
         <li>Inventory-aware AI responses</li>
         <li>Lead scoring + speed-to-lead alerts</li>
@@ -228,48 +259,53 @@
       </ul>
       <a href="signup.html?plan=starter" class="tier-cta">Start the Free Trial</a>
     </div>
-    <div class="tier-card featured">
-      <div class="tier-price">$999 <span>/ mo</span></div>
+    <div class="tier-card">
+      <div class="tier-price">$1,499 <span>/ mo</span></div>
       <div class="tier-name">Growth</div>
-      <div style="font-size:11px; color:rgba(255,255,255,0.55); margin:6px 0 14px; letter-spacing:0.3px;">
-        <span style="text-decoration:line-through;">+ $999 setup</span>
-        <span style="color:var(--gold); font-weight:600;"> · Free for Founding Partners</span>
-      </div>
       <ul class="tier-features">
-        <li class="gold-check">Everything in Starter, plus:</li>
-        <li class="gold-check">Up to 1,000 leads / month</li>
-        <li class="gold-check">Cadence editor — Light, Standard, Aggressive, Maximum</li>
-        <li class="gold-check">Embeddable web chat widget on your site</li>
-        <li class="gold-check">Team members (up to 3 users)</li>
-        <li class="gold-check">Custom voice persona + pronunciation</li>
-        <li class="gold-check">Warm transfer routing (Sales / Service / Finance)</li>
-        <li class="gold-check">Unlimited concurrent campaigns</li>
-        <li class="gold-check">For typical independents (40–150 cars)</li>
+        <li>Everything in Starter, plus:</li>
+        <li>Up to 1,000 leads / month</li>
+        <li>1,500 voice minutes / month included</li>
+        <li>Cadence editor — Light, Standard, Aggressive, Maximum</li>
+        <li>Embeddable web chat widget on your site</li>
+        <li>Team members (up to 3 users)</li>
+        <li>Custom voice persona + pronunciation</li>
+        <li>Warm transfer routing (Sales / Service / Finance)</li>
+        <li>Unlimited concurrent campaigns</li>
+        <li>For typical independents (40–150 cars)</li>
       </ul>
       <a href="signup.html?plan=growth" class="tier-cta">Start the Free Trial</a>
     </div>
-    <div class="tier-card">
-      <div class="tier-price">$1,999+ <span>/ mo</span></div>
-      <div class="tier-name">Enterprise</div>
-      <div style="font-size:11px; color:rgba(255,255,255,0.55); margin:6px 0 14px; letter-spacing:0.3px;">
-        <span style="text-decoration:line-through;">+ $1,999 setup</span>
-        <span style="color:var(--gold); font-weight:600;"> · Free for Founding Partners</span>
-      </div>
+    <div class="tier-card founding">
+      <div class="tier-price">$1,999 <span>/ mo</span></div>
+      <div class="fp-locked-line">FOUNDING PARTNER — LOCKED FOR LIFE</div>
+      <div class="fp-strikethrough">Standard Pro: $2,499 / mo</div>
+      <div class="tier-name">Pro</div>
+      <div class="fp-spots">⏳ 10 of 10 Founding Partner spots remaining</div>
       <ul class="tier-features">
-        <li>Everything in Growth, plus:</li>
-        <li>Unlimited leads · multi-rooftop</li>
-        <li>API access &amp; white-label option</li>
-        <li>DealerSocket / VinSolutions sync</li>
-        <li>Dedicated onboarding + SLA</li>
-        <li>For dealer groups &amp; franchise</li>
+        <li class="gold-check">Everything in Growth, plus:</li>
+        <li class="gold-check">Unlimited leads · multi-rooftop</li>
+        <li class="gold-check">4,000 voice minutes / month included</li>
+        <li class="gold-check">Unlimited team members</li>
+        <li class="gold-check">DealerSocket / VinSolutions sync</li>
+        <li class="gold-check">API access &amp; white-label option</li>
+        <li class="gold-check">Dedicated onboarding + SLA</li>
+        <li class="gold-check">Direct founder access (text John anytime)</li>
+        <li class="gold-check">Priority feature requests</li>
+        <li class="gold-check">For high-volume &amp; multi-rooftop dealers</li>
       </ul>
-      <a href="mailto:john@lotlinkin.com?subject=Enterprise%20plan%20inquiry" class="tier-cta">Talk to John Direct</a>
+      <a href="https://calendly.com/john-lotlinkin/demo" class="tier-cta">Claim a Founding Partner Spot</a>
     </div>
   </div>
 
+  <p style="text-align:center; font-size:12px; color:rgba(255,255,255,0.55); margin:-12px auto 36px; max-width:760px; line-height:1.7;">
+    Voice minutes beyond your plan's included pool: <strong style="color:rgba(255,255,255,0.75);">$0.35/min</strong> (Starter), <strong style="color:rgba(255,255,255,0.75);">$0.30/min</strong> (Growth), <strong style="color:rgba(255,255,255,0.75);">$0.25/min</strong> (Pro). Most dealers never come close to their cap.<br>
+    <strong style="color:var(--gold);">Founding Partner pricing is Pro-tier only and limited to the first 10 dealers.</strong> When the spots are gone, Pro reverts to $2,499/mo for new signups.
+  </p>
+
   <div class="math-box">
     <div class="label">The Math</div>
-    <p>Roughly <strong>20–30%</strong> of dealership leads arrive outside open hours, and the rest stack up during lunch, sales meetings, and busy showroom moments. Jordan works alongside your team to cover those gaps — answering every call in under a second, replying to texts and emails inside a minute, booking appointments at 2 AM so your team has a calendar full of confirmed customers when they walk in. Most dealerships land on <strong>Growth</strong> because it's the sweet spot for the volume a typical independent sees. Prepay annually and save <strong>15%</strong> on Growth or Enterprise.</p>
+    <p>A full-time BDC rep loaded with payroll tax, benefits, and management overhead costs <strong>$3,000–$5,000/month</strong> — and they only work 40 hours, get sick, take PTO, and miss every after-hours lead. Jordan answers in under a second, follows up at 2 AM, never quits, and costs less than half a human's loaded rate even at Pro tier. Roughly <strong>20–30%</strong> of dealership leads arrive outside open hours; the rest stack up during lunch, sales meetings, and busy showroom moments. Most dealerships land on <strong>Growth</strong> because it's the sweet spot for a typical 40–150 car independent. Heavier-volume operators and multi-rooftop dealers should look at <strong>Pro</strong> — and lock the Founding Partner rate before the 10 spots close. Prepay annually and save <strong>15%</strong> on Growth or Pro.</p>
   </div>
 
   <!-- Soft demo prompt for dealers who want to see it run before starting a trial. -->
@@ -302,7 +338,11 @@
     </div>
     <div class="faq-item">
       <button class="faq-q" type="button" aria-expanded="false">Do plans include the Twilio / SendGrid / Vapi costs? <span aria-hidden="true">+</span></button>
-      <div class="faq-a">Yes — all carrier and AI provider costs are included in the monthly price up to your plan's lead cap. If you exceed the cap, voice minutes are billed at a transparent per-minute rate (we'll show you the math in the dashboard before any overage hits). No hidden fees.</div>
+      <div class="faq-a">Yes — SMS, email, and voice carrier costs are all included up to your plan's voice-minute pool (500 / 1,500 / 4,000 minutes for Starter / Growth / Pro). Voice overage beyond your pool is billed at $0.35 / $0.30 / $0.25 per minute respectively, shown live in your dashboard so there's never a surprise bill. To put that in perspective: House of Carz used about 170 voice minutes in their first 30 days. Most dealers never get close to their cap.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" type="button" aria-expanded="false">What is the Founding Partner Program? <span aria-hidden="true">+</span></button>
+      <div class="faq-a">The first 10 dealers to sign on Pro tier lock their price at $1,999/mo for life. When standard Pro pricing kicks in at $2,499/mo for dealer #11+, founding partners stay at $1,999 — that's $500/mo or $6,000/year of savings, every year, for as long as they're a customer. Founding partners also get direct access to John (text, call, email — no support tickets) and priority on feature requests. Founding Partner status is Pro-tier only and capped at 10 dealers, period.</div>
     </div>
     <div class="faq-item">
       <button class="faq-q" type="button" aria-expanded="false">Can I switch plans later? <span aria-hidden="true">+</span></button>
@@ -310,11 +350,11 @@
     </div>
     <div class="faq-item">
       <button class="faq-q" type="button" aria-expanded="false">Do you require a contract? <span aria-hidden="true">+</span></button>
-      <div class="faq-a">No. Month-to-month, cancel anytime. We charge based on results, not commitment. The 15% annual discount on Growth and Enterprise is opt-in if you want it; otherwise stay flexible.</div>
+      <div class="faq-a">No. Month-to-month, cancel anytime. We charge based on results, not commitment. The 15% annual discount on Growth and Pro is opt-in if you want it; otherwise stay flexible.</div>
     </div>
     <div class="faq-item">
       <button class="faq-q" type="button" aria-expanded="false">I run a 5-rooftop dealer group. Where do I land? <span aria-hidden="true">+</span></button>
-      <div class="faq-a">Enterprise. The base $1,999 covers your first rooftop; additional rooftops are negotiated based on your volume. Reach out — John handles every Enterprise conversation personally.</div>
+      <div class="faq-a">Pro tier covers multi-rooftop and unlimited team members. The base $2,499 ($1,999 if you grab a Founding Partner spot) covers the first rooftop; additional rooftops are priced based on your volume. Reach out — John handles every multi-rooftop conversation personally.</div>
     </div>
   </div>
 </section>
@@ -326,7 +366,7 @@
   <p>No high-pressure sales. No 30-minute "discovery calls" with someone who'll never touch your account again. Just a real conversation about what you need.</p>
   <div class="actions">
     <a href="signup.html?plan=growth" class="btn-gold">Start a Free Trial</a>
-    <a href="https://calendly.com/john-lotlinkin/demo" class="btn-outline">📅 Book a 15-min Demo</a>
+    <a href="https://calendly.com/john-lotlinkin/demo" class="btn-outline">📅 Claim a Founding Partner Spot</a>
   </div>
 </section>
 
