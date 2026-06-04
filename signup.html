@@ -134,15 +134,36 @@
 <script>
 (function () {
   // ── Plan from URL → badge + form submission ──────────
+  // URL params:
+  //   ?plan=starter|growth|pro            — which tier the dealer chose
+  //   ?fpp=1                              — claim a Founding Partner spot
+  //                                          (only valid with plan=pro)
+  //
+  // The fpp flag flows through to the API as founding_partner_requested.
+  // Backend re-validates that fpp+pro combo is allowed and there's a
+  // Founding Partner slot available, so a hand-edited URL still can't
+  // sneak a $1,999 Starter through.
   const PLANS = {
     starter: { id: 'starter', label: 'Starter Plan · $899/mo',   icon: '🚀' },
     growth:  { id: 'growth',  label: 'Growth Plan · $1,499/mo',  icon: '⚡' },
-    pro:     { id: 'pro',     label: 'Pro Plan · $1,999/mo (Founding Partner) · $2,499/mo Standard', icon: '👑' },
+    pro:     { id: 'pro',     label: 'Pro Plan · $2,499/mo',     icon: '👑' },
+    proFpp:  { id: 'pro',     label: 'Pro · Founding Partner · $1,999/mo locked for life', icon: '⭐' },
   };
   const params = new URLSearchParams(window.location.search);
   const planId = (params.get('plan') || 'growth').toLowerCase();
-  const plan = PLANS[planId] || PLANS.growth;
+  const isFppClaim = params.get('fpp') === '1' && planId === 'pro';
+  const plan = isFppClaim ? PLANS.proFpp : (PLANS[planId] || PLANS.growth);
   document.getElementById('planBadge').textContent = `${plan.icon} ${plan.label}`;
+
+  // Soft visual cue on the form when this is an FPP claim — reinforces
+  // the locked-rate promise so the dealer doesn't second-guess at the
+  // Stripe checkout step ("wait, am I getting the FPP price or not?").
+  if (isFppClaim) {
+    const badge = document.getElementById('planBadge');
+    badge.style.background = 'linear-gradient(135deg, rgba(232,160,32,0.22), rgba(232,160,32,0.10))';
+    badge.style.borderColor = 'rgba(232,160,32,0.6)';
+    badge.style.color = '#fcd34d';
+  }
 
   // Show the "You canceled, try again" message if Stripe redirected back here.
   if (params.get('canceled') === '1') {
@@ -187,6 +208,11 @@
       email:           document.getElementById('email').value.trim().toLowerCase(),
       phone:           document.getElementById('phone').value.trim(),
       plan:            plan.id,
+      // Backend validates this against Pro tier + remaining FPP slots +
+      // STRIPE_PRICE_ID_FPP_PRO env presence. If accepted, the dealer is
+      // billed at the locked $1,999 rate. If the slot just got claimed,
+      // the API returns a clean 409 and showError() surfaces it.
+      founding_partner_requested: isFppClaim,
     };
 
     // Client-side gut check before bothering the server.

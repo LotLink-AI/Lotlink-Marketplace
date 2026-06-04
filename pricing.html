@@ -281,7 +281,10 @@
       <div class="fp-locked-line">FOUNDING PARTNER — LOCKED FOR LIFE</div>
       <div class="fp-strikethrough">Standard Pro: $2,499 / mo</div>
       <div class="tier-name">Pro</div>
-      <div class="fp-spots">⏳ 10 of 10 Founding Partner spots remaining</div>
+      <!-- Live count populated by the inline script before </body>. The
+           hardcoded "10 of 10" is the non-JS fallback and the first-paint
+           value. -->
+      <div class="fp-spots">⏳ <span data-fp-counter>10 of 10</span> Founding Partner spots remaining</div>
       <ul class="tier-features">
         <li class="gold-check">Everything in Growth, plus:</li>
         <li class="gold-check">Unlimited leads · multi-rooftop</li>
@@ -408,6 +411,52 @@ document.querySelectorAll('.faq-q').forEach((btn) => {
     btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
   });
 });
+</script>
+
+<!-- Live Founding Partner counter — same fetch as the homepage. Updates
+     every [data-fp-counter] element on the page so future placements
+     (footer banner, sticky CTA, etc.) Just Work without touching JS. -->
+<script>
+(function () {
+  const els = document.querySelectorAll('[data-fp-counter]');
+  if (!els.length) return;
+  const API = 'https://lotlink-api-production.up.railway.app/api/public/founding-partner-status';
+  const CACHE_KEY = 'll_fp_counter_v1';
+  const CACHE_TTL_MS = 60 * 1000;
+
+  function paint(label) {
+    if (!label) return;
+    els.forEach((el) => { el.textContent = label; });
+  }
+
+  // Cache-first for snappy paint on internal nav.
+  try {
+    const cached = sessionStorage.getItem(CACHE_KEY);
+    if (cached) {
+      const parsed = JSON.parse(cached);
+      if (parsed && Date.now() - parsed.t < CACHE_TTL_MS && parsed.label) {
+        paint(parsed.label);
+      }
+    }
+  } catch (_) { /* sessionStorage disabled */ }
+
+  fetch(API, { method: 'GET', credentials: 'omit' })
+    .then((r) => r.ok ? r.json() : null)
+    .then((data) => {
+      if (!data) return;
+      let label = data.label;
+      if (!label && typeof data.remaining === 'number' && typeof data.max_slots === 'number') {
+        label = data.remaining > 0
+          ? `${data.remaining} of ${data.max_slots}`
+          : 'All spots claimed';
+      }
+      paint(label);
+      try {
+        sessionStorage.setItem(CACHE_KEY, JSON.stringify({ t: Date.now(), label }));
+      } catch (_) { /* ignore */ }
+    })
+    .catch(() => { /* placeholder stays */ });
+})();
 </script>
 
 </body>

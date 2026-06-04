@@ -685,7 +685,11 @@
 
     <div class="fp-counter">
       <span class="l">Spots remaining</span>
-      <span class="n">10 of 10</span>
+      <!-- Live count populated by the inline script before </body>. The
+           hardcoded "10 of 10" is a sane default for first paint and the
+           non-JS fallback — the JS fetch overwrites it once the API
+           responds. -->
+      <span class="n" id="fpCounter" data-fp-counter>10 of 10</span>
     </div>
     <div>
       <a href="https://calendly.com/john-lotlinkin/demo" class="btn-gold fp-cta">Claim Your Spot ›</a>
@@ -829,5 +833,51 @@
   src="https://lotlink-api-production.up.railway.app/widget.js"
   data-dealership="cfff76a7-6385-4e2c-b4ee-63418198a564"
   defer></script>
+
+<!-- Live Founding Partner counter — fetches /api/public/founding-partner-status
+     on page load and replaces the hardcoded "10 of 10" placeholder. If the
+     API is unreachable the placeholder stays as-is (better to show the
+     marketing promise than a broken empty span). Caches in sessionStorage
+     for 60s so repeated nav within a session doesn't hammer the endpoint. -->
+<script>
+(function () {
+  const el = document.querySelector('[data-fp-counter]');
+  if (!el) return;
+  const API = 'https://lotlink-api-production.up.railway.app/api/public/founding-partner-status';
+  const CACHE_KEY = 'll_fp_counter_v1';
+  const CACHE_TTL_MS = 60 * 1000;
+
+  // Try cache first — shaves a fetch on internal nav.
+  try {
+    const cached = sessionStorage.getItem(CACHE_KEY);
+    if (cached) {
+      const parsed = JSON.parse(cached);
+      if (parsed && Date.now() - parsed.t < CACHE_TTL_MS && parsed.label) {
+        el.textContent = parsed.label;
+      }
+    }
+  } catch (_) { /* sessionStorage disabled — proceed to fetch */ }
+
+  fetch(API, { method: 'GET', credentials: 'omit' })
+    .then((r) => r.ok ? r.json() : null)
+    .then((data) => {
+      if (!data) return;
+      // Prefer the human-friendly label the API returns. Fall back to
+      // building one from the numbers if the label key is missing.
+      let label = data.label;
+      if (!label && typeof data.remaining === 'number' && typeof data.max_slots === 'number') {
+        label = data.remaining > 0
+          ? `${data.remaining} of ${data.max_slots}`
+          : 'All spots claimed';
+      }
+      if (!label) return;
+      el.textContent = label;
+      try {
+        sessionStorage.setItem(CACHE_KEY, JSON.stringify({ t: Date.now(), label }));
+      } catch (_) { /* ignore */ }
+    })
+    .catch(() => { /* silent — placeholder stays "10 of 10" */ });
+})();
+</script>
 </body>
 </html>
