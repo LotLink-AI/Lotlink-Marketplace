@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LotLink — Email Kit Preview</title>
+<style>
+  :root {
+    --navy:#0F2444; --navy-deep:#0A1A30;
+    --sky:#5BA3D9; --gold:#E8A020; --gold-soft:#F5B942;
+    --paper:#F2F4F7; --rule:#E3E8EF; --ink:#0A1A30;
+    --muted:#5A6B82; --cream:#FBFAF6; --gold-deep:#B97D11;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body {
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    background:var(--paper); color:var(--ink); line-height:1.55;
+  }
+  .top {
+    background:linear-gradient(165deg,#0A1A30 0%,#0F2444 50%,#122A52 100%);
+    color:#fff; padding:48px 48px 36px; position:relative; overflow:hidden;
+  }
+  .top::before {
+    content:''; position:absolute; inset:0; opacity:0.4; pointer-events:none;
+    background:
+      radial-gradient(circle at 85% 18%, rgba(232,160,32,0.28), transparent 38%),
+      radial-gradient(circle at 12% 78%, rgba(91,163,217,0.22), transparent 42%);
+  }
+  .top > * { position:relative; z-index:1; }
+  .top .logo { font-family:Helvetica,Arial,sans-serif; font-size:30px; font-weight:700; letter-spacing:3.5px; }
+  .top .logo span { color:var(--sky); }
+  .top h1 {
+    font-family:Georgia,serif; font-size:42px; line-height:1.1; font-weight:700;
+    margin-top:18px; max-width:780px; letter-spacing:-0.6px;
+  }
+  .top h1 em { color:var(--gold); font-style:italic; }
+  .top p {
+    font-size:16px; max-width:680px; margin-top:14px; color:rgba(255,255,255,0.82);
+  }
+  .top .pills {
+    display:flex; gap:8px; flex-wrap:wrap; margin-top:22px;
+  }
+  .top .pill {
+    background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.18);
+    border-radius:999px; padding:7px 14px; font-size:11px; font-weight:600;
+    color:rgba(255,255,255,0.92); letter-spacing:0.3px;
+  }
+
+  .toc {
+    background:#fff; padding:28px 48px; border-bottom:1px solid var(--rule);
+  }
+  .toc h3 {
+    font-size:11px; letter-spacing:2.5px; text-transform:uppercase;
+    color:var(--muted); font-weight:700; margin-bottom:12px;
+  }
+  .toc-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+  .toc a {
+    background:#F7FAFD; border:1px solid #D9E5F2; border-radius:8px;
+    padding:14px 16px; text-decoration:none; color:var(--ink);
+    transition:all 0.2s; display:block;
+  }
+  .toc a:hover { background:#fff; border-color:var(--gold); transform:translateY(-2px); box-shadow:0 4px 14px rgba(232,160,32,0.18); }
+  .toc a .n {
+    font-family:Georgia,serif; font-size:22px; color:var(--gold-deep);
+    font-weight:700; line-height:1;
+  }
+  .toc a .t {
+    font-size:13px; font-weight:600; color:var(--navy); margin-top:6px;
+    letter-spacing:-0.1px;
+  }
+  .toc a .d { font-size:11px; color:var(--muted); margin-top:3px; }
+
+  .row {
+    padding:40px 48px;
+    border-bottom:1px solid var(--rule);
+  }
+  .row.alt { background:#fff; }
+  .row-head {
+    display:flex; justify-content:space-between; align-items:flex-end;
+    gap:24px; margin-bottom:22px; flex-wrap:wrap;
+  }
+  .row-head .left { flex:1; min-width:280px; }
+  .row-head .eyebrow {
+    font-size:10px; letter-spacing:3px; text-transform:uppercase;
+    color:var(--gold-deep); font-weight:700; margin-bottom:6px;
+  }
+  .row-head h2 {
+    font-family:Georgia,serif; font-size:30px; line-height:1.15;
+    color:var(--navy); letter-spacing:-0.4px; font-weight:700;
+  }
+  .row-head h2 em { color:var(--gold-deep); font-style:italic; }
+  .row-head .meta {
+    background:var(--navy); color:#fff; border-radius:10px;
+    padding:16px 20px; min-width:280px; font-size:12px; line-height:1.7;
+  }
+  .row-head .meta b { color:var(--gold); font-weight:600; }
+
+  .frame-wrap {
+    background:var(--paper); border-radius:14px; padding:18px;
+    border:1px solid var(--rule);
+  }
+  .frame-wrap iframe {
+    width:100%; height:760px; border:none; border-radius:10px;
+    background:#fff; box-shadow:0 4px 28px rgba(15,36,68,0.06);
+    display:block;
+  }
+  .frame-actions {
+    display:flex; gap:8px; margin-bottom:14px; flex-wrap:wrap;
+  }
+  .frame-actions a {
+    background:#fff; border:1px solid var(--rule); border-radius:6px;
+    padding:8px 12px; text-decoration:none; color:var(--navy);
+    font-size:12px; font-weight:600; display:inline-flex; align-items:center; gap:6px;
+  }
+  .frame-actions a:hover { border-color:var(--navy); }
+  .frame-actions a.primary {
+    background:var(--gold); border-color:var(--gold); color:var(--navy);
+  }
+
+  .signature-row {
+    background:linear-gradient(135deg,#FFFBF2 0%,#FFFFFF 60%);
+    border-top:3px solid var(--gold);
+  }
+
+  .footer {
+    background:var(--navy); color:rgba(255,255,255,0.7);
+    padding:32px 48px; font-size:12px; letter-spacing:0.3px;
+  }
+  .footer a { color:var(--sky); text-decoration:none; }
+  .footer b { color:var(--gold-soft); }
+
+  @media (max-width:900px) {
+    .top { padding:36px 24px 28px; }
+    .top h1 { font-size:30px; }
+    .toc, .row { padding:28px 24px; }
+    .toc-grid { grid-template-columns:1fr; }
+    .row-head h2 { font-size:24px; }
+    .frame-wrap iframe { height:600px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="logo">Lot<span>Link</span></div>
+  <h1>The <em>email kit</em> that turns brochures into booked demos.</h1>
+  <p>Five battle-ready emails. Modern signature card. Every template is mobile-responsive, Outlook-safe, and copy-paste ready. Hit "Open" on any card to see the full email — or grab the raw HTML to drop into Gmail.</p>
+  <div class="pills">
+    <span class="pill">5 templates</span>
+    <span class="pill">Pro signature card</span>
+    <span class="pill">Mobile-responsive</span>
+    <span class="pill">Outlook + Gmail safe</span>
+    <span class="pill">Plain-text fallbacks</span>
+  </div>
+</div>
+
+<div class="toc">
+  <h3>Jump to</h3>
+  <div class="toc-grid">
+    <a href="#e01"><div class="n">01</div><div class="t">Cold Open</div><div class="d">First touch on an unknown dealer</div></a>
+    <a href="#e02"><div class="n">02</div><div class="t">Walk-in Follow-up</div><div class="d">Same-day after dropping a brochure</div></a>
+    <a href="#e03"><div class="n">03</div><div class="t">Warm Intro</div><div class="d">Your existing dealer relationships</div></a>
+    <a href="#e04"><div class="n">04</div><div class="t">Brianna Case Study</div><div class="d">Story-driven mid-funnel proof</div></a>
+    <a href="#e05"><div class="n">05</div><div class="t">Founding Partner Close</div><div class="d">Scarcity + price-lock CTA</div></a>
+    <a href="#sig"><div class="n">SIG</div><div class="t">Email Signature</div><div class="d">Paste into Gmail / Outlook</div></a>
+  </div>
+</div>
+
+<!-- 01 — COLD OPEN -->
+<section id="e01" class="row">
+  <div class="row-head">
+    <div class="left">
+      <div class="eyebrow">Email 01 · First Touch</div>
+      <h2>The Cold Open — <em>"A 9 PM lead. Sold by Monday."</em></h2>
+    </div>
+    <div class="meta">
+      <b>Subject:</b> Quick question about your internet leads<br>
+      <b>Preview:</b> What if a 9 PM lead booked itself by morning?<br>
+      <b>Send to:</b> Owners/GMs you've never met<br>
+      <b>Best time:</b> Tue–Thu, 7:30–9:00 AM local
+    </div>
+  </div>
+  <div class="frame-wrap">
+    <div class="frame-actions">
+      <a class="primary" href="01_cold_open.html" target="_blank">Open full email &rarr;</a>
+      <a href="01_cold_open.html" download>Download HTML</a>
+      <a href="copy/01_cold_open.md" target="_blank">Plain-text copy</a>
+    </div>
+    <iframe src="01_cold_open.html" title="Cold Open"></iframe>
+  </div>
+</section>
+
+<!-- 02 — WALK-IN FOLLOWUP -->
+<section id="e02" class="row alt">
+  <div class="row-head">
+    <div class="left">
+      <div class="eyebrow">Email 02 · Same-day Follow-up</div>
+      <h2>Walk-in Follow-up — <em>"Here's the digital version."</em></h2>
+    </div>
+    <div class="meta">
+      <b>Subject:</b> Following up — left the brochure with you today<br>
+      <b>Preview:</b> Digital copy for your GM, plus a demo link.<br>
+      <b>Send to:</b> Decision-maker after an in-person drop-off<br>
+      <b>Best time:</b> Same day, 4–7 PM
+    </div>
+  </div>
+  <div class="frame-wrap">
+    <div class="frame-actions">
+      <a class="primary" href="02_walk_in_followup.html" target="_blank">Open full email &rarr;</a>
+      <a href="02_walk_in_followup.html" download>Download HTML</a>
+      <a href="copy/02_walk_in_followup.md" target="_blank">Plain-text copy</a>
+    </div>
+    <iframe src="02_walk_in_followup.html" title="Walk-in Follow-up"></iframe>
+  </div>
+</section>
+
+<!-- 03 — WARM INTRO -->
+<section id="e03" class="row">
+  <div class="row-head">
+    <div class="left">
+      <div class="eyebrow">Email 03 · Personal Network</div>
+      <h2>Warm Intro — <em>"I want your honest take."</em></h2>
+    </div>
+    <div class="meta">
+      <b>Subject:</b> [Name], want your honest take on something<br>
+      <b>Preview:</b> Built it at HoC. Need a real car guy to gut-check me.<br>
+      <b>Send to:</b> Brandon, Rob, Fred, Jordan, Dan...<br>
+      <b>Best time:</b> Any weekday, after lunch
+    </div>
+  </div>
+  <div class="frame-wrap">
+    <div class="frame-actions">
+      <a class="primary" href="03_warm_intro.html" target="_blank">Open full email &rarr;</a>
+      <a href="03_warm_intro.html" download>Download HTML</a>
+      <a href="copy/03_warm_intro.md" target="_blank">Plain-text copy</a>
+    </div>
+    <iframe src="03_warm_intro.html" title="Warm Intro"></iframe>
+  </div>
+</section>
+
+<!-- 04 — BRIANNA CASE STUDY -->
+<section id="e04" class="row alt">
+  <div class="row-head">
+    <div class="left">
+      <div class="eyebrow">Email 04 · Story-driven Proof</div>
+      <h2>Brianna Case Study — <em>"$0 in labor. One sold Silverado."</em></h2>
+    </div>
+    <div class="meta">
+      <b>Subject:</b> 9:14 PM Saturday. $0 in labor. One sold Silverado.<br>
+      <b>Preview:</b> The lead my team would've called Monday morning.<br>
+      <b>Send to:</b> Mid-funnel — opened but didn't book<br>
+      <b>Best time:</b> Wed–Thu morning
+    </div>
+  </div>
+  <div class="frame-wrap">
+    <div class="frame-actions">
+      <a class="primary" href="04_brianna_case_study.html" target="_blank">Open full email &rarr;</a>
+      <a href="04_brianna_case_study.html" download>Download HTML</a>
+      <a href="copy/04_brianna_case_study.md" target="_blank">Plain-text copy</a>
+    </div>
+    <iframe src="04_brianna_case_study.html" title="Brianna Case Study"></iframe>
+  </div>
+</section>
+
+<!-- 05 — FOUNDING PARTNER CLOSE -->
+<section id="e05" class="row">
+  <div class="row-head">
+    <div class="left">
+      <div class="eyebrow">Email 05 · The Close</div>
+      <h2>Founding Partner Close — <em>"$1,999. Locked for life."</em></h2>
+    </div>
+    <div class="meta">
+      <b>Subject:</b> Only [X] Founding Partner spots left<br>
+      <b>Preview:</b> $1,999/mo locked for life. Then it's $2,499.<br>
+      <b>Send to:</b> Demo-ed or engaged 2+ emails<br>
+      <b>Best time:</b> Mon AM or Fri 11 AM
+    </div>
+  </div>
+  <div class="frame-wrap">
+    <div class="frame-actions">
+      <a class="primary" href="05_founding_partner_close.html" target="_blank">Open full email &rarr;</a>
+      <a href="05_founding_partner_close.html" download>Download HTML</a>
+      <a href="copy/05_founding_partner_close.md" target="_blank">Plain-text copy</a>
+    </div>
+    <iframe src="05_founding_partner_close.html" title="Founding Partner Close"></iframe>
+  </div>
+</section>
+
+<!-- SIGNATURE -->
+<section id="sig" class="row signature-row">
+  <div class="row-head">
+    <div class="left">
+      <div class="eyebrow">Email signature · Install once, use forever</div>
+      <h2>The signature card — <em>a brochure on every send.</em></h2>
+    </div>
+    <div class="meta">
+      <b>Where:</b> Gmail, Outlook, Apple Mail<br>
+      <b>How:</b> Open the file → copy the card → paste into signature settings<br>
+      <b>Includes:</b> JR avatar tile, phone, email, web, Calendly button, tagline<br>
+      <b>Bonus:</b> Plain-text fallback included in the file
+    </div>
+  </div>
+  <div class="frame-wrap">
+    <div class="frame-actions">
+      <a class="primary" href="signature.html" target="_blank">Open signature &rarr;</a>
+      <a href="signature.html" download>Download HTML</a>
+    </div>
+    <iframe src="signature.html" title="Signature" style="height:540px;"></iframe>
+  </div>
+</section>
+
+<div class="footer">
+  &copy; 2026 <b>LotLink LLC</b> · Mentone, Indiana &nbsp;·&nbsp; Built for indies, by one of them. &nbsp;·&nbsp;
+  <a href="https://lotlinkin.com">lotlinkin.com</a> &nbsp;·&nbsp;
+  <a href="https://calendly.com/john-lotlinkin/demo">Book a demo</a>
+</div>
+
+</body>
+</html>

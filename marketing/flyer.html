@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>LotLink — AI BDC One-Pager</title>
+<style>
+  /* ──────────────────────────────────────────────────────────────
+     LotLink Sales Flyer — print-ready one-pager (8.5×11 duplex)
+     Optimized for WeasyPrint. CMYK-safe spot colors used:
+       Navy   #0F2444   Sky #5BA3D9   Gold #E8A020   Cream #F5EFE3
+     Fonts are loaded from Google Fonts (WeasyPrint fetches them at
+     render time, embeds in PDF).
+     ────────────────────────────────────────────────────────────── */
+
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap');
+
+  @page {
+    size: 8.5in 11in;
+    margin: 0;
+  }
+
+  :root {
+    --navy: #0F2444;
+    --navy-deep: #0A1A30;
+    --blue: #1B3A6B;
+    --sky: #5BA3D9;
+    --gold: #E8A020;
+    --gold-soft: #F5B942;
+    --cream: #F5EFE3;
+    --ink: #0A1A30;
+    --paper: #FFFFFF;
+    --muted: #5A6B82;
+    --rule: #E3E8EF;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { font-family: 'DM Sans', sans-serif; color: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    position: relative;
+    overflow: hidden;
+    break-inside: avoid;
+  }
+  .page + .page { break-before: page; }
+
+  /* ══════════════════════════════════════════════════════════════
+     PAGE 1 — FRONT
+     ══════════════════════════════════════════════════════════════ */
+  .front {
+    background: linear-gradient(165deg, #0A1A30 0%, #0F2444 45%, #122A52 100%);
+    color: #fff;
+    padding: 0.42in 0.5in 0.36in;
+  }
+  .front::before {
+    content:''; position:absolute; inset:0; opacity:0.35; pointer-events:none;
+    background:
+      radial-gradient(circle at 85% 12%, rgba(232,160,32,0.22), transparent 38%),
+      radial-gradient(circle at 12% 78%, rgba(91,163,217,0.18), transparent 42%);
+  }
+  .front::after {
+    content:''; position:absolute; inset:0; opacity:0.06; pointer-events:none;
+    background-image:
+      linear-gradient(rgba(255,255,255,1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px);
+    background-size: 0.55in 0.55in;
+  }
+  .front > * { position: relative; z-index: 1; }
+
+  .top-bar {
+    display:flex; align-items:center; justify-content:space-between;
+    margin-bottom: 0.28in;
+  }
+  .logo {
+    font-family:'Bebas Neue', sans-serif; font-size:34px; letter-spacing:3px;
+    color:#fff;
+  }
+  .logo .ll { color: var(--sky); }
+  .logo-mark {
+    display:inline-flex; align-items:center; gap:10px;
+  }
+  .logo-mark svg { width: 38px; height: 38px; }
+
+  .top-pill {
+    display:inline-flex; align-items:center; gap:8px;
+    background: rgba(232,160,32,0.14);
+    border: 1px solid rgba(232,160,32,0.5);
+    color: var(--gold-soft);
+    padding: 7px 14px; border-radius: 999px;
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600;
+  }
+  .top-pill::before { content:''; width:6px; height:6px; border-radius:50%; background: var(--gold); box-shadow: 0 0 0 4px rgba(232,160,32,0.18);}
+
+  .eyebrow {
+    font-size:11px; letter-spacing:3.5px; text-transform:uppercase;
+    color: var(--sky); font-weight:600;
+    display:inline-flex; align-items:center; gap:12px;
+    margin-bottom: 10px;
+  }
+  .eyebrow::before { content:''; width:32px; height:1px; background: var(--sky); }
+
+  h1.hero {
+    font-family:'Bebas Neue', sans-serif;
+    font-size: 60px; line-height: 0.94; letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+  h1.hero em { color: var(--gold); font-style: normal; }
+  h1.hero .br { display:block; }
+
+  .hero-sub {
+    font-size: 12.5px; line-height: 1.5; color: rgba(255,255,255,0.82);
+    max-width: 7in; font-weight: 300;
+    margin-bottom: 0.18in;
+  }
+  .hero-sub strong { color:#fff; font-weight: 600; }
+
+  /* 3-channel grid */
+  .channels {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 0.22in;
+  }
+  .ch {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(91,163,217,0.22);
+    border-radius: 10px;
+    padding: 12px 12px;
+    position: relative;
+    overflow: hidden;
+  }
+  .ch::before {
+    content:''; position:absolute; top:0; left:0; right:0; height:3px;
+    background: linear-gradient(90deg, var(--sky), var(--gold));
+  }
+  .ch-icon {
+    width: 34px; height: 34px; border-radius: 8px;
+    display:inline-flex; align-items:center; justify-content:center;
+    margin-bottom: 9px;
+  }
+  .ch-icon svg { width: 18px; height: 18px; }
+  .ch.voice .ch-icon { background: rgba(232,160,32,0.18); color: var(--gold); }
+  .ch.text  .ch-icon { background: rgba(91,163,217,0.18); color: var(--sky); }
+  .ch.email .ch-icon { background: rgba(255,255,255,0.10); color: #fff; }
+  .ch-label {
+    font-size: 10px; letter-spacing: 2.4px; text-transform: uppercase;
+    color: rgba(255,255,255,0.55); font-weight: 700; margin-bottom: 4px;
+  }
+  .ch-name {
+    font-family:'DM Serif Display', serif; font-size: 19px;
+    color:#fff; line-height: 1.05; margin-bottom: 8px;
+  }
+  .ch-copy { font-size: 11.5px; color: rgba(255,255,255,0.72); line-height: 1.5; }
+  .ch-copy b { color: var(--gold-soft); font-weight: 600; }
+
+  /* Big number callout */
+  .callout {
+    background: linear-gradient(135deg, rgba(232,160,32,0.16), rgba(91,163,217,0.10));
+    border: 1px solid rgba(232,160,32,0.35);
+    border-radius: 10px;
+    padding: 12px 18px;
+    display:flex; align-items:center; gap: 16px;
+    margin-bottom: 0.16in;
+  }
+  .callout .big {
+    font-family:'Bebas Neue', sans-serif;
+    font-size: 50px; line-height: 0.9; color: var(--gold);
+    letter-spacing: 1px; flex-shrink: 0;
+  }
+  .callout .big sup { font-size: 17px; vertical-align: top; margin-left: 3px; }
+  .callout .copy {
+    font-family:'DM Serif Display', serif; font-style: italic;
+    font-size: 14.5px; line-height: 1.3; color: #fff;
+    border-left: 1px solid rgba(255,255,255,0.18); padding-left: 16px;
+  }
+  .callout .copy small {
+    display:block; font-family:'DM Sans'; font-style: normal;
+    font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: rgba(255,255,255,0.55); font-weight:600; margin-top: 4px;
+  }
+
+  /* ROI compare */
+  .roi {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(91,163,217,0.22);
+    border-radius: 10px;
+    padding: 13px 16px;
+  }
+  .roi-head {
+    display:flex; align-items:baseline; justify-content:space-between;
+    margin-bottom: 8px;
+  }
+  .roi-title {
+    font-family:'DM Serif Display', serif; font-size: 17px; color: #fff;
+  }
+  .roi-title em { color: var(--gold); font-style: normal; }
+  .roi-tag {
+    font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(255,255,255,0.5); font-weight: 700;
+  }
+  .roi-grid {
+    display:grid; grid-template-columns: 1.6fr 1fr 1fr;
+    gap: 0; font-size: 10.5px;
+  }
+  .roi-grid > div {
+    padding: 5px 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .roi-grid .h {
+    font-size: 9px; letter-spacing: 1.6px; text-transform: uppercase;
+    color: rgba(255,255,255,0.55); font-weight: 700;
+    border-bottom: 1px solid rgba(255,255,255,0.18);
+  }
+  .roi-grid .lbl { color: rgba(255,255,255,0.78); }
+  .roi-grid .v {
+    color: #fff; font-weight: 500; text-align: right;
+  }
+  .roi-grid .ll { color: var(--gold-soft); font-weight: 600; text-align: right; }
+  .roi-grid .tot { font-weight: 700; color: #fff; border-bottom: none; }
+  .roi-grid .tot.lbl { color: #fff; font-size: 12px; }
+  .roi-grid .tot.ll { color: var(--gold); font-size: 14px; font-family: 'Bebas Neue'; letter-spacing: 1px; }
+  .roi-grid .tot.v  { font-size: 12px; }
+  .roi-foot {
+    margin-top: 10px; font-size: 10.5px; color: rgba(255,255,255,0.55);
+    font-style: italic; line-height: 1.5;
+  }
+
+  /* ══════════════════════════════════════════════════════════════
+     PAGE 2 — BACK
+     ══════════════════════════════════════════════════════════════ */
+  .back {
+    background: var(--paper);
+    color: var(--ink);
+    padding: 0.42in 0.5in 0.36in;
+  }
+
+  .back .top-bar { margin-bottom: 0.22in; }
+  .back .logo { color: var(--navy); }
+  .back .logo .ll { color: var(--sky); }
+  .back .top-pill {
+    background: rgba(232,160,32,0.10);
+    border-color: rgba(232,160,32,0.45);
+    color: #B97D11;
+  }
+
+  .back .eyebrow { color: var(--blue); }
+  .back .eyebrow::before { background: var(--blue); }
+
+  /* Brianna case study */
+  .case {
+    background: linear-gradient(135deg, #0F2444 0%, #1B3A6B 100%);
+    color: #fff;
+    border-radius: 14px;
+    padding: 18px 22px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 0.22in;
+  }
+  .case::after {
+    content:'"'; position:absolute; right: 18px; top: -22px;
+    font-family:'DM Serif Display', serif; font-size: 220px; line-height: 1;
+    color: rgba(232,160,32,0.18);
+  }
+  .case-eyebrow {
+    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold); font-weight: 700; margin-bottom: 10px;
+  }
+  .case-quote {
+    font-family:'DM Serif Display', serif; font-style: italic;
+    font-size: 20px; line-height: 1.3; color: #fff;
+    margin-bottom: 12px; max-width: 6.2in; position: relative; z-index: 1;
+  }
+  .case-quote em { color: var(--gold); font-style: italic; }
+  .case-byline {
+    font-size: 12px; color: rgba(255,255,255,0.75); margin-bottom: 14px;
+  }
+  .case-byline b { color: #fff; }
+  .case-stats {
+    display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    border-top: 1px solid rgba(255,255,255,0.15); padding-top: 14px;
+  }
+  .case-stats .s .n {
+    font-family:'Bebas Neue', sans-serif; font-size: 32px; color: var(--gold); line-height: 1;
+  }
+  .case-stats .s .l {
+    font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: rgba(255,255,255,0.65); margin-top: 4px;
+  }
+
+  /* Pricing strip */
+  .pricing-row {
+    display:flex; gap: 12px;
+    margin-bottom: 0.2in;
+  }
+  .tier {
+    background: #fff; border: 1.5px solid var(--rule);
+    border-radius: 10px; padding: 13px 13px;
+    flex: 1; min-width: 0;
+  }
+  .tier .name {
+    font-size: 10px; letter-spacing: 2.4px; text-transform: uppercase;
+    color: var(--muted); font-weight: 700; margin-bottom: 6px;
+  }
+  .tier .price {
+    font-family:'Bebas Neue', sans-serif; font-size: 38px; color: var(--navy);
+    line-height: 1; letter-spacing: 0.5px;
+  }
+  .tier .price small { font-size: 12px; color: var(--muted); font-family:'DM Sans'; font-weight: 500; letter-spacing: 0; }
+  .tier ul { list-style: none; margin-top: 10px; padding-left: 0; }
+  .tier ul li {
+    font-size: 11px; line-height: 1.55; color: var(--ink);
+    padding-left: 14px; position: relative; margin-bottom: 4px;
+  }
+  .tier ul li::before {
+    content:''; position:absolute; left:0; top: 6px;
+    width:6px; height:6px; border-radius:50%; background: var(--sky);
+  }
+  .tier.fp { border-color: var(--gold); background: linear-gradient(180deg, #FFFBF2 0%, #FFFFFF 60%); position:relative; }
+  .tier.fp::before {
+    content:'FOUNDING PARTNER'; position:absolute; top:-9px; left:14px;
+    background: var(--gold); color: var(--navy);
+    font-size: 9px; letter-spacing: 2px; font-weight: 800;
+    padding: 3px 9px; border-radius: 4px;
+  }
+  .tier.fp .price { color: #B97D11; }
+  .tier.fp .strike { font-size: 11px; color: var(--muted); text-decoration: line-through; margin-top: 2px; }
+  .tier.fp ul li::before { background: var(--gold); }
+
+  /* Trust + CTA footer */
+  .trust-row {
+    display:flex; flex-wrap:wrap; gap: 6px;
+    margin-bottom: 0.2in;
+  }
+  .trust {
+    display:inline-flex; align-items:center; gap:6px;
+    background: #F5F7FB; border:1px solid var(--rule);
+    border-radius: 999px; padding: 6px 12px;
+    font-size: 11px; color: var(--ink); font-weight: 500;
+  }
+  .trust svg { width: 12px; height: 12px; color: var(--blue); }
+
+  .cta-box {
+    background: linear-gradient(135deg, #0F2444 0%, #1B3A6B 80%);
+    color: #fff;
+    border-radius: 14px;
+    padding: 18px 22px;
+    display: flex;
+    gap: 18px;
+    align-items: center;
+  }
+  .cta-box > .left { flex: 1.5; min-width: 0; }
+  .cta-box > .right { flex: 1; min-width: 0; }
+  .cta-box h2 {
+    font-family:'Bebas Neue', sans-serif; font-size: 32px; line-height: 0.96;
+    letter-spacing: 1px; color: #fff; margin-bottom: 6px;
+  }
+  .cta-box h2 em { color: var(--gold); font-style: normal; }
+  .cta-box p {
+    font-size: 11.5px; line-height: 1.5; color: rgba(255,255,255,0.82);
+    margin-bottom: 12px;
+  }
+  .cta-box .btn {
+    display:inline-block;
+    background: var(--gold); color: var(--navy);
+    font-weight: 700; font-size: 12px; letter-spacing: 0.5px;
+    padding: 11px 18px; border-radius: 6px; text-decoration: none;
+  }
+  .cta-contacts {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .cta-contacts .row {
+    display:flex; align-items:center; gap: 10px;
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.10);
+    font-size: 12px; color: #fff;
+  }
+  .cta-contacts .row:last-child { border-bottom: none; }
+  .cta-contacts .row svg { width: 14px; height: 14px; color: var(--sky); flex-shrink: 0; }
+  .cta-contacts .row b { color: var(--gold-soft); font-weight: 600; }
+
+  .footer {
+    margin-top: 0.22in;
+    display:flex; align-items:center; justify-content:space-between;
+    font-size: 10px; color: var(--muted); letter-spacing: 0.5px;
+  }
+  .footer .right { color: var(--blue); font-weight: 600; }
+
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════
+     PAGE 1 — FRONT (navy hero)
+     ════════════════════════════════════════════════════════ -->
+<div class="page front">
+  <div class="top-bar">
+    <div class="logo-mark">
+      <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="0" width="120" height="120" rx="22" fill="#0F2444" stroke="#5BA3D9" stroke-width="2"/>
+        <rect x="20" y="28" width="42" height="30" rx="15" fill="none" stroke="#5BA3D9" stroke-width="6"/>
+        <rect x="58" y="60" width="42" height="30" rx="15" fill="none" stroke="#E8A020" stroke-width="6"/>
+      </svg>
+      <span class="logo">Lot<span class="ll">Link</span></span>
+    </div>
+    <span class="top-pill">AI BDC · Built by a Car Guy</span>
+  </div>
+
+  <div class="eyebrow">For independent dealers</div>
+  <h1 class="hero">
+    Every lead. Answered in<br>
+    under <em>60 seconds.</em><br>
+    Day, night &amp; Sunday.
+  </h1>
+  <p class="hero-sub">
+    <strong>LotLink is an AI BDC</strong> that works every lead the second it lands — voice, text, and email — and books appointments while your sales floor is closing the deal already on the desk. Built and battle-tested at a real Indiana dealership. No contract. 30-day money-back.
+  </p>
+
+  <div class="channels">
+    <div class="ch voice">
+      <div class="ch-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/>
+        </svg>
+      </div>
+      <div class="ch-label">Channel 01</div>
+      <div class="ch-name">Voice that books</div>
+      <div class="ch-copy">Jordan answers inbound, returns missed calls in <b>under 60 sec</b>, and warm-transfers buyers in market <i>today</i> straight to your floor.</div>
+    </div>
+    <div class="ch text">
+      <div class="ch-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+      </div>
+      <div class="ch-label">Channel 02</div>
+      <div class="ch-name">SMS with photos</div>
+      <div class="ch-copy">First text out in <b>seconds</b> — by name, vehicle, and a real photo. Two-way, TCPA-safe, quiet-hours-aware. Replies route to <i>your</i> inbox.</div>
+    </div>
+    <div class="ch email">
+      <div class="ch-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2"/>
+          <path d="M22 7l-10 7L2 7"/>
+        </svg>
+      </div>
+      <div class="ch-label">Channel 03</div>
+      <div class="ch-name">Email that closes</div>
+      <div class="ch-copy">AI replies that sound like your best salesperson on their best day — <b>vehicle-aware</b>, signed in your name, sent from your domain.</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="big">&lt;60<sup>SEC</sup></div>
+    <div class="copy">
+      "Every internet lead. Every after-hours call. Every weekend ad-click. Worked before the buyer even finishes their next Google search."
+      <small>— what your competition can't say</small>
+    </div>
+  </div>
+
+  <div class="roi">
+    <div class="roi-head">
+      <div class="roi-title">The math vs. a <em>human BDC rep</em></div>
+      <div class="roi-tag">monthly · fully loaded</div>
+    </div>
+    <div class="roi-grid">
+      <div class="h">Line item</div><div class="h" style="text-align:right;">Human BDC</div><div class="h" style="text-align:right;">LotLink (Growth)</div>
+
+      <div class="lbl">Salary + payroll tax</div><div class="v">$3,600</div><div class="ll">included</div>
+      <div class="lbl">Benefits + workspace</div><div class="v">$650</div><div class="ll">included</div>
+      <div class="lbl">CRM / dialer / SMS tools</div><div class="v">$250</div><div class="ll">included</div>
+      <div class="lbl">Hours covered / week</div><div class="v">~40</div><div class="ll">168 (24/7)</div>
+      <div class="lbl">Speed-to-lead avg</div><div class="v">11+ minutes</div><div class="ll">under 60 sec</div>
+
+      <div class="tot lbl">TOTAL / MONTH</div><div class="tot v">$4,500</div><div class="tot ll">$1,499</div>
+    </div>
+    <div class="roi-foot">
+      Sources: NADA Workforce Study, CarGurus 2024 Lead Response benchmarks. LotLink works alongside your team — covering the nights, weekends, and 11pm Facebook leads they don't, so your reps can focus on the floor traffic that's already in front of them.
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════
+     PAGE 2 — BACK (white, proof + CTA)
+     ════════════════════════════════════════════════════════ -->
+<div class="page back">
+
+  <div class="top-bar">
+    <div class="logo-mark">
+      <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="0" width="120" height="120" rx="22" fill="#0F2444"/>
+        <rect x="20" y="28" width="42" height="30" rx="15" fill="none" stroke="#5BA3D9" stroke-width="6"/>
+        <rect x="58" y="60" width="42" height="30" rx="15" fill="none" stroke="#E8A020" stroke-width="6"/>
+      </svg>
+      <span class="logo">Lot<span class="ll">Link</span></span>
+    </div>
+    <span class="top-pill">Proof · Pricing · Get Started</span>
+  </div>
+
+  <div class="eyebrow">Case Study · House of Carz, Rochester IN</div>
+
+  <div class="case">
+    <div class="case-eyebrow">Real customer · real lead · real Saturday night</div>
+    <div class="case-quote">
+      Brianna's lead came in at <em>9:14 PM Saturday</em>. Jordan replied in 38 seconds, locked her appointment for Monday at 10 — and she drove home in <em>her first Silverado</em>.
+    </div>
+    <div class="case-byline"><b>Brianna H.</b> · Chevy Silverado buyer · House of Carz · April 2026</div>
+    <div class="case-stats">
+      <div class="s"><div class="n">38<span style="font-size:14px;">sec</span></div><div class="l">First response</div></div>
+      <div class="s"><div class="n">9:14<span style="font-size:14px;">pm</span></div><div class="l">Lead arrived</div></div>
+      <div class="s"><div class="n">$0</div><div class="l">Human labor</div></div>
+    </div>
+  </div>
+
+  <div class="eyebrow">Transparent Pricing · No contract · 30-day money-back</div>
+
+  <div class="pricing-row">
+    <div class="tier">
+      <div class="name">Starter</div>
+      <div class="price">$899<small>/mo</small></div>
+      <ul>
+        <li>1 rooftop · 500 voice min</li>
+        <li>Inbound + missed-call AI</li>
+        <li>SMS + Email auto-reply</li>
+        <li>Lead-source dashboard</li>
+      </ul>
+    </div>
+    <div class="tier">
+      <div class="name">Growth</div>
+      <div class="price">$1,499<small>/mo</small></div>
+      <ul>
+        <li>1,500 voice min · MMS photos</li>
+        <li>Outbound cadences (4 presets)</li>
+        <li>Web chat widget · warm transfer</li>
+        <li>Multi-user team access</li>
+      </ul>
+    </div>
+    <div class="tier fp">
+      <div class="name">Pro</div>
+      <div class="price">$1,999<small>/mo</small></div>
+      <div class="strike">Standard $2,499/mo</div>
+      <ul>
+        <li>4,000 voice min · multi-rooftop</li>
+        <li>Locked for life (first 10 only)</li>
+        <li>Direct founder line · roadmap input</li>
+        <li>Custom voice + persona tuning</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="trust-row">
+    <span class="trust"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>No contract · month-to-month</span>
+    <span class="trust"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>30-day money-back guarantee</span>
+    <span class="trust"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>TCPA-safe · quiet-hours-aware</span>
+    <span class="trust"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Live in 72 hours</span>
+  </div>
+
+  <div class="cta-box">
+    <div class="left">
+      <h2>See Jordan work <em>your</em> next lead.</h2>
+      <p>Book a 20-min demo. We'll play 3 real House of Carz calls — including the one that booked Brianna. If LotLink doesn't pay for itself in 30 days, we refund the month.</p>
+      <a class="btn" href="https://calendly.com/john-lotlinkin/demo">Book a Demo → calendly.com/john-lotlinkin/demo</a>
+    </div>
+    <div class="right cta-contacts">
+      <div class="row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg>
+        <span><b>Call/Text:</b> (260) 229-9393</span>
+      </div>
+      <div class="row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>
+        <span><b>Email:</b> john@lotlinkin.com</span>
+      </div>
+      <div class="row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+        <span><b>Web:</b> lotlinkin.com</span>
+      </div>
+      <div class="row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span><b>Founder:</b> John Roberts</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>© 2026 LotLink LLC · Mentone, Indiana · Built for independent dealers, by one of them.</span>
+    <span class="right">lotlinkin.com</span>
+  </div>
+
+</div>
+
+</body>
+</html>
