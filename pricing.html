@@ -108,6 +108,55 @@
   font-size:11px; font-weight:600; letter-spacing:0.6px;
   color:var(--gold); text-align:center; margin-bottom:14px;
 }
+/* Billing-cycle toggle (Monthly | Annual). Pill-style buttons, gold-on-
+   active. Sits above the pricing grid. The "save 17%" badge inside the
+   Annual option uses the same gold accent as Founding Partner copy so the
+   discount reads as part of the same generosity story. */
+.billing-toggle {
+  display:inline-flex; gap:0;
+  background:rgba(255,255,255,0.04);
+  border:1px solid var(--border); border-radius:999px;
+  padding:4px; margin:0 auto 36px;
+  position:relative; left:50%; transform:translateX(-50%);
+}
+.bt-option {
+  background:transparent; border:none; cursor:pointer;
+  padding:9px 22px; border-radius:999px;
+  font-family:'DM Sans',sans-serif; font-size:13px; font-weight:600;
+  color:rgba(255,255,255,0.65); letter-spacing:0.3px;
+  display:inline-flex; align-items:center; gap:8px;
+  transition:0.2s;
+}
+.bt-option:hover { color:rgba(255,255,255,0.92); }
+.bt-option.active {
+  background:linear-gradient(135deg, rgba(232,160,32,0.95), rgba(232,160,32,0.75));
+  color:var(--dark);
+}
+.bt-save {
+  font-size:10px; font-weight:700; letter-spacing:0.8px; text-transform:uppercase;
+  padding:2px 8px; border-radius:4px;
+  background:rgba(46,117,182,0.18); color:var(--sky);
+}
+.bt-option.active .bt-save { background:rgba(10,26,48,0.22); color:var(--dark); }
+
+/* Annual-mode visual hints on cards. The Starter card is monthly-only,
+   so when toggle goes to yearly we add an inert "Monthly only" badge
+   and dim the CTA slightly so the dealer knows annual isn't on offer
+   for that tier. Growth/Pro update prices + show the savings line. */
+.tier-card .tier-saving {
+  display:none;
+  font-size:12px; font-weight:600; letter-spacing:0.4px;
+  color:var(--gold); margin-top:2px; margin-bottom:14px;
+}
+.tier-card.annual-mode .tier-saving { display:block; }
+.tier-card .tier-monthly-only-badge {
+  display:none;
+  font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase;
+  color:rgba(255,255,255,0.55); margin-bottom:10px;
+}
+.tier-card.annual-mode.monthly-only .tier-monthly-only-badge { display:block; }
+.tier-card.annual-mode.monthly-only .tier-cta { opacity:0.85; }
+
 .tier-price { font-family:'Bebas Neue',sans-serif; font-size:42px; color:var(--white); line-height:1; margin-bottom:4px; }
 .tier-price span { font-size:16px; color:var(--gray); font-family:'DM Sans',sans-serif; font-weight:300; letter-spacing:0; }
 .tier-name { font-size:12px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--sky); margin-bottom:18px; }
@@ -243,9 +292,23 @@
   <div class="section-title">AI-Powered <em>BDC</em> That Doesn't <span class="gold">Sleep</span></div>
   <p class="section-sub">Three plans. Transparent monthly pricing — published because we'd rather earn your trust than hide behind a "contact sales" wall. <strong style="color:var(--gold);">30-day money-back guarantee</strong> on every plan. No contract. Cancel anytime.</p>
 
+  <!-- Monthly | Annual toggle. Annual = 17% off = literally two months free.
+       Starter stays monthly-only (toggle dims the Starter card and the
+       backend rejects the combo if anyone tries to URL-edit through it).
+       Wired by the inline script at the bottom of this file. -->
+  <div class="billing-toggle" role="tablist" aria-label="Choose billing cycle">
+    <button type="button" class="bt-option active" data-cycle="monthly" role="tab" aria-selected="true">Monthly</button>
+    <button type="button" class="bt-option" data-cycle="yearly" role="tab" aria-selected="false">
+      Annual <span class="bt-save">save 17%</span>
+    </button>
+  </div>
+
   <div class="pricing-grid three-up">
-    <div class="tier-card">
-      <div class="tier-price">$899 <span>/ mo</span></div>
+    <div class="tier-card monthly-only" data-plan="starter">
+      <div class="tier-price"
+           data-price-monthly='$899 <span>/ mo</span>'
+           data-price-yearly='$899 <span>/ mo</span>'>$899 <span>/ mo</span></div>
+      <div class="tier-monthly-only-badge">Monthly only · upgrade to Growth for annual savings</div>
       <div class="tier-name">Starter</div>
       <ul class="tier-features">
         <li>Up to 300 leads / month</li>
@@ -257,10 +320,13 @@
         <li>1–2 concurrent campaigns · single user</li>
         <li>For small independents (10–40 cars)</li>
       </ul>
-      <a href="signup.html?plan=starter" class="tier-cta">Sign Up Now</a>
+      <a href="signup.html?plan=starter" class="tier-cta" data-signup-href="signup.html?plan=starter">Sign Up Now</a>
     </div>
-    <div class="tier-card">
-      <div class="tier-price">$1,499 <span>/ mo</span></div>
+    <div class="tier-card" data-plan="growth">
+      <div class="tier-price"
+           data-price-monthly='$1,499 <span>/ mo</span>'
+           data-price-yearly='$14,990 <span>/ yr</span>'>$1,499 <span>/ mo</span></div>
+      <div class="tier-saving">Save $2,998/year · 2 months free</div>
       <div class="tier-name">Growth</div>
       <ul class="tier-features">
         <li>Everything in Starter, plus:</li>
@@ -274,12 +340,17 @@
         <li>Unlimited concurrent campaigns</li>
         <li>For typical independents (40–150 cars)</li>
       </ul>
-      <a href="signup.html?plan=growth" class="tier-cta">Sign Up Now</a>
+      <a href="signup.html?plan=growth" class="tier-cta" data-signup-href="signup.html?plan=growth">Sign Up Now</a>
     </div>
-    <div class="tier-card founding">
-      <div class="tier-price">$1,999 <span>/ mo</span></div>
+    <div class="tier-card founding" data-plan="pro">
+      <div class="tier-price"
+           data-price-monthly='$1,999 <span>/ mo</span>'
+           data-price-yearly='$19,990 <span>/ yr</span>'>$1,999 <span>/ mo</span></div>
       <div class="fp-locked-line">FOUNDING PARTNER — LOCKED FOR LIFE</div>
-      <div class="fp-strikethrough">Standard Pro: $2,499 / mo</div>
+      <div class="fp-strikethrough"
+           data-strike-monthly='Standard Pro: $2,499 / mo'
+           data-strike-yearly='Standard Pro: $24,990 / yr'>Standard Pro: $2,499 / mo</div>
+      <div class="tier-saving">Save $3,998/year · 2 months free</div>
       <div class="tier-name">Pro</div>
       <!-- Live count populated by the inline script before </body>. The
            hardcoded "10 of 10" is the non-JS fallback and the first-paint
@@ -308,7 +379,7 @@
 
   <div class="math-box">
     <div class="label">The Math</div>
-    <p>A full-time BDC rep loaded with payroll tax, benefits, and management overhead costs <strong>$3,000–$5,000/month</strong> — and they only work 40 hours, get sick, take PTO, and miss every after-hours lead. Jordan answers in under a second, follows up at 2 AM, never quits, and costs less than half a human's loaded rate even at Pro tier. Roughly <strong>20–30%</strong> of dealership leads arrive outside open hours; the rest stack up during lunch, sales meetings, and busy showroom moments. Most dealerships land on <strong>Growth</strong> because it's the sweet spot for a typical 40–150 car independent. Heavier-volume operators and multi-rooftop dealers should look at <strong>Pro</strong> — and lock the Founding Partner rate before the 10 spots close. Prepay annually and save <strong>15%</strong> on Growth or Pro.</p>
+    <p>A full-time BDC rep loaded with payroll tax, benefits, and management overhead costs <strong>$3,000–$5,000/month</strong> — and they only work 40 hours, get sick, take PTO, and miss every after-hours lead. Jordan answers in under a second, follows up at 2 AM, never quits, and costs less than half a human's loaded rate even at Pro tier. Roughly <strong>20–30%</strong> of dealership leads arrive outside open hours; the rest stack up during lunch, sales meetings, and busy showroom moments. Most dealerships land on <strong>Growth</strong> because it's the sweet spot for a typical 40–150 car independent. Heavier-volume operators and multi-rooftop dealers should look at <strong>Pro</strong> — and lock the Founding Partner rate before the 10 spots close. Prepay annually and get <strong>two months free (17% off)</strong> on Growth or Pro.</p>
   </div>
 
   <!-- Soft demo prompt for dealers who want to see it run before signing up. -->
@@ -456,6 +527,75 @@ document.querySelectorAll('.faq-q').forEach((btn) => {
       } catch (_) { /* ignore */ }
     })
     .catch(() => { /* placeholder stays */ });
+})();
+</script>
+
+<!-- Monthly | Annual toggle driver. Swaps tier-card prices, the FPP
+     strikethrough, and the Sign Up button hrefs (adds &cycle=yearly
+     when annual is active so signup.html and the API know the cycle).
+     Persists the dealer's last choice in sessionStorage so an internal
+     nav back to the pricing page remembers what they were looking at. -->
+<script>
+(function () {
+  const STORE = 'll_billing_cycle_v1';
+  const options = document.querySelectorAll('.billing-toggle .bt-option');
+  if (!options.length) return;
+
+  function apply(cycle) {
+    // Toggle button state
+    options.forEach((opt) => {
+      const isMatch = opt.getAttribute('data-cycle') === cycle;
+      opt.classList.toggle('active', isMatch);
+      opt.setAttribute('aria-selected', isMatch ? 'true' : 'false');
+    });
+
+    // Tier cards — flip the visible price, strikethrough, and annual-mode
+    // class which controls Saving line + Monthly-only badge visibility.
+    document.querySelectorAll('.tier-card').forEach((card) => {
+      const priceEl = card.querySelector('.tier-price');
+      if (priceEl) {
+        const attr = cycle === 'yearly' ? 'data-price-yearly' : 'data-price-monthly';
+        const html = priceEl.getAttribute(attr);
+        if (html) priceEl.innerHTML = html;
+      }
+      const strikeEl = card.querySelector('.fp-strikethrough');
+      if (strikeEl) {
+        const attr = cycle === 'yearly' ? 'data-strike-yearly' : 'data-strike-monthly';
+        const text = strikeEl.getAttribute(attr);
+        if (text) strikeEl.textContent = text;
+      }
+      card.classList.toggle('annual-mode', cycle === 'yearly');
+
+      // Update Sign Up href so signup.html receives ?cycle=yearly.
+      // Skip the FPP Pro card — its CTA points at Calendly (book a demo
+      // before claiming), not the self-serve form, so no append needed.
+      const cta = card.querySelector('.tier-cta');
+      if (cta) {
+        const base = cta.getAttribute('data-signup-href');
+        if (base) {
+          cta.setAttribute('href', cycle === 'yearly' ? base + '&cycle=yearly' : base);
+        }
+      }
+    });
+
+    try { sessionStorage.setItem(STORE, cycle); } catch (_) { /* ignore */ }
+  }
+
+  options.forEach((opt) => {
+    opt.addEventListener('click', () => apply(opt.getAttribute('data-cycle')));
+  });
+
+  // Restore prior choice OR honor a ?cycle=yearly query param (handy for
+  // an outreach link like "lotlinkin.com/pricing?cycle=yearly" so the
+  // page loads pre-toggled). Default monthly.
+  let initial = 'monthly';
+  try {
+    const stored = sessionStorage.getItem(STORE);
+    if (stored === 'yearly' || stored === 'monthly') initial = stored;
+  } catch (_) { /* ignore */ }
+  const params = new URLSearchParams(window.location.search);
+  if ((params.get('cycle') || '').toLowerCase() === 'yearly') initial = 'yearly';
+  apply(initial);
 })();
 </script>
 
