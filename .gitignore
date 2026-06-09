@@ -9,3 +9,9 @@ LotLink_Dealer_Pitch_*
 LotLink_Target_Dealers*
 LotLink_Outreach_Playbook*
 LotLink_Dealer_Pitch*
+
+# Unused/raw source images — keep local, never deploy to the site
+assets/michael_jordan.png
+assets/michael_jordan_redacted.png
+assets/IMG_4650.jpeg
+assets/johnheadie.jpeg
