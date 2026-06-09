@@ -188,6 +188,8 @@ article.post-body hr {
 <!-- BYLINE -->
 <div class="byline-strip">
   <div class="byline-photo">
+    <!-- Drop a real photo at /assets/founder-john.jpg later. Until then,
+         the gradient + initials placeholder doesn't look broken. -->
     <img src="../assets/founder-john.jpg" alt="John Roberts">
   </div>
   <div class="byline-text">

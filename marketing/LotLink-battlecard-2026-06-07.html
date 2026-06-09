@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LotLink Competitive Battlecard — June 2026</title>
+<style>
+:root{
+  --bg:#0a0d14;--bg2:#0f131c;--surface:#161b28;--hover:#1e2536;
+  --text:#fff;--text2:rgba(255,255,255,.72);--muted:rgba(255,255,255,.5);
+  --accent:#e8a020;--accent2:#1e2761;
+  --win:#10b981;--lose:#ef4444;--tie:#f59e0b;
+  --border:rgba(255,255,255,.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:24px;max-width:1280px;margin:0 auto}
+header{margin-bottom:20px}
+header h1{font-size:26px;letter-spacing:-.5px}
+header h1 span{color:var(--accent)}
+header p{color:var(--muted);font-size:13px;margin-top:4px}
+.note{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:10px 14px;font-size:13px;color:var(--text2);margin:14px 0}
+nav{display:flex;flex-wrap:wrap;gap:6px;margin:18px 0;position:sticky;top:0;background:var(--bg);padding:10px 0;z-index:5;border-bottom:1px solid var(--border)}
+.tab{background:var(--surface);color:var(--text2);border:1px solid var(--border);border-radius:8px;padding:7px 13px;font-size:13px;cursor:pointer;transition:all .15s}
+.tab:hover{background:var(--hover);color:var(--text)}
+.tab.active{background:var(--accent);color:#14181f;font-weight:600;border-color:var(--accent)}
+section{display:none;animation:fade .2s}
+section.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+h2{font-size:20px;margin:18px 0 10px}
+h3{font-size:15px;color:var(--accent);margin:18px 0 8px;text-transform:uppercase;letter-spacing:.06em}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:12px 0}
+.fact{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 12px}
+.fact b{display:block;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px}
+.fact span{font-size:14px}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0}
+th,td{padding:8px 10px;border:1px solid var(--border);text-align:left;vertical-align:top}
+th{background:var(--surface);font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--text2);position:sticky;top:54px}
+td.you{color:var(--win);font-weight:600}
+td.them{color:var(--lose)}
+td.tie{color:var(--tie)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:10px 0}
+@media(max-width:860px){.grid2{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px}
+.card.win{border-left:3px solid var(--win)}
+.card.lose{border-left:3px solid var(--lose)}
+.card h4{font-size:13px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px}
+.card.win h4{color:var(--win)}
+.card.lose h4{color:var(--lose)}
+ul{padding-left:18px;color:var(--text2)}
+li{margin:6px 0}
+li b{color:var(--text)}
+blockquote{background:var(--bg2);border-left:3px solid var(--muted);border-radius:0 8px 8px 0;padding:9px 13px;margin:8px 0;font-size:13px;color:var(--text2);font-style:italic}
+blockquote cite{display:block;font-style:normal;color:var(--muted);font-size:11px;margin-top:4px}
+.talk{background:linear-gradient(135deg,rgba(232,160,32,.08),transparent);border:1px solid rgba(232,160,32,.25);border-radius:12px;padding:14px 16px;margin:10px 0;font-size:14px}
+.talk b{color:var(--accent)}
+.flag{display:inline-block;background:rgba(239,68,68,.12);color:#f87171;font-size:10px;padding:1px 7px;border-radius:20px;vertical-align:middle;font-weight:600;letter-spacing:.03em}
+.pill{display:inline-block;background:var(--hover);color:var(--text2);font-size:11px;padding:2px 9px;border-radius:20px;margin:0 4px 4px 0}
+.src{color:var(--muted);font-size:11px;margin-top:14px;line-height:1.7}
+.src a{color:var(--muted)}
+</style>
+</head>
+<body>
+<header>
+  <h1>LotLink <span>Competitive Battlecard</span></h1>
+  <p>Generated June 7, 2026 · Web research (sourced; UNVERIFIED items flagged) · Internal use only — do not share outside LotLink</p>
+</header>
+<div class="note"><b>How to read this:</b> every competitor price below came from third-party teardowns or vendor statements — <b>not one of the nine publishes pricing</b>. LotLink's transparent $899 / $1,499 / $2,499 is itself a weapon. All vendor performance stats are unaudited claims unless tied to a review.</div>
+
+<nav id="tabs">
+  <button class="tab active" data-t="matrix">⚔ Matrix</button>
+  <button class="tab" data-t="lotlink">LotLink</button>
+  <button class="tab" data-t="podium">Podium</button>
+  <button class="tab" data-t="impel">Impel</button>
+  <button class="tab" data-t="conversica">Conversica</button>
+  <button class="tab" data-t="numa">Numa</button>
+  <button class="tab" data-t="toma">Toma</button>
+  <button class="tab" data-t="stella">STELLA</button>
+  <button class="tab" data-t="brooke">Brooke</button>
+  <button class="tab" data-t="gubagoo">Gubagoo</button>
+  <button class="tab" data-t="activengage">ActivEngage</button>
+  <button class="tab" data-t="emerging">Emerging</button>
+</nav>
+
+<!-- ════════ MATRIX ════════ -->
+<section id="matrix" class="active">
+  <h2>Head-to-Head — June 2026</h2>
+  <table>
+    <tr><th>Capability</th><th>LotLink</th><th>Podium</th><th>Impel</th><th>Conversica</th><th>Numa</th><th>Toma</th><th>STELLA</th><th>Brooke</th><th>Gubagoo</th><th>ActivEngage</th></tr>
+    <tr><td>AI answers inbound calls</td><td class="you">Yes</td><td class="tie">Yes (new, Dec '25)</td><td class="tie">Yes (module)</td><td class="them">No</td><td class="tie">Yes (newer)</td><td class="tie">Yes</td><td class="tie">Yes</td><td class="tie">Yes (service only)</td><td class="them">No</td><td class="them">No</td></tr>
+    <tr><td>AI outbound call cadences</td><td class="you">Yes</td><td class="them">Unverified</td><td class="them">Limited</td><td class="them">No</td><td class="them">Limited</td><td class="tie">Some</td><td class="tie">Some</td><td class="them">No</td><td class="them">No</td><td class="them">No</td></tr>
+    <tr><td>Autonomous SMS + email nurture</td><td class="you">Yes (multi-day)</td><td class="tie">SMS campaigns</td><td class="tie">Email/SMS module</td><td class="tie">Email core, SMS add-on</td><td class="them">SMS, human triage</td><td class="them">SMS = human inbox</td><td class="them">Thin</td><td class="them">No</td><td class="them">No</td><td class="them">No</td></tr>
+    <tr><td>Inventory-aware selling</td><td class="you">Yes (hourly sync)</td><td class="tie">Yes</td><td class="tie">Yes</td><td class="tie">Yes (Jan '25)</td><td class="them">No (service)</td><td class="them">Thin</td><td class="them">No (service)</td><td class="them">No</td><td class="tie">Chat only</td><td class="them">Human-dependent</td></tr>
+    <tr><td>Sales BDC focus (vs service)</td><td class="you">Sales-first</td><td class="tie">Mixed</td><td class="tie">Mixed</td><td class="tie">Sales (email)</td><td class="them">Service-first</td><td class="them">Service-first</td><td class="them">Service-first</td><td class="them">Service only</td><td class="them">Website chat</td><td class="them">Website chat</td></tr>
+    <tr><td>Published pricing</td><td class="you">Yes</td><td class="them">No</td><td class="them">No</td><td class="them">No</td><td class="them">No</td><td class="them">No</td><td class="them">No</td><td class="them">No</td><td class="them">No</td><td class="them">No</td></tr>
+    <tr><td>Realistic entry $/rooftop/mo</td><td class="you">$899</td><td>~$700–1,100 w/ AI*</td><td>$5,000+ full stack*</td><td>$2,999 floor*</td><td>$200–400+ entry*</td><td>"Premium"*</td><td>Quote-only</td><td>Quote-only</td><td>Quote-only</td><td>Quote-only</td></tr>
+    <tr><td>Contract</td><td class="you">30-day money-back</td><td class="them">12-mo, hostile renew</td><td class="them">Custom/term</td><td class="them">12-mo annual</td><td>Unknown</td><td>Unknown</td><td>Unknown</td><td>Unknown</td><td>Unknown</td><td>Unknown</td></tr>
+    <tr><td>Independent used-dealer fit</td><td class="you">Purpose-built</td><td class="tie">Medium (3–10 locs)</td><td class="them">Explicitly not</td><td class="them">Priced out</td><td class="them">Franchise-first</td><td class="them">Moving upmarket</td><td class="them">Franchise-first</td><td class="them">RO-volume gated</td><td class="them">Franchise/OEM</td><td class="them">Franchise/OEM</td></tr>
+  </table>
+  <p style="color:var(--muted);font-size:12px">* third-party estimates — vendors do not publish. Sources on each tab.</p>
+
+  <h2>The one-sentence verdicts</h2>
+  <ul>
+    <li><b>Podium — the real threat in our price band.</b> 6,000+ dealerships, used-auto page, OpenAI case study. Beat them on contract terms (their Trustpilot is 1.5★ over billing/cancellation), price transparency, and automotive-only depth.</li>
+    <li><b>Impel — the enterprise umbrella.</b> CEO publicly says full AI stack runs "$5,000+/mo." Explicitly not for single-rooftop dealers. Their price is our pitch.</li>
+    <li><b>Conversica — shrinking, no voice, $36K/yr floor.</b> Two layoff rounds, 112 employees, email-first. Easy win in our segment.</li>
+    <li><b>Numa / Toma / STELLA / Brooke — the service-AI wave.</b> All four are service-department-first with franchise DMS moats. Sales BDC is their admitted newest muscle — it's our whole product.</li>
+    <li><b>Gubagoo / ActivEngage — human-chat incumbents.</b> No AI voice, no outbound. Different sport; only collide on "do you have website chat?" (we do, Growth tier).</li>
+    <li><b>Whitespace confirmed:</b> nobody combines AI voice + SMS + email + outbound cadences + used-inventory selling in ONE agent at transparent independent-dealer pricing. That is the LotLink lane.</li>
+  </ul>
+</section>
+
+<!-- ════════ LOTLINK ════════ -->
+<section id="lotlink">
+  <h2>LotLink — our card</h2>
+  <div class="facts">
+    <div class="fact"><b>Pricing (published)</b><span>$899 / $1,499 / $2,499 · FPP $1,999 locked (Pro, first 10)</span></div>
+    <div class="fact"><b>Contract</b><span>No trial games — 30-day money-back</span></div>
+    <div class="fact"><b>Focus</b><span>Sales BDC for independent used-car dealers</span></div>
+    <div class="fact"><b>Channels</b><span>AI voice (in+out) + SMS + email, one agent</span></div>
+  </div>
+  <h3>Differentiators (say these)</h3>
+  <ul>
+    <li><b>One agent, every channel.</b> Jordan answers the phone, makes outbound calls, runs multi-day SMS/email cadences, and reads your live inventory — competitors sell these as 3–6 separate modules or don't have them.</li>
+    <li><b>Transparent pricing.</b> The only vendor in the space with prices on the website. Every competitor is "book a demo to find out."</li>
+    <li><b>Independent-dealer native.</b> No CDK/Reynolds dependency, no OEM co-op requirement, live in days not 4–8 weeks.</li>
+    <li><b>Founder access.</b> Built by a working Sales/F&I manager; Founding Partners get the founder's cell.</li>
+  </ul>
+  <h3>Proof points (dated, real)</h3>
+  <ul>
+    <li><b>Sunday credit app (6/7/26):</b> store closed, Jordan worked an inbound browser to a submitted credit application + Monday visit ask. Zero staff.</li>
+    <li><b>First 30 days at House of Carz:</b> 232 calls · 451 messages · 8 appointments · 50% close-on-show · ~$16K gross attributed.</li>
+    <li><b>Emily Glass:</b> 11 touches over 9 days, walked in unannounced, greeted Jordan by name. (Consent pending before public use.)</li>
+  </ul>
+  <h3>Our honest gaps (don't get ambushed)</h3>
+  <ul>
+    <li>Deep DMS/scheduler integrations (CDK, Reynolds, Tekion, Xtime) — the service-AI players all have them; we have ADF email + adapters awaiting partner APIs. Answer: independents largely don't run those systems.</li>
+    <li>One live rooftop today. Answer: Founding Partner positioning — locked price, co-builder status, founder access.</li>
+    <li>Service-department AI — we don't do service scheduling depth (op codes, advisor routing). Don't pitch service-heavy franchise stores against STELLA/Brooke/Toma.</li>
+  </ul>
+</section>
+
+<!-- ════════ PODIUM ════════ -->
+<section id="podium">
+  <h2>Podium ("Jerry" AI BDC) — biggest threat in our segment</h2>
+  <div class="facts">
+    <div class="fact"><b>Pricing</b><span>Core ~$399 / Pro ~$599 / Sig $999+ · AI add-on $99–$399 · realistic all-in ~$700–1,100</span></div>
+    <div class="fact"><b>Contract</b><span>12-mo, auto-renews, ETF = full balance</span></div>
+    <div class="fact"><b>Reviews</b><span>G2 4.6★ (2,066) · Trustpilot 1.5★ · 60+ BBB complaints</span></div>
+    <div class="fact"><b>Scale</b><span>6,000+ dealerships; generic platform (HVAC, medspa too)</span></div>
+  </div>
+  <h3>What they actually do</h3>
+  <ul>
+    <li>SMS-core platform + web chat + reviews + payments; Jerry AI answers inbound calls, checks inventory, books appointments. Jerry 2.0 (Dec 2025) added customizable agents; OpenAI published a case study (30% revenue lift claim).</li>
+    <li>Outbound = text "Revenue Mining" campaigns. Autonomous outbound AI <i>calling</i>: unverified.</li>
+    <li>Hidden stack: extra users $25–30, locations $50, phones $30/user, 10DLC $5/location, payments 2.15–2.9%.</li>
+  </ul>
+  <h3>Real world</h3>
+  <blockquote>"Charged around $13,000 over almost 2 years… unable to cancel the service."<cite>— Trustpilot reviewer (their Trustpilot is 1.5/5)</cite></blockquote>
+  <blockquote>Cancellation email in the contract bounced; Podium auto-renewed and enforced the new 12-month term. Disputed balances sent to collections while disputes were open.<cite>— BBB complaint patterns, 60+ since 2023</cite></blockquote>
+  <blockquote>"Service outages on busy weekends with unresponsive support teams."<cite>— dealership reviewer</cite></blockquote>
+  <div class="grid2">
+    <div class="card lose"><h4>Where they win</h4><ul><li>Scale + brand (6,000 dealerships), OpenAI halo</li><li>Reviews/reputation product bundled</li><li>Strong SMS tooling, 200+ integrations</li></ul></div>
+    <div class="card win"><h4>Where we win</h4><ul><li>Published pricing + 30-day MBG vs their contract trap</li><li>Automotive-only: Jerry also sells Botox; Jordan only sells cars</li><li>Outbound voice cadences; their voice AI is 6 months old</li><li>All-in $899 vs their assembled ~$700–1,100 with opaque add-ons</li></ul></div>
+  </div>
+  <div class="talk"><b>Talk track:</b> "Podium's a good texting platform — ask them two things: what's the all-in monthly after the AI add-on, phone lines, and 10DLC fees, and what happens if you want out in month 4? Then Google 'Podium Trustpilot.' We publish our price and give you 30 days money-back."</div>
+  <h3>Landmines to plant</h3>
+  <ul><li>"Ask what the early-termination fee is."</li><li>"Ask if the AI was trained for car dealers or for every local business."</li><li>"Ask if it makes outbound calls to your leads, or only texts."</li></ul>
+  <p class="src">Sources: podium.com/getpricing/auto · checkthat.ai/brands/podium/pricing (Apr 2026) · g2.com/sellers/podium · trustpilot.com/review/podium.com · BBB profile · openai.com/index/podium · news.dealershipguy.com (Jerry 2.0, Jan 2026)</p>
+</section>
+
+<!-- ════════ IMPEL ════════ -->
+<section id="impel">
+  <h2>Impel — the enterprise umbrella we price under</h2>
+  <div class="facts">
+    <div class="fact"><b>Pricing</b><span>Custom only; CEO: full AI stack "more than $5,000/mo" (May 2026)</span></div>
+    <div class="fact"><b>Implementation</b><span>4–8 weeks</span></div>
+    <div class="fact"><b>Reviews</b><span>Capterra 4.7★ but ~20 (legacy SpinCar); DealerRefresh negative</span></div>
+    <div class="fact"><b>Target</b><span>Franchise/enterprise; "not ideal for small single-rooftop dealers"</span></div>
+  </div>
+  <h3>What they actually do</h3>
+  <ul>
+    <li>Modular "AI Operating System": Sales AI (email/SMS), Chat AI, Voice AI (inbound), Service AI, Marketing AI (Outsell, $100M acq), Merchandising (SpinCar roots). Sold as separate modules.</li>
+    <li>Deep franchise integrations (CDK, Reynolds, VinSolutions, Tekion); TrueCar exclusive AI partner (Feb 2026, 11,500 dealers); Ford CDP; Mitsubishi certified.</li>
+  </ul>
+  <h3>Real world</h3>
+  <blockquote>"Impel's is super generic and takes so much labor to get going decently. Their sales team is the monster that put it in so many stores."<cite>— Alex Snyder, DealerRefresh founder (2024 thread, 7,670 views)</cite></blockquote>
+  <blockquote>"I was told that they weren't going to allow any individual adjustments to processes… it created entirely too many awkward situations."<cite>— dealer Bill Vaughn, same thread</cite></blockquote>
+  <div class="grid2">
+    <div class="card lose"><h4>Where they win</h4><ul><li>OEM/marketplace distribution (TrueCar, Ford)</li><li>Full lifecycle incl. merchandising</li><li>Enterprise credibility, $126M+ raised</li></ul></div>
+    <div class="card win"><h4>Where we win</h4><ul><li>$899 vs $5,000+; days vs 4–8 weeks</li><li>Per-dealer cadence/prompt customization — their documented refusal</li><li>One agent vs module sprawl</li><li>They openly don't want single-rooftop independents</li></ul></div>
+  </div>
+  <div class="talk"><b>Talk track:</b> "Impel's CEO says a full AI setup runs over five grand a month — and dealers on the forums say it's generic and they won't customize it to your store. We're $899 to start, live this week, and Jordan's cadence is tuned to how YOU sell."</div>
+  <p class="src">Sources: impel.ai/news ($5K quote, May 2026; TrueCar Feb 2026; FM Capital Dec 2025) · forum.dealerrefresh.com thread 10549 · dealershipaitools.com/tools/impel</p>
+</section>
+
+<!-- ════════ CONVERSICA ════════ -->
+<section id="conversica">
+  <h2>Conversica — the legacy AI assistant, no voice, shrinking</h2>
+  <div class="facts">
+    <div class="fact"><b>Pricing</b><span>$2,999/mo floor · 12-mo annual · $5–15K setup est. · SMS/chat are add-ons</span></div>
+    <div class="fact"><b>Channels</b><span>Email core. NO AI voice — cannot answer or place calls</span></div>
+    <div class="fact"><b>Reviews</b><span>G2 4.5★ (187); #1 complaint theme: "robotic / off-script"</span></div>
+    <div class="fact"><b>Company</b><span>112 employees (down from ~160), 2 layoff rounds, valuation under capital raised</span></div>
+  </div>
+  <h3>What they actually do</h3>
+  <ul>
+    <li>Email-first lead follow-up + database reactivation. Inventory-aware since Jan 2025 ("AnswersIQ for Auto," ~220M VINs) — but delivered via email/SMS/chat only.</li>
+    <li>Integrates DealerSocket, CDK, VinSolutions; CRM sync "often needs middleware" per third parties.</li>
+  </ul>
+  <h3>Real world</h3>
+  <blockquote>"When leads go off-script… responses can feel robotic or miss the point." Top negative review tags: Inaccuracy, Poor Understanding, AI Limitations.<cite>— G2 review aggregation</cite></blockquote>
+  <div class="grid2">
+    <div class="card lose"><h4>Where they win</h4><ul><li>12 years of email-AI maturity, enterprise logos</li><li>Big inventory-data partnership (84K dealer sites)</li></ul></div>
+    <div class="card win"><h4>Where we win</h4><ul><li>They literally cannot answer the phone</li><li>$36K/yr minimum vs our $10.8K entry — priced out of independents</li><li>Stability story: two layoff rounds vs our shipping velocity</li></ul></div>
+  </div>
+  <div class="talk"><b>Talk track:</b> "Conversica is an email assistant — when your customer calls at 7 PM, nobody answers. And their floor is about $36,000 a year. Jordan picks up the phone, texts, and emails, for $899 a month."</div>
+  <p class="src">Sources: marketbetter.ai/blog/conversica-pricing (Feb 2026) · pymnts.com (AnswersIQ, Jan 2025) · zoominfo (headcount) · g2.com/products/conversica · getlatka (ARR/valuation)</p>
+</section>
+
+<!-- ════════ NUMA ════════ -->
+<section id="numa">
+  <h2>Numa — service-first platform, sales AI admitted "newer"</h2>
+  <div class="facts">
+    <div class="fact"><b>Pricing</b><span>Custom; ~$200–400+/mo entry est. <span class="flag">UNVERIFIED</span> · pay-per-booked-appt option</span></div>
+    <div class="fact"><b>Focus</b><span>Service dept: missed-call rescue, status texts, CSI</span></div>
+    <div class="fact"><b>Scale</b><span>1,200+ dealerships · $48M raised · Stellantis MarketCenter (Oct 2025)</span></div>
+    <div class="fact"><b>Implementation</b><span>2–3 weeks</span></div>
+  </div>
+  <h3>What they actually do</h3>
+  <ul>
+    <li>SMS-first heritage (missed-call-to-text since 2016); now voice AI receptionist + service booking + Smart Inbox + LiveCSI (Jan 2026) + payment-by-text. Deep CDK/Reynolds/Tekion integrations.</li>
+    <li>Directory verdict: "Strongest in service — sales AI capabilities are newer… Not ideal for dealerships primarily looking for sales-focused BDC automation or inventory management."</li>
+  </ul>
+  <h3>Real world</h3>
+  <blockquote>"Absolutely flawless… it's never failed us, even during our busiest times."<cite>— Capterra (positive-skewing, small N)</cite></blockquote>
+  <blockquote>Complaints: no international numbers; "change multiple settings if closing early for a day."<cite>— Capterra</cite></blockquote>
+  <div class="grid2">
+    <div class="card lose"><h4>Where they win</h4><ul><li>Service-heavy franchise stores, high call volume</li><li>OEM channel (Stellantis), real funding, fast growth</li></ul></div>
+    <div class="card win"><h4>Where we win</h4><ul><li>Sales BDC is our core, their afterthought — no inventory-aware sales engine</li><li>Used-car independents without big service drives</li><li>Outbound sales cadences across 3 channels</li></ul></div>
+  </div>
+  <div class="talk"><b>Talk track:</b> "Numa's a service-department tool — great if you're a franchise store drowning in service calls. If you want to sell more cars off your internet leads, that's not what it does. That's exactly what Jordan does."</div>
+  <p class="src">Sources: dealershipaitools.com/tools/numa (Apr 2026) · prnewswire (Stellantis Oct 2025; LiveCSI Jan 2026) · capterra.com/p/200843 · skipcalls.com/comparison/numa (pricing est.)</p>
+</section>
+
+<!-- ════════ TOMA ════════ -->
+<section id="toma">
+  <h2>Toma — a16z-backed voice AI, going enterprise</h2>
+  <div class="facts">
+    <div class="fact"><b>Pricing</b><span>Custom, "premium" · capability-based upsells</span></div>
+    <div class="fact"><b>Focus</b><span>Inbound voice, service-led; 1M+ calls in ~18 months (claim)</span></div>
+    <div class="fact"><b>Backing</b><span>$17M Series A (a16z, Jun 2025) · Car Dealership Guy is investor/promoter</span></div>
+    <div class="fact"><b>Customers</b><span>Lithia, AutoNation, hundreds of stores; SOC2/ISO for groups</span></div>
+  </div>
+  <h3>What they actually do</h3>
+  <ul>
+    <li>AI voice agents for service scheduling, recalls, parts, status; some sales Q&A and test-drive booking. Toma 2.0 (Nov 2025) added Safeguards + Inbox (SMS as human follow-up tool, not autonomous nurture). Toma IQ (2026) does per-dealer RLHF learning.</li>
+    <li>1–2 weeks of call-training before go-live. CRM/DMS: VinSolutions, DealerSocket, CDK, Reynolds, Tekion.</li>
+  </ul>
+  <div class="grid2">
+    <div class="card lose"><h4>Where they win</h4><ul><li>Voice-tech depth + a16z/CDG distribution halo</li><li>Enterprise logos (Lithia, AutoNation)</li></ul></div>
+    <div class="card win"><h4>Where we win</h4><ul><li>No autonomous SMS/email nurture — Inbox is human triage; Jordan runs the cadence itself</li><li>Sales-lead focus + inventory answers vs service focus</li><li>Speed-to-live and price for single rooftops as they chase dealer groups</li></ul></div>
+  </div>
+  <div class="talk"><b>Talk track:</b> "Toma's impressive voice tech aimed at Lithia-sized service departments. Jordan is the whole BDC: answers, calls out, texts, emails, and works your used inventory — priced for one rooftop, not a hundred."</div>
+  <p class="src">Sources: techcrunch.com (Jun 5 2025) · toma.com/blog (2.0 Nov 2025; IQ 2026; SOC2) · a16z.com · dealershipaitools.com/tools/toma</p>
+</section>
+
+<!-- ════════ STELLA ════════ -->
+<section id="stella">
+  <h2>STELLA Automotive AI — franchise voice/service specialist</h2>
+  <div class="facts">
+    <div class="fact"><b>Pricing</b><span>Quote-only; "minimal setup + monthly subscription"</span></div>
+    <div class="fact"><b>Pasch DVA score</b><span>5.3 — "Good" tier; DMS support 4/8</span></div>
+    <div class="fact"><b>Scale</b><span>300+ rooftops · $34.7M raised · GM IMR program (Jan 2025)</span></div>
+    <div class="fact"><b>Reviews</b><span>Pasch 5/5 from 3 dealer reviews; no G2/Capterra presence</span></div>
+  </div>
+  <h3>What they actually do</h3>
+  <ul>
+    <li>Voice-first AI receptionist/BDC, strongest in fixed ops: 270+ op codes, books directly into CDK/Xtime/Dealer-FX/Tekion/Reynolds schedulers, whisper transfers, EN/ES.</li>
+    <li>Sales-side nurture is shallow — own positioning is "virtual BDC" filtering calls to human closers. Email channel absent.</li>
+  </ul>
+  <blockquote>"Our Ford stores are now converting an average of 56% of booking opportunities into confirmed appointments."<cite>— BDC Director, Sheehy Auto Stores (Pasch verified review)</cite></blockquote>
+  <div class="grid2">
+    <div class="card lose"><h4>Where they win</h4><ul><li>Service-call conversion at franchise groups</li><li>GM co-op dollars; certified scheduler integrations</li></ul></div>
+    <div class="card win"><h4>Where we win</h4><ul><li>Their moat (CDK/Reynolds/Xtime/GM co-op) is irrelevant to independents on Frazer/DealerCenter/Wayne Reaves</li><li>Sales cadences, email, lead scoring — all absent there</li><li>Pasch scored them "Good," not "Great" — and that's their home turf</li></ul></div>
+  </div>
+  <div class="talk"><b>Talk track:</b> "STELLA is built around franchise service schedulers and GM co-op money. If you don't run CDK or Xtime, you're buying their weakest version. Jordan was built for exactly your store."</div>
+  <p class="src">Sources: paschgroup.com/vendor-reviews/stella (Nov 2025) · stellaautomotive.com (FAQ, NADA 2026, AutoPilot) · investorshangout (GM IMR) · tracxn/crunchbase (funding)</p>
+</section>
+
+<!-- ════════ BROOKE ════════ -->
+<section id="brooke">
+  <h2>Brooke (Better Car People) — service scheduler, not a sales BDC</h2>
+  <div class="facts">
+    <div class="fact"><b>Pricing</b><span>Quote-only; tiers keyed to RO volume (1,000+ ROs/mo for core tier)</span></div>
+    <div class="fact"><b>Focus</b><span>Inbound SERVICE calls only; 560+ stores, 2.7M calls (2023)</span></div>
+    <div class="fact"><b>OEM</b><span>Stellantis MarketCenter (Jan 2024), VW endorsement</span></div>
+    <div class="fact"><b>Reviews</b><span>Essentially zero third-party product reviews anywhere</span></div>
+  </div>
+  <h3>What they actually do</h3>
+  <ul>
+    <li>AI voice for service scheduling (~40% of calls end-to-end, rest to humans), VIN/recall aware, Xtime + Dealer-FX integrations. Post-2024 merger, sales-side AI exists as SEPARATE Better Car People products (their legacy overnight human BDC business).</li>
+    <li>No inventory-aware sales answering, no outbound sales cadences in Brooke itself. "Full Coverage" tier includes outsourced human agents — labor cost structure.</li>
+  </ul>
+  <div class="grid2">
+    <div class="card lose"><h4>Where they win</h4><ul><li>Franchise service drives with 1,000+ ROs/month</li><li>OEM channel discounts</li></ul></div>
+    <div class="card win"><h4>Where we win</h4><ul><li>An independent buying "AI BDC" from them gets a service scheduler — wrong product entirely</li><li>Pre-LLM heritage (2021 NLU) wrapped in a PE roll-up vs weekly shipping</li></ul></div>
+  </div>
+  <div class="talk"><b>Talk track:</b> "Brooke answers service calls for big franchise service departments — it doesn't follow up your internet leads, doesn't know your inventory, doesn't text or email anybody. Different tool for a different store."</div>
+  <p class="src">Sources: wardsauto.com (Brooke ops) · bettercarpeople.com (merger, product nav) · einpresswire (Stellantis Jan 2024) · xtime.com/brooke-ai</p>
+</section>
+
+<!-- ════════ GUBAGOO ════════ -->
+<section id="gubagoo">
+  <h2>Gubagoo (Reynolds & Reynolds) — franchise website chat</h2>
+  <div class="facts">
+    <div class="fact"><b>Pricing</b><span>Nothing public anywhere; OEM co-op subsidized</span></div>
+    <div class="fact"><b>Channels</b><span>Managed human+AI website chat, SMS, video. NO AI voice found</span></div>
+    <div class="fact"><b>Scale</b><span>8,500+ dealerships, 90% of top-150 groups; FordDirect/Toyota/Honda/Stellantis/BMW programs</span></div>
+    <div class="fact"><b>Reviews</b><span>G2 4.2★ (only 12); DrivingSales awards are 2019–2023 era</span></div>
+  </div>
+  <h3>What they actually do</h3>
+  <ul>
+    <li>24/7 human-staffed chat + Guba IQ AI; Virtual Retailing (payments/desking/F&I, "penny-perfect" via Reynolds DMS); Curator + "Data Ups" (Fullpath-powered lead intelligence, NADA 2026). Inbound website traffic only — no outbound engine.</li>
+  </ul>
+  <blockquote>"Chat reps don't always look at dealership notes and only get the correct information about 70% of the time."<cite>— G2 reviewer</cite></blockquote>
+  <blockquote>"I am in our 30 day out after 10 years with Gubagoo, their quality has gone down the tubes."<cite>— DealerRefresh, "Gubagoo Falling To Pieces?" thread</cite></blockquote>
+  <div class="grid2">
+    <div class="card lose"><h4>Where they win</h4><ul><li>Franchise stores on Reynolds DMS; OEM-subsidized chat</li><li>Best chat UI/UX per some dealers</li></ul></div>
+    <div class="card win"><h4>Where we win</h4><ul><li>They don't answer phones, don't call leads, don't run cadences</li><li>Human reps at 70% accuracy vs inventory-grounded AI</li><li>Independents get their worst version (no Reynolds, no co-op)</li></ul></div>
+  </div>
+  <div class="talk"><b>Talk track:</b> "Gubagoo is website chat for franchise stores — humans in a call center answering your shoppers. It never picks up your phone and never chases a lead. We're the part of the BDC they don't do."</div>
+  <p class="src">Sources: gubagoo.com (+/oem) · g2.com/products/gubagoo · forum.dealerrefresh.com thread 9729 · cbtnews (Curator NADA 2026) · capterra (pricing: custom)</p>
+</section>
+
+<!-- ════════ ACTIVENGAGE ════════ -->
+<section id="activengage">
+  <h2>ActivEngage — human chat with defensive AI</h2>
+  <div class="facts">
+    <div class="fact"><b>Pricing</b><span>Custom only; OEM co-op eligible</span></div>
+    <div class="fact"><b>Channels</b><span>Human-staffed managed chat/SMS/video since 2007. No AI voice, no outbound</span></div>
+    <div class="fact"><b>Distribution</b><span>Cox exclusive (Dealer.com, AutoTrader, KBB, VinSolutions) · GM DealerChat · Porsche certified</span></div>
+    <div class="fact"><b>Reviews</b><span>~3 Capterra reviews in 19 years · agents' Glassdoor: 1.6★</span></div>
+  </div>
+  <h3>What they actually do</h3>
+  <ul>
+    <li>24/7 human "Engagement Experts" on dealer sites; new "AI Suite" (NADA 2026) is explicitly human-led — AI Receptionist routes to humans, AI Summaries of human chats. Their own slogan concedes the threat: "AI should amplify the human voice, not silence it."</li>
+  </ul>
+  <blockquote>"At times the chats can feel a bit scripted, and the dashboard could be easier to navigate."<cite>— GetApp reviewer</cite></blockquote>
+  <div class="grid2">
+    <div class="card lose"><h4>Where they win</h4><ul><li>Franchise stores wanting humans-only; Cox/OEM channel</li></ul></div>
+    <div class="card win"><h4>Where we win</h4><ul><li>Chat-only — none of the 70% of BDC work Jordan does</li><li>Their cost structure is human labor (1.6★ agent morale); ours is software</li><li>Their AI strategy is a defensive wrapper</li></ul></div>
+  </div>
+  <div class="talk"><b>Talk track:</b> "ActivEngage staffs your website chat with call-center humans. Good at that. But nobody's answering your phone at 9 PM or calling Tuesday's lead back Thursday. That's the job Jordan was hired for."</div>
+  <p class="src">Sources: activengage.com (+managed-chat, +integrations, AI Suite via digitaldealer 2026) · forum.dealerrefresh.com thread 11697 (May 2026 community review) · capterra/getapp · glassdoor</p>
+</section>
+
+<!-- ════════ EMERGING ════════ -->
+<section id="emerging">
+  <h2>Emerging entrants to watch</h2>
+  <h3>Matador AI — closest to our lane</h3>
+  <ul>
+    <li>SMS/chat-led conversational AI "purpose-built for automotive": AI Sales + Service agents, Call AI, broadcast, TCPA compliance engine ("Matador Shield"). Claims 1,500+ dealerships, Deloitte Fast 500 (2025). Pricing unpublished. <b>Watch closely</b> — omnichannel sales-cadence positioning overlaps ours, though chat/SMS-led rather than voice-led.</li>
+  </ul>
+  <h3>Revion — the newest single-store playbook</h3>
+  <ul>
+    <li>Founded 2025; AI voice + technician admin automation. Case study circulating on DealerRefresh: single-point FL Toyota store, 11,943 calls autonomous, ~20% service growth. Competes for the same demo slot with the same case-study GTM we use.</li>
+  </ul>
+  <h3>Noted, not profiled</h3>
+  <ul>
+    <li><span class="pill">Spyne "Vini"</span><span class="pill">TECOBI (text-first BDC)</span><span class="pill">Visquanta (lead reactivation)</span><span class="pill">Drivee AI</span><span class="pill">SkipCalls ($199/yr generic receptionist — undercuts from below)</span></li>
+  </ul>
+  <div class="talk"><b>Strategic read:</b> the service-AI wave (Toma/Numa/STELLA/Brooke) is well-funded and franchise-bound. The sales-BDC-for-independents lane is contested only by Podium (generic) and Matador (SMS-led). Voice-led + sales-led + independent-priced is still open. Move fast; the a16z money will notice this lane eventually.</div>
+</section>
+
+<script>
+document.getElementById('tabs').addEventListener('click',function(e){
+  var b=e.target.closest('.tab');if(!b)return;
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active')});
+  document.querySelectorAll('section').forEach(function(s){s.classList.remove('active')});
+  b.classList.add('active');
+  document.getElementById(b.dataset.t).classList.add('active');
+  window.scrollTo({top:0});
+});
+</script>
+</body>
+</html>
