@@ -18,10 +18,24 @@
      lotlinkin.com homepage exactly.
      ────────────────────────────────────────────────────────────── */
 
-  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap');
+  /* Fonts bundled locally (marketing/fonts/) — the old Google Fonts
+     @import silently failed in every headless render, so previous PDFs
+     shipped with fallback faces. Same fix as business_card.html. */
+  @font-face { font-family: 'Bebas Neue'; font-style: normal; font-weight: 400; src: url('fonts/bebas-neue-latin-400-normal.woff2') format('woff2'); }
+  @font-face { font-family: 'DM Serif Display'; font-style: normal; font-weight: 400; src: url('fonts/dm-serif-display-latin-400-normal.woff2') format('woff2'); }
+  @font-face { font-family: 'DM Serif Display'; font-style: italic; font-weight: 400; src: url('fonts/dm-serif-display-latin-400-italic.woff2') format('woff2'); }
+  @font-face { font-family: 'DM Sans'; font-style: normal; font-weight: 300; src: url('fonts/dm-sans-latin-300-normal.woff2') format('woff2'); }
+  @font-face { font-family: 'DM Sans'; font-style: normal; font-weight: 400; src: url('fonts/dm-sans-latin-400-normal.woff2') format('woff2'); }
+  @font-face { font-family: 'DM Sans'; font-style: normal; font-weight: 500; src: url('fonts/dm-sans-latin-500-normal.woff2') format('woff2'); }
+  @font-face { font-family: 'DM Sans'; font-style: normal; font-weight: 600; src: url('fonts/dm-sans-latin-600-normal.woff2') format('woff2'); }
+  @font-face { font-family: 'DM Sans'; font-style: normal; font-weight: 700; src: url('fonts/dm-sans-latin-700-normal.woff2') format('woff2'); }
 
+  /* VistaPrint brochure spec: trim 11×8.5, bleed 0.04"/side → full
+     11.08×8.58. Fold lines stay at trim thirds (3.6667 from trim edge),
+     i.e. 3.7067 / 7.3733 from the bleed-left edge. Outer panels absorb
+     the extra 0.04" so interior panel widths stay equal for the Z-fold. */
   @page {
-    size: 11in 8.5in;
+    size: 11.08in 8.58in;
     margin: 0;
   }
 
@@ -46,7 +60,7 @@
   }
 
   .sheet {
-    width: 11in; height: 8.5in;
+    width: 11.08in; height: 8.58in;
     display: flex;
     flex-direction: row;
     position: relative;
@@ -62,13 +76,13 @@
     background: rgba(0,0,0,0.06);
     z-index: 50; pointer-events:none;
   }
-  .sheet::before { left: 3.6667in; }
-  .sheet::after  { left: 7.3333in; }
+  .sheet::before { left: 3.7067in; }
+  .sheet::after  { left: 7.3733in; }
 
   .panel {
     width: 3.6667in;
-    height: 8.5in;
-    padding: 0.35in 0.32in;
+    height: 8.58in;
+    padding: 0.39in 0.32in;
     position: relative;
     overflow: hidden;
     font-size: 12px;  /* reset from flex parent's font-size:0 */
@@ -77,8 +91,18 @@
     flex-shrink: 0;
   }
   /* Prevent inner elements from compressing into each other when
-     their total content exceeds the fixed 8.5in panel height. */
+     their total content exceeds the fixed panel height. */
   .panel > * { flex-shrink: 0; }
+
+  /* Outer panels absorb the 0.04" horizontal bleed on their outer edge */
+  .sheet .panel:first-child { width: 3.7067in; }
+  .sheet .panel:last-child  { width: 3.7067in; }
+
+  /* Fine-print footnote for asterisked claims */
+  .fineprint {
+    font-size: 7.5px; line-height: 1.4; letter-spacing: 0.2px;
+    margin-top: 7px;
+  }
 
   /* ══════════════════════════════════════════════════════════════
      OUTSIDE — Panel 1: FRONT COVER
@@ -87,7 +111,8 @@
     background: linear-gradient(165deg, #0A1A30 0%, #0F2444 50%, #122A52 100%);
     color: #fff;
     display:flex; flex-direction:column; justify-content:space-between;
-    padding: 0.32in 0.28in 0.32in;
+    /* +0.04 vertical (bleed) and +0.04 left (outer bleed edge, first panel) */
+    padding: 0.36in 0.28in 0.36in 0.32in;
   }
   .cover::before {
     content:''; position:absolute; inset:0; opacity:0.45; pointer-events:none;
@@ -161,7 +186,7 @@
     background: var(--cream);
     color: var(--ink);
     display:flex; flex-direction:column; gap: 12px;
-    padding: 0.4in 0.32in;
+    padding: 0.44in 0.32in;
   }
   .teaser-eyebrow {
     font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
@@ -229,7 +254,8 @@
   .back-panel {
     background: linear-gradient(165deg, #0F2444 0%, #1B3A6B 100%);
     color: #fff;
-    padding: 0.32in 0.26in;
+    /* +0.04 vertical and +0.04 right (outer bleed edge, last panel) */
+    padding: 0.36in 0.30in 0.36in 0.26in;
     display: flex; flex-direction: column;
   }
   .back-panel::before {
@@ -310,7 +336,8 @@
      INSIDE — Panel 4: 3 CHANNELS
      ══════════════════════════════════════════════════════════════ */
   .inside-panel {
-    padding: 0.38in 0.32in;
+    /* +0.04 vertical and +0.04 left (outer bleed edge, first panel) */
+    padding: 0.42in 0.32in 0.42in 0.36in;
     background: #fff;
   }
   .ip-eyebrow {
@@ -380,7 +407,7 @@
   .roi-panel {
     background: var(--navy);
     color: #fff;
-    padding: 0.38in 0.32in;
+    padding: 0.42in 0.32in;
     position: relative;
     overflow: hidden;
   }
@@ -479,7 +506,8 @@
   .proof-panel {
     background: var(--cream);
     color: var(--ink);
-    padding: 0.38in 0.32in;
+    /* +0.04 vertical and +0.04 right (outer bleed edge, last panel) */
+    padding: 0.42in 0.36in 0.42in 0.32in;
     display:flex; flex-direction:column;
   }
   .case-mini {
@@ -585,9 +613,10 @@
       </p>
       <div class="cover-pills">
         <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> 3 channels: voice · text · email</span>
-        <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Under 60 seconds — every time</span>
+        <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> First response in under 60 seconds*</span>
         <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> No contract · 30-day money-back</span>
       </div>
+      <div class="fineprint" style="color: rgba(255,255,255,0.5);">*Follow-up timing depends on your cadence settings.</div>
     </div>
 
     <div class="cover-foot">
@@ -604,18 +633,23 @@
 
     <div class="stat-stack">
       <div class="stat">
+        <div class="n"><em>7</em></div>
+        <div class="lbl"><b>Deals in 30 days</b> attributed to Jordan at House of Carz — Rochester, Indiana.</div>
+      </div>
+      <div class="stat">
         <div class="n"><em>67%</em></div>
         <div class="lbl"><b>Of car leads</b> are abandoned because no one followed up fast enough.<br><small style="color:var(--muted);">— CarGurus 2024 Lead Response Study</small></div>
       </div>
       <div class="stat">
         <div class="n"><em>11<small>min</small></em></div>
-        <div class="lbl"><b>Industry average</b> first-response time. LotLink's avg: <b>under 60 seconds.</b></div>
+        <div class="lbl"><b>Industry average</b> first-response time. LotLink's first response: <b>under 60 seconds.*</b></div>
       </div>
       <div class="stat">
         <div class="n"><em>$3K</em></div>
         <div class="lbl"><b>Monthly savings</b> vs. a fully-loaded human BDC rep — and you don't lose nights or weekends.</div>
       </div>
     </div>
+    <div class="fineprint" style="color: var(--muted);">*Follow-up timing depends on your cadence settings.</div>
 
     <div class="teaser-foot">
       Open it up <span class="arrow">→</span> see how Jordan books appointments while you're closing the one already on the desk.
@@ -729,10 +763,11 @@
     </div>
 
     <div class="speed-block">
-      <div class="speed-cap">Speed-to-lead · seconds</div>
+      <div class="speed-cap">Speed-to-lead · first response · seconds</div>
       <div class="speed-row them"><div class="who">Competitor</div><div class="bar"></div><div class="v">660s</div></div>
       <div class="speed-row avg"><div class="who">Industry avg</div><div class="bar"></div><div class="v">432s</div></div>
-      <div class="speed-row ll"><div class="who">LotLink</div><div class="bar"></div><div class="v">&lt;60s</div></div>
+      <div class="speed-row ll"><div class="who">LotLink</div><div class="bar"></div><div class="v">&lt;60s*</div></div>
+      <div class="fineprint" style="color: rgba(255,255,255,0.45);">*Follow-up timing depends on your cadence settings.</div>
     </div>
   </div>
 

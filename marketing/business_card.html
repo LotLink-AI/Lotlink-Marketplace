@@ -5,19 +5,37 @@
 <title>LotLink — Business Card</title>
 <style>
   /* ──────────────────────────────────────────────────────────────
-     LotLink Business Card — VistaPrint US Standard
-     Trim: 3.5" × 2.0"   Bleed: 0.125" all sides   Full: 3.75" × 2.25"
-     Safe area: 0.25" inset from trim edge
+     LotLink Business Card — VistaPrint US Standard (EXACT spec)
+     Full bleed: 3.58" × 2.08"   Trim: 3.5" × 2.0"  (0.04" bleed/side)
+     VistaPrint safety: 3.42" × 1.92" (0.08" from bleed edge)
+     Our safe inset: 0.15" from bleed edge — comfortably inside their
+     safety line, and yields a 3.28×1.78 content box (within 1% of the
+     old 3.25×1.75 layout, so nothing reflows).
+     2026-06-10: rebuilt from generic 3.75×2.25/0.125" bleed — VistaPrint
+     rescaled that upload and flagged safety violations; the LL corner
+     monogram also sat in the TRIM zone and would have been cut off.
      CMYK-safe brand colors (match site CSS)
      ────────────────────────────────────────────────────────────── */
-  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+  /* Fonts are bundled locally (marketing/fonts/) so the card renders
+     identically everywhere — including offline/headless PDF generation.
+     Discovered 2026-06-10: the old Google Fonts @import silently failed
+     in every render environment, so every previous PDF/preview shipped
+     with DejaVu/Liberation fallbacks instead of the designed faces. */
+  @font-face { font-family: 'Bebas Neue'; font-style: normal; font-weight: 400; src: url('fonts/bebas-neue-latin-400-normal.woff2') format('woff2'); }
+  @font-face { font-family: 'DM Serif Display'; font-style: normal; font-weight: 400; src: url('fonts/dm-serif-display-latin-400-normal.woff2') format('woff2'); }
+  @font-face { font-family: 'DM Serif Display'; font-style: italic; font-weight: 400; src: url('fonts/dm-serif-display-latin-400-italic.woff2') format('woff2'); }
+  @font-face { font-family: 'DM Sans'; font-style: normal; font-weight: 300; src: url('fonts/dm-sans-latin-300-normal.woff2') format('woff2'); }
+  @font-face { font-family: 'DM Sans'; font-style: normal; font-weight: 400; src: url('fonts/dm-sans-latin-400-normal.woff2') format('woff2'); }
+  @font-face { font-family: 'DM Sans'; font-style: normal; font-weight: 500; src: url('fonts/dm-sans-latin-500-normal.woff2') format('woff2'); }
+  @font-face { font-family: 'DM Sans'; font-style: normal; font-weight: 600; src: url('fonts/dm-sans-latin-600-normal.woff2') format('woff2'); }
+  @font-face { font-family: 'DM Sans'; font-style: normal; font-weight: 700; src: url('fonts/dm-sans-latin-700-normal.woff2') format('woff2'); }
 
   @page {
-    size: 3.75in 2.25in;
+    size: 3.58in 2.08in;
     margin: 0;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  html, body { width: 3.75in; height: 2.25in; }
+  html, body { width: 3.58in; height: 2.08in; }
 
   :root {
     --navy: #0A1A30;
@@ -29,8 +47,8 @@
   }
 
   .card {
-    width: 3.75in;
-    height: 2.25in;
+    width: 3.58in;
+    height: 2.08in;
     page-break-after: always;
     page-break-inside: avoid;
     overflow: hidden;
@@ -62,10 +80,11 @@
     pointer-events: none;
   }
 
-  /* Safe area is the 0.25" inset from page edges. Content lives here. */
+  /* Safe area: 0.15" inset from bleed edge — inside VistaPrint's
+     3.42×1.92 safety line with margin to spare. Content lives here. */
   .safe {
     position: absolute;
-    top: 0.25in; left: 0.25in; right: 0.25in; bottom: 0.25in;
+    top: 0.15in; left: 0.15in; right: 0.15in; bottom: 0.15in;
     display: flex;
     flex-direction: column;
     z-index: 2;
@@ -141,11 +160,14 @@
     display: inline-block;
   }
 
-  /* "LL" monogram in the top-right of the front */
+  /* "LL" monogram in the top-right of the front. MUST sit inside the
+     safe area — at top:0/right:0 it lived in the trim zone and would
+     have been sliced off the printed card (caught on VistaPrint's
+     proof screen 2026-06-10). */
   .front .mark {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 0.15in;
+    right: 0.15in;
     font-family: 'DM Serif Display', serif;
     font-size: 18pt;
     color: rgba(232,160,32,0.30);
@@ -264,7 +286,7 @@
     <div class="safe">
       <div class="stat-row">
         <div class="stat">
-          <div class="num">5</div>
+          <div class="num">7</div>
           <div class="lbl">Deals</div>
         </div>
         <div class="stat-divider"></div>
