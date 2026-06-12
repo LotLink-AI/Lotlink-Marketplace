@@ -225,6 +225,11 @@
 .compare-table td { color:rgba(255,255,255,0.72); }
 .compare-table tr:last-child td { border-bottom:none; }
 .compare-table .feature-label { color:var(--white); font-weight:500; }
+.compare-table .col-tier { text-align:center; white-space:nowrap; }
+.compare-table .ck { color:var(--sky); font-weight:700; }
+.compare-table .ck-gold { color:var(--gold); font-weight:700; }
+.compare-table .nope { color:rgba(255,255,255,0.25); }
+.compare-table-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; }
 
 /* Final CTA — two roads, one button each. Mirrors the audience-picker
    at the top so visitors who scrolled all the way down still self-route. */
@@ -318,7 +323,8 @@
         <li>Inventory-aware AI responses</li>
         <li>Lead scoring + speed-to-lead alerts</li>
         <li>Standard cadence (proven 7-day follow-up)</li>
-        <li>1–2 concurrent campaigns · single user</li>
+        <li>Outbound AI calls included your first 60 days</li>
+        <li>1 concurrent campaign · 1 login</li>
         <li>For small independents (10–40 cars)</li>
       </ul>
       <a href="signup.html?plan=starter" class="tier-cta" data-signup-href="signup.html?plan=starter">Sign Up Now</a>
@@ -333,9 +339,10 @@
         <li>Everything in Starter, plus:</li>
         <li>Up to 1,000 leads / month</li>
         <li>1,500 voice minutes / month included</li>
+        <li>Outbound AI call cadences — Jordan dials your leads, always</li>
         <li>Cadence editor — Light, Standard, Aggressive, Maximum</li>
         <li>Embeddable web chat widget on your site</li>
-        <li>Team members (up to 3 users)</li>
+        <li>4 logins — you + 3 team members</li>
         <li>Custom voice persona + pronunciation</li>
         <li>Warm transfer routing (Sales / Service / Finance)</li>
         <li>Unlimited concurrent campaigns</li>
@@ -390,6 +397,56 @@
       <strong style="color:var(--gold);">Book a 15-minute demo</strong> — I'll log into our House of Carz dashboard and walk you through how Jordan worked this week's leads.
     </p>
     <a href="https://calendly.com/john-lotlinkin/demo" class="btn-outline" style="display:inline-block;">📅 Book a 15-min Demo with John</a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═════════════════════════════════════════════════════════
+     FEATURE COMPARISON GRID — mirrors src/lib/entitlements.js
+     (tier-gating wave 2026-06-11). If a gate changes there,
+     change it here in the same sitting.
+     ═════════════════════════════════════════════════════════ -->
+<section class="section" id="compare">
+  <div class="section-label">Side by Side</div>
+  <div class="section-title">Every Plan, <em>Every Feature</em></div>
+
+  <div class="compare-table-wrap">
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th class="col-tier">Starter</th>
+        <th class="col-tier">Growth</th>
+        <th class="col-tier" style="color:var(--gold);">Pro</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="feature-label">Monthly price</td><td class="col-tier">$899</td><td class="col-tier">$1,499</td><td class="col-tier">$2,499 <span style="color:var(--gold);">($1,999 Founding Partner)</span></td></tr>
+      <tr><td class="feature-label">Annual prepay — 2 months free</td><td class="col-tier nope">Monthly only</td><td class="col-tier">$14,990/yr</td><td class="col-tier">$24,990/yr <span style="color:var(--gold);">($19,990 FP)</span></td></tr>
+      <tr><td class="feature-label">Leads per month</td><td class="col-tier">300</td><td class="col-tier">1,000</td><td class="col-tier">Unlimited</td></tr>
+      <tr><td class="feature-label">Voice minutes included</td><td class="col-tier">500</td><td class="col-tier">1,500</td><td class="col-tier">4,000</td></tr>
+      <tr><td class="feature-label">Voice overage rate</td><td class="col-tier">$0.35/min</td><td class="col-tier">$0.30/min</td><td class="col-tier">$0.25/min</td></tr>
+      <tr><td class="feature-label">Jordan 24/7 — voice, SMS &amp; email answering</td><td class="col-tier ck">✓</td><td class="col-tier ck">✓</td><td class="col-tier ck-gold">✓</td></tr>
+      <tr><td class="feature-label">Inventory-aware AI responses</td><td class="col-tier ck">✓</td><td class="col-tier ck">✓</td><td class="col-tier ck-gold">✓</td></tr>
+      <tr><td class="feature-label">Lead scoring + speed-to-lead alerts</td><td class="col-tier ck">✓</td><td class="col-tier ck">✓</td><td class="col-tier ck-gold">✓</td></tr>
+      <tr><td class="feature-label">MMS photo confirmations</td><td class="col-tier ck">✓</td><td class="col-tier ck">✓</td><td class="col-tier ck-gold">✓</td></tr>
+      <tr><td class="feature-label">Follow-up cadences (SMS + email)</td><td class="col-tier">Standard preset</td><td class="col-tier">4 presets + per-lead override</td><td class="col-tier">4 presets + per-lead override</td></tr>
+      <tr><td class="feature-label">Outbound AI call cadences</td><td class="col-tier">First 60 days</td><td class="col-tier ck">✓</td><td class="col-tier ck-gold">✓</td></tr>
+      <tr><td class="feature-label">Web chat widget on your site</td><td class="col-tier nope">—</td><td class="col-tier ck">✓</td><td class="col-tier ck-gold">✓</td></tr>
+      <tr><td class="feature-label">Warm transfer routing (Sales / Service / Finance)</td><td class="col-tier nope">—</td><td class="col-tier ck">✓</td><td class="col-tier ck-gold">✓</td></tr>
+      <tr><td class="feature-label">Custom voice persona + pronunciation</td><td class="col-tier nope">—</td><td class="col-tier ck">✓</td><td class="col-tier ck-gold">✓</td></tr>
+      <tr><td class="feature-label">Team logins</td><td class="col-tier">1</td><td class="col-tier">4 — you + 3</td><td class="col-tier">Unlimited</td></tr>
+      <tr><td class="feature-label">Concurrent campaigns</td><td class="col-tier">1</td><td class="col-tier">Unlimited</td><td class="col-tier">Unlimited</td></tr>
+      <tr><td class="feature-label">Analytics depth</td><td class="col-tier">Basic</td><td class="col-tier">Full</td><td class="col-tier">Executive</td></tr>
+      <tr><td class="feature-label">Multi-rooftop support</td><td class="col-tier nope">—</td><td class="col-tier nope">—</td><td class="col-tier ck-gold">✓</td></tr>
+      <tr><td class="feature-label">CRM sync — DealerSocket / VinSolutions</td><td class="col-tier nope">—</td><td class="col-tier nope">—</td><td class="col-tier ck-gold">✓</td></tr>
+      <tr><td class="feature-label">API access + white-label</td><td class="col-tier nope">—</td><td class="col-tier nope">—</td><td class="col-tier ck-gold">✓</td></tr>
+      <tr><td class="feature-label">Dedicated onboarding + SLA support</td><td class="col-tier nope">—</td><td class="col-tier nope">—</td><td class="col-tier ck-gold">✓</td></tr>
+      <tr><td class="feature-label">Direct founder access</td><td class="col-tier nope">—</td><td class="col-tier nope">—</td><td class="col-tier ck-gold">✓</td></tr>
+      <tr><td class="feature-label">30-day money-back guarantee</td><td class="col-tier ck">✓</td><td class="col-tier ck">✓</td><td class="col-tier ck-gold">✓</td></tr>
+    </tbody>
+  </table>
   </div>
 </section>
 
