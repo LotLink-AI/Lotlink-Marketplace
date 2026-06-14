@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get Text Updates About Your Vehicle — LotLink AI BDC</title>
+<meta name="description" content="Opt in to receive text message updates about your vehicle inquiry from a dealership using LotLink. Message frequency varies. Msg & data rates may apply. Reply STOP to opt out, HELP for help.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://lotlinkin.com/sms-optin.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="LotLink">
+<meta property="og:title" content="Get Text Updates About Your Vehicle — LotLink AI BDC">
+<meta property="og:description" content="Opt in to text updates about your vehicle inquiry. Consent is not a condition of purchase. Reply STOP to opt out.">
+<meta property="og:url" content="https://lotlinkin.com/sms-optin.html">
+<meta property="og:image" content="https://lotlinkin.com/assets/og-default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<script src="assets/site.js" defer></script>
+
+<style>
+/* ── SMS opt-in page ─────────────────────────────────────────
+   Consumer-facing express-consent form. This is the campaign's
+   verifiable Call-to-Action: phone field + an UNCHECKED consent
+   checkbox carrying every required disclosure inline (sender,
+   message types, frequency, msg & data rates, STOP/HELP, "not a
+   condition of purchase," links to Privacy + SMS Terms). Visual
+   language mirrors contact.html so it reads as the same product. */
+
+.optin-hero { padding:130px 48px 80px; max-width:760px; margin:0 auto; }
+.optin-hero .eyebrow { font-size:11px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--sky); margin-bottom:16px; display:flex; align-items:center; gap:12px; }
+.optin-hero .eyebrow::before { content:''; display:block; width:28px; height:1px; background:var(--sky); }
+.optin-hero h1 { font-family:'DM Serif Display', serif; font-size:clamp(32px,4.5vw,48px); line-height:1.07; color:var(--white); margin-bottom:18px; }
+.optin-hero h1 em { font-style:normal; color:var(--gold); }
+.optin-hero .lede { font-size:17px; line-height:1.65; color:rgba(255,255,255,0.78); max-width:600px; margin-bottom:36px; }
+
+.optin-form-card { background:rgba(255,255,255,0.04); border:1px solid rgba(232,160,32,0.25); border-radius:10px; padding:36px; }
+.optin-form-card h3 { font-family:'DM Serif Display', serif; font-size:22px; color:var(--white); margin-bottom:6px; }
+.optin-form-card .sub { font-size:13px; color:var(--text-muted); margin-bottom:24px; line-height:1.6; }
+.optin-form-card .form-group { margin-bottom:16px; }
+.optin-form-card label { display:block; font-size:11px; font-weight:600; letter-spacing:0.8px; text-transform:uppercase; color:rgba(255,255,255,0.7); margin-bottom:6px; }
+.optin-form-card input[type="text"], .optin-form-card input[type="tel"], .optin-form-card input[type="email"], .optin-form-card select {
+  width:100%; background:rgba(0,0,0,0.25); border:1px solid var(--border); border-radius:6px;
+  padding:12px 14px; font-size:14px; color:var(--white); font-family:inherit;
+  transition:border-color 0.2s, background 0.2s;
+}
+.optin-form-card input:focus, .optin-form-card select:focus { border-color:var(--sky); background:rgba(91,163,217,0.06); outline:none; }
+
+/* The consent block — the heart of the page. Checkbox unchecked by
+   default; the full disclosure sits right next to it. */
+.consent-block { display:flex; gap:12px; align-items:flex-start; background:rgba(46,117,182,0.06); border:1px solid rgba(91,163,217,0.18); border-radius:8px; padding:16px 18px; margin-top:8px; }
+.consent-block input[type="checkbox"] { width:18px; height:18px; margin-top:2px; flex-shrink:0; accent-color:var(--gold); cursor:pointer; }
+.consent-block label { font-size:12.5px; line-height:1.6; color:rgba(255,255,255,0.82); text-transform:none; letter-spacing:0; font-weight:400; }
+.consent-block a { color:var(--gold); text-decoration:underline; }
+.consent-block a:hover { color:var(--gold-light); }
+
+.optin-program { font-size:12px; color:var(--text-muted); line-height:1.6; margin-top:18px; }
+.optin-program strong { color:rgba(255,255,255,0.85); }
+
+.submit-row { display:flex; flex-direction:column; gap:10px; margin-top:22px; }
+.optin-form-card .form-note { font-size:11px; color:var(--text-muted); line-height:1.5; }
+.honeypot { position:absolute; left:-9999px; }
+
+@media (max-width:880px) {
+  .optin-hero { padding:110px 24px 60px; }
+  .optin-form-card { padding:28px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Lot<span>Link</span></a>
+  <ul id="nav-links" class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#features">Features</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="blog/">Blog</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="https://app.lotlinkin.com/portal.html" class="nav-login" aria-label="Log in to your LotLink dashboard">Log in</a></li>
+    <li><a href="https://calendly.com/john-lotlinkin/demo" class="nav-cta">Book a Demo</a></li>
+  </ul>
+  <button class="nav-mobile-btn" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+    <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+  </button>
+</nav>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<main id="main">
+
+<section class="optin-hero">
+  <div class="eyebrow">Text Message Opt-In</div>
+  <h1>Get text updates about <em>your vehicle</em></h1>
+  <p class="lede">Inquiring about a car at a dealership that uses LotLink? Add your mobile number below to get quick text updates — appointment reminders, whether the vehicle is still available, and answers to your questions — right on your phone. You're always in control: reply STOP anytime to opt out.</p>
+
+  <form
+    class="optin-form-card"
+    name="sms-optin"
+    method="POST"
+    data-netlify="true"
+    netlify-honeypot="bot-field"
+    action="/sms-optin.html?sent=1"
+  >
+    <h3>Sign up for text updates</h3>
+    <p class="sub">Takes 20 seconds. Standard message and data rates may apply.</p>
+
+    <input type="hidden" name="form-name" value="sms-optin">
+    <p class="honeypot"><label>Don't fill this out: <input name="bot-field"></label></p>
+
+    <div class="form-group">
+      <label for="so-name">Your name <span style="color:var(--text-muted); font-weight:400; text-transform:none; letter-spacing:0;">(optional)</span></label>
+      <input type="text" id="so-name" name="name" autocomplete="name">
+    </div>
+
+    <div class="form-group">
+      <label for="so-phone">Mobile number</label>
+      <input type="tel" id="so-phone" name="phone" required autocomplete="tel" placeholder="(555) 555-5555">
+    </div>
+
+    <div class="form-group">
+      <label for="so-vehicle">Vehicle you're interested in <span style="color:var(--text-muted); font-weight:400; text-transform:none; letter-spacing:0;">(optional)</span></label>
+      <input type="text" id="so-vehicle" name="vehicle" placeholder="e.g. 2021 Chevy Silverado">
+    </div>
+
+    <div class="consent-block">
+      <input type="checkbox" id="so-consent" name="sms_consent" required>
+      <label for="so-consent">I agree to receive recurring automated text messages from the dealership I'm contacting — and from LotLink sending on its behalf — about my vehicle inquiry, including appointment reminders, vehicle availability, and follow-ups. Message frequency varies. Message and data rates may apply. Reply STOP to opt out, HELP for help. Consent is not a condition of any purchase. See our <a href="privacy.html#sms" target="_blank" rel="noopener">Privacy Policy</a> and <a href="terms.html#sms" target="_blank" rel="noopener">SMS Terms</a>.</label>
+    </div>
+
+    <div class="submit-row">
+      <button type="submit" class="btn-gold" style="justify-content:center;">Sign me up for text updates →</button>
+      <p class="form-note">You must check the box above to consent. You can opt out at any time by replying STOP.</p>
+    </div>
+
+    <p class="optin-program"><strong>Program:</strong> LotLink AI BDC text messaging, operated by LotLink LLC on behalf of participating independent auto dealerships. <strong>Message frequency varies.</strong> Message &amp; data rates may apply. Reply <strong>STOP</strong> to cancel, <strong>HELP</strong> for help, or contact us at <a href="mailto:john@lotlinkin.com" style="color:var(--gold);">john@lotlinkin.com</a> / <a href="tel:2602299393" style="color:var(--gold);">260-229-9393</a>. Mobile opt-in information is never shared with third parties or affiliates for marketing purposes.</p>
+  </form>
+
+</section>
+
+</main>
+
+<footer>
+  <div>
+    <a href="index.html" class="footer-logo">Lot<span>Link</span></a>
+    <p class="footer-tagline">AI BDC for<br>Independent Car Dealers</p>
+  </div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="index.html#features">Features</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="blog/">Blog</a>
+    <a href="faq.html">FAQ</a>
+    <a href="https://app.lotlinkin.com/portal.html">Log in</a>
+    <a href="https://calendly.com/john-lotlinkin/demo">Book a Demo</a>
+  </div>
+  <div class="footer-contact">
+    <p>John Roberts<br><a href="tel:2602299393">260-229-9393</a><br><a href="mailto:john@lotlinkin.com">john@lotlinkin.com</a><br>LotLink LLC · Indiana</p>
+    <p class="footer-social">
+      <a href="https://www.facebook.com/profile.php?id=61589930562227" target="_blank" rel="noopener">Facebook</a> ·
+      <a href="https://www.instagram.com/lotlinkai/" target="_blank" rel="noopener">Instagram</a> ·
+      <a href="https://x.com/lotlinkin" target="_blank" rel="noopener">X</a> ·
+      <a href="https://www.linkedin.com/in/lotlinkjr/" target="_blank" rel="noopener">LinkedIn</a>
+    </p>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <div class="footer-bottom-left">
+    <p>© 2026 LotLink LLC. All rights reserved.</p>
+    <p class="footer-legal"><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="sms-optin.html">Text Opt-In</a></p>
+  </div>
+  <p class="footer-disclaimer">lotlinkin.com</p>
+</div>
+
+</body>
+</html>
