@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Talk to Jordan — Live AI BDC Demo | LotLink</title>
+<meta name="description" content="Try LotLink's AI BDC for yourself. Talk to Jordan the way your customers will — ask about a vehicle, financing, or hours — and see how he answers every lead in seconds, 24/7.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://lotlinkin.com/demo.html">
+
+<!-- Open Graph / Twitter -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="LotLink">
+<meta property="og:title" content="Talk to Jordan — Live AI BDC Demo">
+<meta property="og:description" content="Experience LotLink's AI BDC the way your customers will. Talk to Jordan live — ask about a vehicle, financing, or hours.">
+<meta property="og:url" content="https://lotlinkin.com/demo.html">
+<meta property="og:image" content="https://lotlinkin.com/assets/og-default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Talk to Jordan — Live AI BDC Demo">
+<meta name="twitter:description" content="Experience LotLink's AI BDC the way your customers will.">
+<meta name="twitter:image" content="https://lotlinkin.com/assets/og-default.jpg">
+
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<script src="assets/site.js" defer></script>
+
+<style>
+/* ── DEMO PAGE ───────────────────────────────────────────────────────── */
+.demo-hero { padding:140px 48px 40px; text-align:center; }
+.demo-hero h1 { font-family:'DM Serif Display',serif; font-size:clamp(36px,5vw,60px); line-height:1.05; color:var(--white); margin-bottom:18px; }
+.demo-hero h1 em { font-style:italic; color:var(--gold); }
+.demo-hero p { font-size:17px; line-height:1.6; color:var(--text-muted); max-width:620px; margin:0 auto 14px; }
+.demo-hero .demo-frame-note {
+  display:inline-flex; align-items:center; gap:8px; margin-top:18px;
+  background:rgba(232,160,32,0.08); border:1px solid rgba(232,160,32,0.3);
+  color:var(--gold-light); border-radius:999px; padding:8px 18px;
+  font-size:13px; font-weight:500;
+}
+
+/* Stage: sample chat window + sidebar of try-this prompts */
+.demo-stage { padding:24px 48px 72px; display:flex; gap:40px; align-items:flex-start; max-width:1080px; margin:0 auto; flex-wrap:wrap; }
+.demo-chat {
+  flex:1 1 440px; min-width:300px;
+  background:linear-gradient(160deg, rgba(46,117,182,0.10), rgba(15,36,68,0.4));
+  border:1px solid var(--border-hover); border-radius:18px; overflow:hidden;
+  box-shadow:0 24px 64px rgba(0,0,0,0.45);
+}
+.demo-chat-head { display:flex; align-items:center; gap:12px; padding:16px 20px; border-bottom:1px solid var(--border); background:rgba(0,0,0,0.2); }
+.demo-chat-avatar { width:40px; height:40px; border-radius:50%; background:linear-gradient(135deg,var(--accent),var(--gold)); display:flex; align-items:center; justify-content:center; font-weight:700; color:#fff; font-size:16px; }
+.demo-chat-who { line-height:1.3; }
+.demo-chat-who strong { color:var(--white); font-size:15px; display:block; }
+.demo-chat-who span { color:var(--sky); font-size:12px; display:inline-flex; align-items:center; gap:6px; }
+.demo-chat-who span::before { content:''; width:7px; height:7px; border-radius:50%; background:#3ad07a; box-shadow:0 0 8px #3ad07a; }
+.demo-chat-body { padding:22px 20px; display:flex; flex-direction:column; gap:14px; }
+.bubble { max-width:80%; padding:11px 15px; border-radius:16px; font-size:14px; line-height:1.5; }
+.bubble.them { align-self:flex-start; background:rgba(255,255,255,0.06); color:var(--light); border-bottom-left-radius:5px; }
+.bubble.you { align-self:flex-end; background:var(--accent); color:#fff; border-bottom-right-radius:5px; }
+.bubble-meta { font-size:11px; color:var(--text-dim); margin:2px 4px 0; }
+.bubble-meta.r { align-self:flex-end; }
+.demo-chat-foot { padding:14px 20px 18px; border-top:1px solid var(--border); font-size:12px; color:var(--text-dim); text-align:center; }
+
+.demo-side { flex:1 1 280px; min-width:260px; }
+.demo-side h2 { font-family:'DM Serif Display',serif; font-size:26px; color:var(--white); margin-bottom:8px; }
+.demo-side p { font-size:14px; color:var(--text-muted); line-height:1.65; margin-bottom:22px; }
+.try-chip {
+  display:block; width:100%; text-align:left; cursor:pointer;
+  background:rgba(255,255,255,0.04); border:1px solid var(--border);
+  color:var(--light); border-radius:10px; padding:13px 16px; margin-bottom:10px;
+  font-size:14px; transition:border-color 0.2s, background 0.2s, transform 0.15s;
+}
+.try-chip:hover { border-color:var(--sky); background:rgba(91,163,217,0.08); transform:translateX(3px); }
+.try-chip span { color:var(--gold); margin-right:8px; }
+.demo-live-cue {
+  margin-top:22px; padding:16px 18px; border-radius:12px;
+  background:rgba(232,160,32,0.07); border:1px dashed rgba(232,160,32,0.4);
+  font-size:14px; color:var(--gold-light); line-height:1.55;
+}
+
+/* "What the dealer sees" explainer */
+.demo-behind { background:rgba(0,0,0,0.18); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+.demo-behind-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; max-width:1000px; margin:36px auto 0; }
+.behind-card { background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:14px; padding:26px; }
+.behind-card .step { font-size:12px; font-weight:700; letter-spacing:2px; color:var(--sky); margin-bottom:10px; }
+.behind-card h3 { color:var(--white); font-size:18px; margin-bottom:8px; }
+.behind-card p { color:var(--text-muted); font-size:14px; line-height:1.6; }
+
+.demo-cta { text-align:center; padding:80px 48px; }
+.demo-cta h2 { font-family:'DM Serif Display',serif; font-size:clamp(28px,3.5vw,42px); color:var(--white); margin-bottom:14px; }
+.demo-cta h2 em { font-style:italic; color:var(--gold); }
+.demo-cta p { color:var(--text-muted); max-width:520px; margin:0 auto 28px; line-height:1.6; }
+.demo-cta-row { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+
+/* "Have Jordan call you" — qualified demo-call request */
+.demo-call { padding:40px 48px 8px; }
+.demo-call-card {
+  max-width:1000px; margin:0 auto; display:flex; gap:40px; align-items:center; flex-wrap:wrap;
+  background:linear-gradient(160deg, rgba(232,160,32,0.09), rgba(15,36,68,0.4));
+  border:1px solid var(--border-hover); border-radius:18px; padding:36px 40px;
+}
+.demo-call-copy { flex:1 1 320px; min-width:280px; }
+.demo-call-copy h2 { font-family:'DM Serif Display',serif; font-size:clamp(26px,3vw,38px); color:var(--white); margin-bottom:12px; }
+.demo-call-copy h2 em { font-style:italic; color:var(--gold); }
+.demo-call-copy p { color:var(--text-muted); font-size:15px; line-height:1.6; margin-bottom:16px; }
+.demo-call-points { list-style:none; padding:0; margin:0; }
+.demo-call-points li { color:var(--light); font-size:14px; line-height:1.5; padding-left:24px; position:relative; margin-bottom:8px; }
+.demo-call-points li::before { content:'\2713'; position:absolute; left:0; color:var(--gold); font-weight:700; }
+.demo-call-form { flex:1 1 320px; min-width:280px; display:flex; flex-direction:column; gap:12px; position:relative; }
+.dc-row label { display:block; font-size:13px; color:var(--text-muted); }
+.dc-row input { width:100%; margin-top:5px; padding:11px 13px; background:rgba(0,0,0,0.25); border:1px solid var(--border); border-radius:9px; color:var(--white); font-size:14px; box-sizing:border-box; }
+.dc-row input:focus { outline:none; border-color:var(--sky); }
+.dc-hp { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+.dc-consent { display:flex; gap:9px; align-items:flex-start; font-size:12px; color:var(--text-muted); line-height:1.45; }
+.dc-consent input { margin-top:2px; flex-shrink:0; }
+.dc-submit { margin-top:4px; cursor:pointer; border:none; }
+.dc-submit:disabled { opacity:0.6; cursor:default; }
+.dc-status { font-size:13px; line-height:1.5; margin:2px 0 0; min-height:1px; }
+.dc-status.ok { color:#3ad07a; }
+.dc-status.err { color:#ff8a8a; }
+
+@media (max-width:768px) {
+  .demo-hero { padding:110px 20px 28px; }
+  .demo-stage { padding:16px 20px 48px; gap:28px; }
+  .demo-behind-grid { grid-template-columns:1fr; gap:18px; }
+  .demo-cta { padding:56px 20px; }
+  .demo-call { padding:8px 20px; }
+  .demo-call-card { padding:26px 22px; gap:24px; }
+}
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+
+<nav>
+  <a href="index.html" class="nav-logo">Lot<span>Link</span></a>
+  <ul id="nav-links" class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#features">Features</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="demo.html" class="active">Demo</a></li>
+    <li><a href="blog/">Blog</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="https://app.lotlinkin.com/portal.html" class="nav-login" aria-label="Log in to your LotLink dashboard">Log in</a></li>
+    <li><a href="https://calendly.com/john-lotlinkin/demo" class="nav-cta">Book a Demo</a></li>
+  </ul>
+  <button class="nav-mobile-btn" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+    <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+  </button>
+</nav>
+
+<main id="main">
+
+  <section class="demo-hero">
+    <h1>Meet <em>Jordan.</em><br>Now talk to him yourself.</h1>
+    <p>Jordan is the AI BDC that answers every lead in seconds — by text, email, and voice, 24/7. The best way to understand what your customers will get is to become one for two minutes.</p>
+    <div class="demo-frame-note">You're the car shopper now — ask him anything a buyer would.</div>
+  </section>
+
+  <section class="demo-stage">
+    <!-- Sample conversation: always-on, shows the value even before the live widget loads -->
+    <div class="demo-chat" aria-label="Sample conversation with Jordan">
+      <div class="demo-chat-head">
+        <div class="demo-chat-avatar">J</div>
+        <div class="demo-chat-who">
+          <strong>Jordan</strong>
+          <span>Online · replies in seconds</span>
+        </div>
+      </div>
+      <div class="demo-chat-body">
+        <div class="bubble them">Hey, thanks for reaching out! This is Jordan with the dealership. What can I help you find tonight?</div>
+        <div class="bubble you">do you still have that silver 2021 silverado</div>
+        <div class="bubble them">We sure do — the 2021 Silverado 1500 LT, silver, 38k miles. It's still on the lot and ready to go. Were you thinking trade-in or financing, or paying outright?</div>
+        <div class="bubble you">financing. my credit isnt perfect though</div>
+        <div class="bubble them">Totally fine — we work with all credit situations and have lenders for exactly that. I can get you pre-qualified in a couple minutes with no impact to your score. Want me to send the secure link?</div>
+        <div class="bubble you">are you guys open sunday</div>
+        <div class="bubble them">We're closed Sundays, but I can lock in a time for you Monday so the truck's pulled up front and ready. Does 10am or 5:30pm work better?</div>
+        <div class="bubble-meta r">11:48 PM · answered instantly</div>
+      </div>
+      <div class="demo-chat-foot">Sample conversation. Every reply above was written by Jordan, not a person.</div>
+    </div>
+
+    <!-- Try-it sidebar + live cue -->
+    <div class="demo-side">
+      <h2>Try it live</h2>
+      <p>Tap the chat bubble in the corner and message Jordan like a real buyer would. Not sure what to say? Start with one of these:</p>
+      <button class="try-chip" data-prompt="Do you have any trucks under $30k?"><span>&rarr;</span>Do you have any trucks under $30k?</button>
+      <button class="try-chip" data-prompt="Can I get financing with a 580 credit score?"><span>&rarr;</span>Can I get financing with a 580 score?</button>
+      <button class="try-chip" data-prompt="What's your best price on the SUV?"><span>&rarr;</span>What's your best price on the SUV?</button>
+      <button class="try-chip" data-prompt="Are you open this weekend?"><span>&rarr;</span>Are you open this weekend?</button>
+      <button class="try-chip" data-prompt="Can someone call me tomorrow?"><span>&rarr;</span>Can someone call me tomorrow?</button>
+      <div class="demo-live-cue" id="demo-live-cue">
+        Look for the <strong>chat bubble in the bottom-right corner</strong> &rarr; that's Jordan, live. Go ahead and message him.
+      </div>
+    </div>
+  </section>
+
+  <section class="demo-call" id="call-me">
+    <div class="demo-call-card">
+      <div class="demo-call-copy">
+        <h2>Or have Jordan <em>call your phone.</em></h2>
+        <p>Want to hear him? Tell us where to reach you and Jordan rings your cell in about 10 seconds — the exact call your customers would get.</p>
+        <ul class="demo-call-points">
+          <li>He hears you out, answers naturally, and books the appointment</li>
+          <li>One quick call — no spam, no contract</li>
+        </ul>
+      </div>
+      <form class="demo-call-form" id="demoCallForm" novalidate>
+        <div class="dc-row"><label>Your name<input type="text" name="name" autocomplete="name" required></label></div>
+        <div class="dc-row"><label>Dealership<input type="text" name="dealership" autocomplete="organization" required></label></div>
+        <div class="dc-row"><label>Work email<input type="email" name="email" autocomplete="email" required></label></div>
+        <div class="dc-row"><label>Mobile number<input type="tel" name="phone" autocomplete="tel" placeholder="(555) 123-4567" required></label></div>
+        <!-- Honeypot: hidden from humans; bots fill it and get silently dropped -->
+        <div class="dc-hp" aria-hidden="true"><label>Company URL<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+        <label class="dc-consent"><input type="checkbox" name="consent" required> I agree to receive a one-time automated demo call from LotLink at the number above. Consent isn't a condition of purchase.</label>
+        <button type="submit" class="btn-gold dc-submit" id="demoCallBtn">Call my phone</button>
+        <p class="dc-status" id="demoCallStatus" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <section class="section demo-behind">
+    <div style="text-align:center; max-width:640px; margin:0 auto;">
+      <div class="section-label" style="justify-content:center;">Behind the scenes</div>
+      <h2 class="section-title">While the customer chats, <span class="gold">the lot stays sold-out of missed leads</span></h2>
+      <p class="section-sub" style="margin:0 auto;">Every conversation Jordan has runs straight into your LotLink dashboard. Here's what happens the moment a shopper hits send.</p>
+    </div>
+    <div class="demo-behind-grid">
+      <div class="behind-card">
+        <div class="step">STEP 1</div>
+        <h3>Answered in seconds</h3>
+        <p>Day or night, Jordan replies before the lead cools off — the window where most independent lots lose the deal to whoever answered first.</p>
+      </div>
+      <div class="behind-card">
+        <div class="step">STEP 2</div>
+        <h3>Qualified &amp; captured</h3>
+        <p>He pulls the vehicle of interest, financing situation, and contact info — then logs it all as a real lead in your dashboard, no data entry.</p>
+      </div>
+      <div class="behind-card">
+        <div class="step">STEP 3</div>
+        <h3>Booked &amp; handed off</h3>
+        <p>Jordan sets the appointment and alerts your salesperson, so your team walks in to a confirmed customer instead of a cold callback list.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="demo-cta">
+    <h2>Like what Jordan did? <em>Put him on your lot.</em></h2>
+    <p>Founding Partner pricing is locked for life. 30-day money-back guarantee. No contract. See what it costs to never miss another lead.</p>
+    <div class="demo-cta-row">
+      <a href="https://calendly.com/john-lotlinkin/demo" class="btn-gold">Book a 15-min Demo</a>
+      <a href="pricing.html" class="btn-outline">See Pricing</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div>
+    <a href="index.html" class="footer-logo">Lot<span>Link</span></a>
+    <p class="footer-tagline">AI BDC for<br>Independent Car Dealers</p>
+  </div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="index.html#features">Features</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="demo.html">Demo</a>
+    <a href="blog/">Blog</a>
+    <a href="faq.html">FAQ</a>
+    <a href="https://app.lotlinkin.com/portal.html">Log in</a>
+    <a href="https://calendly.com/john-lotlinkin/demo">Book a Demo</a>
+  </div>
+  <div class="footer-contact">
+    <p>John Roberts<br><a href="tel:2602299393">260-229-9393</a><br><a href="mailto:john@lotlinkin.com">john@lotlinkin.com</a><br>LotLink LLC · Indiana</p>
+    <p class="footer-social">
+      <a href="https://www.facebook.com/profile.php?id=61589930562227" target="_blank" rel="noopener">Facebook</a> ·
+      <a href="https://www.instagram.com/lotlinkai/" target="_blank" rel="noopener">Instagram</a> ·
+      <a href="https://x.com/lotlinkin" target="_blank" rel="noopener">X</a> ·
+      <a href="https://www.linkedin.com/in/lotlinkjr/" target="_blank" rel="noopener">LinkedIn</a>
+    </p>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <div class="footer-bottom-left">
+    <p>© 2026 LotLink LLC. All rights reserved.</p>
+    <p class="footer-legal"><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="sms-optin.html">Text Opt-In</a></p>
+  </div>
+  <p class="footer-disclaimer">lotlinkin.com</p>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════════
+     LIVE JORDAN WIDGET — DEMO TENANT "Lotlink Motor Co. (Demo)"
+     Provisioned by lotlink-api/scripts/seed-demo-tenant.js (fixed UUID).
+     Sandbox lot — keeps demo chat OFF the House of Carz tenant so it never
+     pollutes Mike's live leads and Jordan never sells HoC's real cars.
+     ════════════════════════════════════════════════════════════════════ -->
+<script
+  src="https://lotlink-api-production.up.railway.app/widget.js"
+  data-dealership="5d868c42-1688-4668-83d6-103b0090eeb2"
+  defer></script>
+
+<!-- Try-chip helper: copies the prompt to the clipboard and nudges the user
+     to the live widget. Kept dependency-free; degrades gracefully if the
+     widget hasn't loaded or clipboard is blocked. -->
+<script>
+(function () {
+  var chips = document.querySelectorAll('.try-chip');
+  var cue = document.getElementById('demo-live-cue');
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var text = chip.getAttribute('data-prompt') || '';
+      try {
+        navigator.clipboard && navigator.clipboard.writeText(text);
+      } catch (_) { /* clipboard blocked — no problem */ }
+      if (cue) {
+        cue.innerHTML = 'Copied: <strong>&ldquo;' + text + '&rdquo;</strong> &mdash; ' +
+          'now tap the chat bubble in the bottom-right corner and paste it to Jordan.';
+      }
+    });
+  });
+})();
+</script>
+
+<!-- "Have Jordan call you" form → public demo-call endpoint on the BDC API.
+     Dependency-free; uses form.elements (NOT form.name, which collides with
+     the form's own .name property). -->
+<script>
+(function () {
+  var API = 'https://lotlink-api-production.up.railway.app';
+  var form = document.getElementById('demoCallForm');
+  if (!form) return;
+  var btn = document.getElementById('demoCallBtn');
+  var statusEl = document.getElementById('demoCallStatus');
+  var el = function (n) { return form.elements[n]; };
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    statusEl.className = 'dc-status';
+    statusEl.textContent = '';
+
+    var data = {
+      name: (el('name').value || '').trim(),
+      dealership: (el('dealership').value || '').trim(),
+      email: (el('email').value || '').trim(),
+      phone: (el('phone').value || '').trim(),
+      consent: el('consent').checked,
+      website: el('website').value,
+      _page_url: 'lotlinkin.com/demo'
+    };
+
+    if (!data.name || !data.dealership || !data.email || !data.phone) {
+      statusEl.className = 'dc-status err';
+      statusEl.textContent = 'Please fill in every field.';
+      return;
+    }
+    if (!data.consent) {
+      statusEl.className = 'dc-status err';
+      statusEl.textContent = 'Please check the consent box so Jordan can call you.';
+      return;
+    }
+
+    var orig = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Calling…';
+
+    fetch(API + '/api/voice/public/demo-call', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+      .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+      .then(function (res) {
+        if (!res.ok || (res.j && res.j.ok === false)) {
+          statusEl.className = 'dc-status err';
+          statusEl.textContent = (res.j && res.j.error) || 'Something went wrong — please try again or call us at 260-229-9393.';
+        } else {
+          statusEl.className = 'dc-status ok';
+          statusEl.textContent = (res.j && res.j.message) || 'Thanks! Jordan is calling you now.';
+          form.reset();
+        }
+      })
+      .catch(function () {
+        statusEl.className = 'dc-status err';
+        statusEl.textContent = 'Network hiccup — please try again or call 260-229-9393.';
+      })
+      .finally(function () {
+        btn.disabled = false;
+        btn.textContent = orig;
+      });
+  });
+})();
+</script>
+
+</body>
+</html>
