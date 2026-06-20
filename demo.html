@@ -90,40 +90,11 @@
 .demo-cta p { color:var(--text-muted); max-width:520px; margin:0 auto 28px; line-height:1.6; }
 .demo-cta-row { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
 
-/* "Have Jordan call you" — qualified demo-call request */
-.demo-call { padding:40px 48px 8px; }
-.demo-call-card {
-  max-width:1000px; margin:0 auto; display:flex; gap:40px; align-items:center; flex-wrap:wrap;
-  background:linear-gradient(160deg, rgba(232,160,32,0.09), rgba(15,36,68,0.4));
-  border:1px solid var(--border-hover); border-radius:18px; padding:36px 40px;
-}
-.demo-call-copy { flex:1 1 320px; min-width:280px; }
-.demo-call-copy h2 { font-family:'DM Serif Display',serif; font-size:clamp(26px,3vw,38px); color:var(--white); margin-bottom:12px; }
-.demo-call-copy h2 em { font-style:italic; color:var(--gold); }
-.demo-call-copy p { color:var(--text-muted); font-size:15px; line-height:1.6; margin-bottom:16px; }
-.demo-call-points { list-style:none; padding:0; margin:0; }
-.demo-call-points li { color:var(--light); font-size:14px; line-height:1.5; padding-left:24px; position:relative; margin-bottom:8px; }
-.demo-call-points li::before { content:'\2713'; position:absolute; left:0; color:var(--gold); font-weight:700; }
-.demo-call-form { flex:1 1 320px; min-width:280px; display:flex; flex-direction:column; gap:12px; position:relative; }
-.dc-row label { display:block; font-size:13px; color:var(--text-muted); }
-.dc-row input { width:100%; margin-top:5px; padding:11px 13px; background:rgba(0,0,0,0.25); border:1px solid var(--border); border-radius:9px; color:var(--white); font-size:14px; box-sizing:border-box; }
-.dc-row input:focus { outline:none; border-color:var(--sky); }
-.dc-hp { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
-.dc-consent { display:flex; gap:9px; align-items:flex-start; font-size:12px; color:var(--text-muted); line-height:1.45; }
-.dc-consent input { margin-top:2px; flex-shrink:0; }
-.dc-submit { margin-top:4px; cursor:pointer; border:none; }
-.dc-submit:disabled { opacity:0.6; cursor:default; }
-.dc-status { font-size:13px; line-height:1.5; margin:2px 0 0; min-height:1px; }
-.dc-status.ok { color:#3ad07a; }
-.dc-status.err { color:#ff8a8a; }
-
 @media (max-width:768px) {
   .demo-hero { padding:110px 20px 28px; }
   .demo-stage { padding:16px 20px 48px; gap:28px; }
   .demo-behind-grid { grid-template-columns:1fr; gap:18px; }
   .demo-cta { padding:56px 20px; }
-  .demo-call { padding:8px 20px; }
-  .demo-call-card { padding:26px 22px; gap:24px; }
 }
 </style>
 </head>
@@ -191,30 +162,6 @@
       <div class="demo-live-cue" id="demo-live-cue">
         Look for the <strong>chat bubble in the bottom-right corner</strong> &rarr; that's Jordan, live. Go ahead and message him.
       </div>
-    </div>
-  </section>
-
-  <section class="demo-call" id="call-me">
-    <div class="demo-call-card">
-      <div class="demo-call-copy">
-        <h2>Or have Jordan <em>call your phone.</em></h2>
-        <p>Want to hear him? Tell us where to reach you and Jordan rings your cell in about 10 seconds — the exact call your customers would get.</p>
-        <ul class="demo-call-points">
-          <li>He hears you out, answers naturally, and books the appointment</li>
-          <li>One quick call — no spam, no contract</li>
-        </ul>
-      </div>
-      <form class="demo-call-form" id="demoCallForm" novalidate>
-        <div class="dc-row"><label>Your name<input type="text" name="name" autocomplete="name" required></label></div>
-        <div class="dc-row"><label>Dealership<input type="text" name="dealership" autocomplete="organization" required></label></div>
-        <div class="dc-row"><label>Work email<input type="email" name="email" autocomplete="email" required></label></div>
-        <div class="dc-row"><label>Mobile number<input type="tel" name="phone" autocomplete="tel" placeholder="(555) 123-4567" required></label></div>
-        <!-- Honeypot: hidden from humans; bots fill it and get silently dropped -->
-        <div class="dc-hp" aria-hidden="true"><label>Company URL<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
-        <label class="dc-consent"><input type="checkbox" name="consent" required> I agree to receive a one-time automated demo call from LotLink at the number above. Consent isn't a condition of purchase.</label>
-        <button type="submit" class="btn-gold dc-submit" id="demoCallBtn">Call my phone</button>
-        <p class="dc-status" id="demoCallStatus" role="status" aria-live="polite"></p>
-      </form>
     </div>
   </section>
 
@@ -316,76 +263,6 @@
           'now tap the chat bubble in the bottom-right corner and paste it to Jordan.';
       }
     });
-  });
-})();
-</script>
-
-<!-- "Have Jordan call you" form → public demo-call endpoint on the BDC API.
-     Dependency-free; uses form.elements (NOT form.name, which collides with
-     the form's own .name property). -->
-<script>
-(function () {
-  var API = 'https://lotlink-api-production.up.railway.app';
-  var form = document.getElementById('demoCallForm');
-  if (!form) return;
-  var btn = document.getElementById('demoCallBtn');
-  var statusEl = document.getElementById('demoCallStatus');
-  var el = function (n) { return form.elements[n]; };
-
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    statusEl.className = 'dc-status';
-    statusEl.textContent = '';
-
-    var data = {
-      name: (el('name').value || '').trim(),
-      dealership: (el('dealership').value || '').trim(),
-      email: (el('email').value || '').trim(),
-      phone: (el('phone').value || '').trim(),
-      consent: el('consent').checked,
-      website: el('website').value,
-      _page_url: 'lotlinkin.com/demo'
-    };
-
-    if (!data.name || !data.dealership || !data.email || !data.phone) {
-      statusEl.className = 'dc-status err';
-      statusEl.textContent = 'Please fill in every field.';
-      return;
-    }
-    if (!data.consent) {
-      statusEl.className = 'dc-status err';
-      statusEl.textContent = 'Please check the consent box so Jordan can call you.';
-      return;
-    }
-
-    var orig = btn.textContent;
-    btn.disabled = true;
-    btn.textContent = 'Calling…';
-
-    fetch(API + '/api/voice/public/demo-call', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    })
-      .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
-      .then(function (res) {
-        if (!res.ok || (res.j && res.j.ok === false)) {
-          statusEl.className = 'dc-status err';
-          statusEl.textContent = (res.j && res.j.error) || 'Something went wrong — please try again or call us at 260-229-9393.';
-        } else {
-          statusEl.className = 'dc-status ok';
-          statusEl.textContent = (res.j && res.j.message) || 'Thanks! Jordan is calling you now.';
-          form.reset();
-        }
-      })
-      .catch(function () {
-        statusEl.className = 'dc-status err';
-        statusEl.textContent = 'Network hiccup — please try again or call 260-229-9393.';
-      })
-      .finally(function () {
-        btn.disabled = false;
-        btn.textContent = orig;
-      });
   });
 })();
 </script>
