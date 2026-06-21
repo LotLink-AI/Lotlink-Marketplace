@@ -467,6 +467,7 @@
     <li><a href="index.html" class="active">Home</a></li>
     <li><a href="#features">Features</a></li>
     <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="demo.html">Demo</a></li>
     <li><a href="blog/">Blog</a></li>
     <li><a href="faq.html">FAQ</a></li>
     <li><a href="contact.html">Contact</a></li>
@@ -853,6 +854,7 @@
     <a href="index.html">Home</a>
     <a href="#features">Features</a>
     <a href="pricing.html">Pricing</a>
+    <a href="demo.html">Demo</a>
     <a href="blog/">Blog</a>
     <a href="faq.html">FAQ</a>
     <a href="https://app.lotlinkin.com/portal.html">Log in</a>
@@ -876,10 +878,12 @@
   <p class="footer-disclaimer">lotlinkin.com</p>
 </div>
 
-<!-- LotLink AI web chat — routes inbound dealer questions to Jordan -->
+<!-- LotLink AI web chat — points at the DEMO tenant "Lotlink Motor Co. (Demo)",
+     NOT House of Carz, so homepage chat traffic never pollutes Mike's live
+     leads and Jordan demos a sandbox lot. Seed it with scripts/seed-demo-tenant.js. -->
 <script
   src="https://lotlink-api-production.up.railway.app/widget.js"
-  data-dealership="cfff76a7-6385-4e2c-b4ee-63418198a564"
+  data-dealership="5d868c42-1688-4668-83d6-103b0090eeb2"
   defer></script>
 
 <!-- Live Founding Partner counter — fetches /api/public/founding-partner-status
