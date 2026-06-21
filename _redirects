@@ -11,6 +11,15 @@
 # stops vehicle URLs from getting cached if the destination changes.
 /v/*  https://lotlink-api-production.up.railway.app/v/:splat  302
 
+# 2026-06-21: Dynamic QR short-links for printed collateral. The QR codes
+# printed on cards/flyers encode a FIXED short path (e.g. /card); the
+# destination below is what we can change anytime WITHOUT reprinting.
+# Always 302 (never 301) so browsers re-resolve every scan — a 301 would
+# cache permanently and defeat the whole point of a dynamic QR.
+# One slug per medium so we can repoint (and later track) each separately.
+/card    /demo  302
+/flyer   /demo  302
+
 # 2026-05-28: Concierge / marketplace pivot is complete. The site is
 # now SaaS-only (AI BDC for independent dealers). These four pages were
 # the consumer-buyer / marketplace-dealer artifacts; redirect any
