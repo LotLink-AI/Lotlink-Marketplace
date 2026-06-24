@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sample Dealership Vehicle Inquiry Form — LotLink SMS Consent Template</title>
+<meta name="description" content="Representative sample of the vehicle-inquiry lead form a participating dealership displays on its website, showing the SMS consent disclosure presented to the consumer at the point of entry.">
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://lotlinkin.com/dealer-lead-form-sample.html">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<script src="assets/site.js" defer></script>
+
+<style>
+/* ── Dealership lead-form SAMPLE (A2P evidence page) ──────────────
+   This is a hosted, representative copy of the consumer vehicle-
+   inquiry form that participating dealerships place on their own
+   websites and third-party listing pages. Its purpose is to give
+   the A2P auditor a single verifiable URL showing the SMS consent
+   disclosure exactly as a consumer sees it at the point of entry:
+   sender identity, message types, frequency, msg & data rates,
+   STOP/HELP, "not a condition of purchase," and links to the
+   Privacy Policy + SMS Terms. Consent checkbox is UNCHECKED by
+   default and OPTIONAL. */
+
+.sample-hero { padding:120px 48px 70px; max-width:780px; margin:0 auto; }
+.sample-banner { background:rgba(232,160,32,0.10); border:1px solid rgba(232,160,32,0.4); border-radius:8px; padding:16px 20px; margin-bottom:34px; font-size:13px; line-height:1.65; color:rgba(255,255,255,0.85); }
+.sample-banner strong { color:var(--gold); }
+
+.sample-hero .eyebrow { font-size:11px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--sky); margin-bottom:16px; display:flex; align-items:center; gap:12px; }
+.sample-hero .eyebrow::before { content:''; display:block; width:28px; height:1px; background:var(--sky); }
+.sample-hero h1 { font-family:'DM Serif Display', serif; font-size:clamp(30px,4.2vw,44px); line-height:1.08; color:var(--white); margin-bottom:14px; }
+.sample-hero h1 em { font-style:normal; color:var(--gold); }
+.sample-hero .lede { font-size:16px; line-height:1.65; color:rgba(255,255,255,0.76); max-width:620px; margin-bottom:34px; }
+
+/* Mock dealership chrome so the auditor sees this as a dealership's
+   own inquiry form, not a generic LotLink page. */
+.dealer-frame { border:1px solid var(--border); border-radius:12px; overflow:hidden; background:rgba(255,255,255,0.02); }
+.dealer-topbar { display:flex; align-items:center; gap:12px; padding:16px 22px; background:rgba(0,0,0,0.30); border-bottom:1px solid var(--border); }
+.dealer-mark { width:34px; height:34px; border-radius:6px; background:linear-gradient(135deg,var(--sky),var(--gold)); display:flex; align-items:center; justify-content:center; font-weight:800; color:#0a0a0a; font-size:15px; }
+.dealer-name { font-size:15px; font-weight:700; color:var(--white); }
+.dealer-name span { display:block; font-size:11px; font-weight:400; color:var(--text-muted); letter-spacing:0.3px; }
+
+.inquiry-form { padding:32px; }
+.inquiry-form h3 { font-family:'DM Serif Display', serif; font-size:21px; color:var(--white); margin-bottom:6px; }
+.inquiry-form .sub { font-size:13px; color:var(--text-muted); margin-bottom:24px; line-height:1.6; }
+.inquiry-form .form-group { margin-bottom:16px; }
+.inquiry-form label { display:block; font-size:11px; font-weight:600; letter-spacing:0.8px; text-transform:uppercase; color:rgba(255,255,255,0.7); margin-bottom:6px; }
+.inquiry-form input, .inquiry-form textarea {
+  width:100%; background:rgba(0,0,0,0.25); border:1px solid var(--border); border-radius:6px;
+  padding:12px 14px; font-size:14px; color:var(--white); font-family:inherit;
+  transition:border-color 0.2s, background 0.2s;
+}
+.inquiry-form input:focus, .inquiry-form textarea:focus { border-color:var(--sky); background:rgba(91,163,217,0.06); outline:none; }
+.inquiry-form textarea { resize:vertical; min-height:84px; }
+
+.consent-block { display:flex; gap:12px; align-items:flex-start; background:rgba(46,117,182,0.06); border:1px solid rgba(91,163,217,0.18); border-radius:8px; padding:16px 18px; margin-top:8px; }
+.consent-block input[type="checkbox"] { width:18px; height:18px; margin-top:2px; flex-shrink:0; accent-color:var(--gold); cursor:pointer; }
+.consent-block label { font-size:12.5px; line-height:1.6; color:rgba(255,255,255,0.82); text-transform:none; letter-spacing:0; font-weight:400; }
+.consent-block a { color:var(--gold); text-decoration:underline; }
+
+.submit-row { display:flex; flex-direction:column; gap:10px; margin-top:22px; }
+.inquiry-form .form-note { font-size:11px; color:var(--text-muted); line-height:1.5; }
+.inquiry-program { font-size:12px; color:var(--text-muted); line-height:1.6; margin-top:18px; }
+.inquiry-program strong { color:rgba(255,255,255,0.85); }
+
+@media (max-width:880px) {
+  .sample-hero { padding:104px 22px 54px; }
+  .inquiry-form { padding:24px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Lot<span>Link</span></a>
+  <ul id="nav-links" class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#features">Features</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="demo.html">Demo</a></li>
+    <li><a href="blog/">Blog</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="https://app.lotlinkin.com/portal.html" class="nav-login" aria-label="Log in to your LotLink dashboard">Log in</a></li>
+    <li><a href="https://calendly.com/john-lotlinkin/demo" class="nav-cta">Book a Demo</a></li>
+  </ul>
+  <button class="nav-mobile-btn" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+    <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+  </button>
+</nav>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<main id="main">
+
+<section class="sample-hero">
+  <div class="eyebrow">A2P Compliance Reference</div>
+  <h1>Sample dealership <em>vehicle inquiry</em> form</h1>
+  <p class="lede">This page is a representative copy of the vehicle-inquiry lead form that a participating dealership displays on its own website and third-party vehicle listings. It is published here so the SMS consent language can be reviewed exactly as a consumer sees it at the point of entry. The form below is for demonstration only and does not submit data.</p>
+
+  <div class="sample-banner">
+    <strong>What this demonstrates:</strong> When a consumer inquires about a vehicle at a participating dealership, the standardized SMS consent disclosure shown below appears directly on the inquiry form. The consent checkbox is <strong>unchecked by default and optional</strong> — the consumer can submit the inquiry without opting in to text messages. No SMS is ever sent unless the consumer actively checks the box.
+  </div>
+
+  <div class="dealer-frame">
+    <div class="dealer-topbar">
+      <div class="dealer-mark">HC</div>
+      <div class="dealer-name">House of Carz<span>Rochester, IN · a participating LotLink dealership</span></div>
+    </div>
+
+    <form class="inquiry-form" onsubmit="return false;" aria-label="Sample vehicle inquiry form (demonstration only)">
+      <h3>Ask about this vehicle</h3>
+      <p class="sub">2021 Chevrolet Silverado 1500 LT · Stock #HC-4471. Send your question and we'll get right back to you.</p>
+
+      <div class="form-group">
+        <label for="lf-name">Your name</label>
+        <input type="text" id="lf-name" name="name" autocomplete="name" placeholder="First and last name">
+      </div>
+
+      <div class="form-group">
+        <label for="lf-email">Email</label>
+        <input type="email" id="lf-email" name="email" autocomplete="email" placeholder="you@example.com">
+      </div>
+
+      <div class="form-group">
+        <label for="lf-phone">Mobile number</label>
+        <input type="tel" id="lf-phone" name="phone" autocomplete="tel" placeholder="(555) 555-5555">
+      </div>
+
+      <div class="form-group">
+        <label for="lf-message">Your question</label>
+        <textarea id="lf-message" name="message" placeholder="Is this truck still available? Can I see it Saturday?"></textarea>
+      </div>
+
+      <div class="consent-block">
+        <input type="checkbox" id="lf-consent" name="sms_consent">
+        <label for="lf-consent">I agree to receive recurring automated text messages from House of Carz — and from LotLink, which sends texts on the dealership's behalf — about my vehicle inquiry, including appointment reminders, vehicle availability, and follow-ups to my questions. Message frequency varies. Message and data rates may apply. Reply STOP to opt out, HELP for help. Consent is not a condition of any purchase. See the <a href="privacy.html#sms" target="_blank" rel="noopener">Privacy Policy</a> and <a href="terms.html#sms" target="_blank" rel="noopener">SMS Terms</a>.</label>
+      </div>
+
+      <div class="submit-row">
+        <button type="submit" class="btn-gold" style="justify-content:center;">Send my question →</button>
+        <p class="form-note">Checking the box is optional — you can send your question without it. We'll only text you if you check it, and you can reply STOP anytime to opt out.</p>
+      </div>
+
+      <p class="inquiry-program"><strong>Program:</strong> LotLink AI BDC text messaging, operated by LotLink LLC on behalf of participating independent auto dealerships. <strong>Message frequency varies.</strong> Message &amp; data rates may apply. Reply <strong>STOP</strong> to cancel, <strong>HELP</strong> for help, or contact us at <a href="mailto:john@lotlinkin.com" style="color:var(--gold);">john@lotlinkin.com</a> / <a href="tel:2602299393" style="color:var(--gold);">260-229-9393</a>. Mobile opt-in information is never shared with third parties or affiliates for marketing purposes.</p>
+    </form>
+  </div>
+
+</section>
+
+</main>
+
+<footer>
+  <div>
+    <a href="index.html" class="footer-logo">Lot<span>Link</span></a>
+    <p class="footer-tagline">AI BDC for<br>Independent Car Dealers</p>
+  </div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="index.html#features">Features</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="demo.html">Demo</a>
+    <a href="blog/">Blog</a>
+    <a href="faq.html">FAQ</a>
+    <a href="https://app.lotlinkin.com/portal.html">Log in</a>
+    <a href="https://calendly.com/john-lotlinkin/demo">Book a Demo</a>
+  </div>
+  <div class="footer-contact">
+    <p>John Roberts<br><a href="tel:2602299393">260-229-9393</a><br><a href="mailto:john@lotlinkin.com">john@lotlinkin.com</a><br>LotLink LLC · Indiana</p>
+    <p class="footer-social">
+      <a href="https://www.facebook.com/profile.php?id=61589930562227" target="_blank" rel="noopener">Facebook</a> ·
+      <a href="https://www.instagram.com/lotlinkai/" target="_blank" rel="noopener">Instagram</a> ·
+      <a href="https://x.com/lotlinkin" target="_blank" rel="noopener">X</a> ·
+      <a href="https://www.linkedin.com/in/lotlinkjr/" target="_blank" rel="noopener">LinkedIn</a>
+    </p>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <div class="footer-bottom-left">
+    <p>© 2026 LotLink LLC. All rights reserved.</p>
+    <p class="footer-legal"><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="sms-optin.html">Text Opt-In</a></p>
+  </div>
+  <p class="footer-disclaimer">lotlinkin.com</p>
+</div>
+
+</body>
+</html>
