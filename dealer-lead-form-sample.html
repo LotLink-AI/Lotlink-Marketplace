@@ -109,7 +109,7 @@
       <div class="dealer-name">House of Carz<span>Rochester, IN · a participating LotLink dealership</span></div>
     </div>
 
-    <form class="inquiry-form" onsubmit="return false;" aria-label="Sample vehicle inquiry form (demonstration only)">
+    <form id="sampleInquiry" class="inquiry-form" aria-label="Sample vehicle inquiry form (demonstration only)">
       <h3>Ask about this vehicle</h3>
       <p class="sub">2021 Chevrolet Silverado 1500 LT · Stock #HC-4471. Send your question and we'll get right back to you.</p>
 
@@ -141,6 +141,7 @@
       <div class="submit-row">
         <button type="submit" class="btn-gold" style="justify-content:center;">Send my question →</button>
         <p class="form-note">Checking the box is optional — you can send your question without it. We'll only text you if you check it, and you can reply STOP anytime to opt out.</p>
+        <p id="sampleConfirm" role="status" aria-live="polite" style="display:none; margin-top:6px; padding:12px 14px; background:rgba(46,117,182,0.10); border:1px solid rgba(91,163,217,0.30); border-radius:8px; font-size:12.5px; line-height:1.6; color:rgba(255,255,255,0.88);"><strong style="color:var(--gold);">✓ Demonstration only.</strong> On a live dealership site, this inquiry would be delivered to the dealership and you'd see a confirmation. No data was submitted from this sample page.</p>
       </div>
 
       <p class="inquiry-program"><strong>Program:</strong> LotLink AI BDC text messaging, operated by LotLink LLC on behalf of participating independent auto dealerships. <strong>Message frequency varies.</strong> Message &amp; data rates may apply. Reply <strong>STOP</strong> to cancel, <strong>HELP</strong> for help, or contact us at <a href="mailto:john@lotlinkin.com" style="color:var(--gold);">john@lotlinkin.com</a> / <a href="tel:2602299393" style="color:var(--gold);">260-229-9393</a>. Mobile opt-in information is never shared with third parties or affiliates for marketing purposes.</p>
@@ -183,6 +184,23 @@
   </div>
   <p class="footer-disclaimer">lotlinkin.com</p>
 </div>
+
+<script>
+/* Sample/evidence page only. The form intentionally does NOT transmit data —
+   it exists so an A2P reviewer can read the SMS consent language exactly as a
+   consumer sees it. We intercept submit and reveal an inline notice so the
+   button visibly responds (not "frozen") while making clear nothing was sent. */
+(function () {
+  var form = document.getElementById('sampleInquiry');
+  var note = document.getElementById('sampleConfirm');
+  if (!form || !note) return;
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    note.style.display = 'block';
+    note.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+})();
+</script>
 
 </body>
 </html>

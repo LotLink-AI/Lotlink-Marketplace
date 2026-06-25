@@ -97,6 +97,7 @@
   <p class="lede">Inquiring about a car at a dealership that uses LotLink? Add your mobile number below to get quick text updates — appointment reminders, whether the vehicle is still available, and answers to your questions — right on your phone. You're always in control: reply STOP anytime to opt out.</p>
 
   <form
+    id="optinForm"
     class="optin-form-card"
     name="sms-optin"
     method="POST"
@@ -138,6 +139,12 @@
     <p class="optin-program"><strong>Program:</strong> LotLink AI BDC text messaging, operated by LotLink LLC on behalf of participating independent auto dealerships. <strong>Message frequency varies.</strong> Message &amp; data rates may apply. Reply <strong>STOP</strong> to cancel, <strong>HELP</strong> for help, or contact us at <a href="mailto:john@lotlinkin.com" style="color:var(--gold);">john@lotlinkin.com</a> / <a href="tel:2602299393" style="color:var(--gold);">260-229-9393</a>. Mobile opt-in information is never shared with third parties or affiliates for marketing purposes.</p>
   </form>
 
+  <div id="optinSuccess" class="optin-form-card" role="status" aria-live="polite" style="display:none; text-align:center;">
+    <div style="font-size:42px; line-height:1; margin-bottom:14px;">✓</div>
+    <h3 style="margin-bottom:10px;">You're signed up for text updates</h3>
+    <p class="sub" style="margin-bottom:0;">Thanks! Your request has been received. We'll only text you about the vehicle inquiry you asked about. You can reply <strong>STOP</strong> at any time to opt out, or <strong>HELP</strong> for help. Message &amp; data rates may apply.</p>
+  </div>
+
 </section>
 
 </main>
@@ -174,6 +181,45 @@
   </div>
   <p class="footer-disclaimer">lotlinkin.com</p>
 </div>
+
+<script>
+/* SMS opt-in submit handler.
+   Submits to Netlify Forms via AJAX and shows an inline success card so the
+   consumer always gets a clear, visible confirmation — no redirect, no blank
+   reload, no "page not found" ambiguity. If the network call fails for any
+   reason, we fall back to the standard Netlify POST so a submission is never
+   silently lost. */
+(function () {
+  var form = document.getElementById('optinForm');
+  var success = document.getElementById('optinSuccess');
+  if (!form || !success) return;
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+
+    var btn = form.querySelector('button[type="submit"]');
+    if (btn) { btn.disabled = true; btn.textContent = 'Signing you up…'; }
+
+    var body = new URLSearchParams(new FormData(form)).toString();
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: body
+    })
+      .then(function (res) {
+        if (!res.ok) throw new Error('bad status');
+        form.style.display = 'none';
+        success.style.display = 'block';
+        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      })
+      .catch(function () {
+        /* Fallback: let the browser do the native Netlify POST. */
+        form.submit();
+      });
+  });
+})();
+</script>
 
 </body>
 </html>
