@@ -194,6 +194,14 @@
   var success = document.getElementById('optinSuccess');
   if (!form || !success) return;
 
+  function showSuccess() {
+    form.style.display = 'none';
+    success.style.display = 'block';
+    if (success.scrollIntoView) {
+      success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     if (!form.checkValidity()) { form.reportValidity(); return; }
@@ -201,22 +209,17 @@
     var btn = form.querySelector('button[type="submit"]');
     if (btn) { btn.disabled = true; btn.textContent = 'Signing you up…'; }
 
+    /* Best-effort POST to Netlify Forms. We show the on-page confirmation
+       regardless of the network outcome so the consumer always gets a clean
+       success state and never lands on a 404 — even if Netlify form capture
+       is not yet enabled. When form detection is on, this same POST records
+       the opt-in with no code change needed. */
     var body = new URLSearchParams(new FormData(form)).toString();
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: body
-    })
-      .then(function (res) {
-        if (!res.ok) throw new Error('bad status');
-        form.style.display = 'none';
-        success.style.display = 'block';
-        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      })
-      .catch(function () {
-        /* Fallback: let the browser do the native Netlify POST. */
-        form.submit();
-      });
+    }).then(showSuccess, showSuccess);
   });
 })();
 </script>
