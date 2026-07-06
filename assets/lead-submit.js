@@ -41,6 +41,7 @@
     financing: 'financing',
     contact: 'inquiry', // the generic contact.html form routes through the inquiry endpoint
     dealer_partnership: 'dealer-partnership',
+    demo_call: 'demo-call', // "Have Jordan call you" live voice demo (places a real call)
   };
 
   /** Collect a form's fields into a plain JSON object. */

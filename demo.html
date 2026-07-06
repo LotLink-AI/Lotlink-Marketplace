@@ -23,6 +23,7 @@
 <link rel="stylesheet" href="style.css">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <script src="assets/site.js" defer></script>
+<script src="assets/lead-submit.js" defer></script>
 
 <style>
 /* ── DEMO PAGE ───────────────────────────────────────────────────────── */
@@ -96,6 +97,53 @@
   .demo-behind-grid { grid-template-columns:1fr; gap:18px; }
   .demo-cta { padding:56px 20px; }
 }
+
+/* ── "Have Jordan call you" live voice-demo card ──────────────────────── */
+.callme-wrap { padding:8px 48px 80px; max-width:1120px; margin:0 auto; }
+.callme-head { text-align:center; max-width:640px; margin:0 auto 42px; }
+.callme-head .section-label { justify-content:center; }
+.callme-head h2 { font-family:'DM Serif Display',serif; font-size:clamp(30px,4vw,46px); line-height:1.1; color:var(--white); margin-bottom:16px; }
+.callme-head h2 em { font-style:italic; color:var(--gold); }
+.callme-head p { font-size:16px; line-height:1.65; color:var(--text-muted); }
+.callme-card { display:flex; flex-wrap:wrap; align-items:stretch; border:1px solid var(--border-hover); border-radius:20px; overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,0.45); background:linear-gradient(160deg, rgba(46,117,182,0.10), rgba(15,36,68,0.35)); }
+.callme-pitch { flex:1 1 380px; min-width:300px; padding:40px 40px 36px; border-right:1px solid var(--border); }
+.callme-live { display:inline-flex; align-items:center; gap:9px; font-size:12px; font-weight:600; letter-spacing:0.5px; color:var(--sky); text-transform:uppercase; margin-bottom:22px; }
+.callme-live::before { content:''; width:9px; height:9px; border-radius:50%; background:#3ad07a; box-shadow:0 0 10px #3ad07a; animation:cmpulse 1.8s ease-in-out infinite; }
+@keyframes cmpulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:.55;transform:scale(.8);} }
+.callme-pitch h3 { font-family:'DM Serif Display',serif; font-size:28px; line-height:1.15; color:var(--white); margin-bottom:14px; }
+.callme-pitch h3 em { font-style:italic; color:var(--gold); }
+.callme-pitch > p { font-size:15px; line-height:1.7; color:var(--text-muted); margin-bottom:26px; }
+.callme-points { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:14px; }
+.callme-points li { display:flex; gap:12px; align-items:flex-start; font-size:14.5px; color:var(--light); line-height:1.5; }
+.callme-points li svg { flex-shrink:0; margin-top:2px; }
+.callme-points li strong { color:var(--white); font-weight:600; }
+.callme-form { flex:1 1 400px; min-width:320px; padding:38px 40px 34px; background:rgba(0,0,0,0.18); }
+.callme-form .frow { display:flex; gap:14px; }
+.callme-form .frow > .form-group { flex:1; }
+.callme-form .form-group { margin-bottom:16px; }
+.callme-form label { display:block; font-size:11px; font-weight:600; letter-spacing:0.9px; text-transform:uppercase; color:rgba(255,255,255,0.68); margin-bottom:7px; }
+.callme-form input, .callme-form select { width:100%; background:rgba(0,0,0,0.30); border:1px solid var(--border); border-radius:8px; padding:13px 14px; font-size:14px; color:var(--white); font-family:'DM Sans',sans-serif; transition:border-color 0.18s, background 0.18s; appearance:none; }
+.callme-form input::placeholder { color:rgba(255,255,255,0.30); }
+.callme-form input:focus, .callme-form select:focus { border-color:var(--gold); background:rgba(232,160,32,0.06); outline:none; }
+.callme-form select { background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235BA3D9' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 15px center; padding-right:38px; cursor:pointer; }
+.callme-form select:invalid { color:rgba(255,255,255,0.30); }
+.callme-form option { color:#0a1a30; }
+.callme-consent { display:flex; gap:12px; align-items:flex-start; background:rgba(46,117,182,0.07); border:1px solid rgba(91,163,217,0.20); border-radius:9px; padding:15px 16px; margin:4px 0 2px; }
+.callme-consent input[type="checkbox"] { width:18px; height:18px; margin-top:2px; flex-shrink:0; accent-color:var(--gold); cursor:pointer; }
+.callme-consent label { font-size:12px; line-height:1.55; color:rgba(255,255,255,0.80); text-transform:none; letter-spacing:0; font-weight:400; margin:0; }
+.callme-consent a { color:var(--gold); text-decoration:underline; }
+.callme-form .honeypot { position:absolute; left:-9999px; }
+.callme-form button { width:100%; justify-content:center; margin-top:16px; font-size:15px; padding:15px 30px; }
+.callme-form .form-note { font-size:11.5px; color:var(--text-muted); line-height:1.55; margin-top:11px; text-align:center; }
+.callme-status { display:none; margin-top:14px; padding:13px 15px; border-radius:9px; font-size:13px; line-height:1.6; }
+.callme-status.ok  { display:block; background:rgba(58,208,122,0.10); border:1px solid rgba(58,208,122,0.35); color:#d7ffe8; }
+.callme-status.err { display:block; background:rgba(200,60,60,0.12); border:1px solid rgba(200,60,60,0.4); color:#ffd9d9; }
+@media (max-width:860px) {
+  .callme-wrap { padding:8px 20px 60px; }
+  .callme-pitch { border-right:none; border-bottom:1px solid var(--border); padding:32px 26px; }
+  .callme-form { padding:30px 26px; }
+  .callme-form .frow { flex-direction:column; gap:0; }
+}
 </style>
 </head>
 <body>
@@ -162,6 +210,70 @@
       <div class="demo-live-cue" id="demo-live-cue">
         Look for the <strong>chat bubble in the bottom-right corner</strong> &rarr; that's Jordan, live. Go ahead and message him.
       </div>
+    </div>
+  </section>
+
+  <!-- ── Have Jordan call you (live voice demo → places a real call) ──── -->
+  <section class="callme-wrap" id="callme">
+    <div class="callme-head">
+      <div class="section-label">Live demo · voice</div>
+      <h2>Don't take our word for it. <em>Let Jordan call you.</em></h2>
+      <p>Reading a transcript is one thing. Put in your number and Jordan rings you inside a minute — you play the car shopper, he plays your BDC. It's the exact voice your customers hear when they reach out after hours.</p>
+    </div>
+
+    <div class="callme-card">
+      <div class="callme-pitch">
+        <span class="callme-live">Jordan is standing by</span>
+        <h3>Two minutes is all it takes to <em>get it.</em></h3>
+        <p>He'll pick up the phone, handle your questions like the sharpest closer on your floor, and show you what never missing a lead actually sounds like.</p>
+        <ul class="callme-points">
+          <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#E8A020" stroke-width="1.2"/><path d="M5.5 9.2l2.3 2.3 4.7-4.9" stroke="#E8A020" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>Rings in about a minute</strong> during business hours — after hours, he calls the moment you open.</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#E8A020" stroke-width="1.2"/><path d="M5.5 9.2l2.3 2.3 4.7-4.9" stroke="#E8A020" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>Ask him anything a buyer would</strong> — availability, financing, hours, trade-ins.</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8.25" stroke="#E8A020" stroke-width="1.2"/><path d="M5.5 9.2l2.3 2.3 4.7-4.9" stroke="#E8A020" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>No cost, no commitment.</strong> One call, hang up whenever — we only use your number for this demo.</span></li>
+        </ul>
+      </div>
+
+      <form id="demoCallForm" class="callme-form" aria-label="Request a live demo call from Jordan">
+        <p class="honeypot" aria-hidden="true"><label>Leave this empty: <input name="company_url" tabindex="-1" autocomplete="off"></label></p>
+
+        <div class="form-group">
+          <label for="dc-dealer">Dealership</label>
+          <input type="text" id="dc-dealer" name="dealership" required autocomplete="organization" placeholder="Your lot's name">
+        </div>
+
+        <div class="frow">
+          <div class="form-group">
+            <label for="dc-name">Your name</label>
+            <input type="text" id="dc-name" name="name" required autocomplete="name" placeholder="First and last">
+          </div>
+          <div class="form-group">
+            <label for="dc-role">Your role</label>
+            <select id="dc-role" name="role" required>
+              <option value="" disabled selected>Select…</option>
+              <option>Owner / GM</option>
+              <option>Sales Manager</option>
+              <option>BDC / Internet Manager</option>
+              <option>Salesperson</option>
+              <option>Finance</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="dc-phone">Mobile number</label>
+          <input type="tel" id="dc-phone" name="phone" required autocomplete="tel" placeholder="(555) 555-5555" inputmode="tel">
+        </div>
+
+        <div class="callme-consent">
+          <input type="checkbox" id="dc-consent" name="call_consent" required>
+          <label for="dc-consent">I'm asking LotLink to place a one-time automated demo call to the number above. This is a product demonstration, not a marketing list — standard call rates may apply. See the <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.</label>
+        </div>
+
+        <button type="submit" class="btn-gold">Call me now &rarr;</button>
+        <p class="form-note">Jordan calls from a LotLink number, usually within a minute during business hours (9–7 ET, Mon–Sat).</p>
+        <p id="demoCallStatus" class="callme-status" role="status" aria-live="polite"></p>
+      </form>
     </div>
   </section>
 
@@ -263,6 +375,54 @@
           'now tap the chat bubble in the bottom-right corner and paste it to Jordan.';
       }
     });
+  });
+})();
+</script>
+
+<!-- Demo-call submit — posts directly to the demo-call endpoint so we can show
+     its nuanced response (calling now / deferred after-hours / rejected),
+     which the generic LotLinkLead.submit() wrapper collapses away. Reuses
+     lead-submit.js only for _formToObject + the API base. -->
+<script>
+(function () {
+  var form = document.getElementById('demoCallForm');
+  var statusEl = document.getElementById('demoCallStatus');
+  var btn = form && form.querySelector('button[type="submit"]');
+  if (!form || !statusEl || !window.LotLinkLead) return;
+  var API = (window.LOTLINK_API_BASE || 'https://lotlink-api-production.up.railway.app').replace(/\/$/, '');
+  function show(cls, html) { statusEl.className = 'callme-status ' + cls; statusEl.innerHTML = html; }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (form.elements['company_url'] && form.elements['company_url'].value) { show('ok', "Thanks — you're all set."); return; }
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+
+    var payload = window.LotLinkLead._formToObject(form);
+    var original = btn.textContent;
+    btn.disabled = true; btn.textContent = 'Dialing…';
+    show('', '');
+
+    fetch(API + '/api/public-leads/demo-call', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload),
+    })
+      .then(function (res) { return res.json().catch(function () { return {}; }); })
+      .then(function (r) {
+        if (r && r.called) {
+          show('ok', "On its way — Jordan is calling <strong>" + (form.elements['phone'].value || 'your number') + "</strong> now. Pick up and talk to him like one of your shoppers would.");
+          form.reset();
+        } else if (r && r.ok) {
+          show('ok', r.message || "Got it — we'll be in touch to set up your demo.");
+          form.reset();
+        } else {
+          show('err', (r && r.message) || 'Please double-check the form and try again.');
+        }
+      })
+      .catch(function () {
+        show('err', "Something went wrong placing the call. Text or call John at <a href='tel:2602299393' style='color:var(--gold);'>260-229-9393</a> and he'll set it up.");
+      })
+      .finally(function () { btn.disabled = false; btn.textContent = original; });
   });
 })();
 </script>
