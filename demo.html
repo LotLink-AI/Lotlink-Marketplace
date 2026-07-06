@@ -144,6 +144,21 @@
   .callme-form { padding:30px 26px; }
   .callme-form .frow { flex-direction:column; gap:0; }
 }
+
+/* ── Sample email preview (real template, snapshotted, shown in a mail frame) ── */
+.email-stage { padding:8px 48px 84px; max-width:720px; margin:0 auto; }
+.email-client { border:1px solid var(--border-hover); border-radius:16px; overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,0.45); background:#0d1e38; }
+.email-topbar { display:flex; align-items:center; gap:13px; padding:15px 20px; background:rgba(0,0,0,0.28); border-bottom:1px solid var(--border); }
+.email-avatar { width:42px; height:42px; border-radius:50%; background:linear-gradient(135deg,var(--accent),var(--gold)); display:flex; align-items:center; justify-content:center; font-weight:700; color:#fff; font-size:17px; flex-shrink:0; }
+.email-meta { flex:1; min-width:0; }
+.email-from { font-size:14px; color:var(--white); font-weight:600; }
+.email-from span { color:var(--text-dim); font-weight:400; font-size:12px; }
+.email-subject { font-size:13px; color:var(--text-muted); margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.email-time { font-size:12px; color:var(--text-dim); flex-shrink:0; }
+.email-body { background:#f4f5f7; }
+.email-body iframe { width:100%; height:820px; border:0; display:block; }
+.email-foot { padding:12px 20px; font-size:12px; color:var(--gold-light); text-align:center; border-top:1px solid var(--border); background:rgba(232,160,32,0.06); }
+@media (max-width:768px){ .email-stage{ padding:8px 20px 60px; } }
 </style>
 </head>
 <body>
@@ -321,6 +336,42 @@
       </form>
     </div>
   </section>
+
+  <!-- ── See a sample email (view-only; the REAL template, snapshotted) ──── -->
+  <section class="email-stage" id="sample-email">
+    <div class="callme-head">
+      <div class="section-label">Live demo · email</div>
+      <h2>And the follow-up <em>email</em> they get.</h2>
+      <p>Leads that come in by email get a reply like this in seconds — the exact vehicle they asked about, a clear next step, and your branding. This is a real one.</p>
+    </div>
+
+    <div class="email-client">
+      <div class="email-topbar">
+        <div class="email-avatar">J</div>
+        <div class="email-meta">
+          <div class="email-from">Jordan <span>&lt;jordan@lotlinkin.com&gt;</span></div>
+          <div class="email-subject">Re: the 2021 Silverado you asked about</div>
+        </div>
+        <div class="email-time">just now</div>
+      </div>
+      <div class="email-body">
+        <iframe id="sampleEmailFrame" src="demo-email.html" title="Sample email from Jordan" loading="lazy" scrolling="no"></iframe>
+      </div>
+      <div class="email-foot">A real Jordan email — sent automatically, seconds after a lead comes in.</div>
+    </div>
+  </section>
+
+  <script>
+  /* Size the email frame to its content so the whole email shows, no scroll
+     (same-origin snapshot, so contentDocument is readable). */
+  (function () {
+    var f = document.getElementById('sampleEmailFrame');
+    if (!f) return;
+    function fit() { try { var h = f.contentDocument.body.scrollHeight; if (h > 200) f.style.height = (h + 8) + 'px'; } catch (e) {} }
+    f.addEventListener('load', fit);
+    window.addEventListener('resize', fit);
+  })();
+  </script>
 
   <section class="section demo-behind">
     <div style="text-align:center; max-width:640px; margin:0 auto;">
