@@ -42,6 +42,7 @@
     contact: 'inquiry', // the generic contact.html form routes through the inquiry endpoint
     dealer_partnership: 'dealer-partnership',
     demo_call: 'demo-call', // "Have Jordan call you" live voice demo (places a real call)
+    demo_sms: 'demo-text',  // "Get a text from Jordan" live SMS demo (sends a real text)
   };
 
   /** Collect a form's fields into a plain JSON object. */
