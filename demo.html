@@ -23,7 +23,8 @@
 <link rel="stylesheet" href="style.css">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <script src="assets/site.js" defer></script>
-<script src="assets/lead-submit.js" defer></script>
+<!-- NO defer: the demo-form inline handlers below need window.LotLinkLead at parse time -->
+<script src="assets/lead-submit.js"></script>
 
 <style>
 /* ── DEMO PAGE ───────────────────────────────────────────────────────── */
@@ -484,7 +485,11 @@
   var form = document.getElementById('demoCallForm');
   var statusEl = document.getElementById('demoCallStatus');
   var btn = form && form.querySelector('button[type="submit"]');
-  if (!form || !statusEl || !window.LotLinkLead) return;
+  if (!form || !statusEl || !window.LotLinkLead) {
+    // Without this handler the form falls back to a native GET reload — never fail silently.
+    console.error('[demo-form] submit handler NOT attached', { form: !!form, statusEl: !!statusEl, LotLinkLead: !!window.LotLinkLead });
+    return;
+  }
   var API = (window.LOTLINK_API_BASE || 'https://lotlink-api-production.up.railway.app').replace(/\/$/, '');
   function show(cls, html) { statusEl.className = 'callme-status ' + cls; statusEl.innerHTML = html; }
 
@@ -530,7 +535,11 @@
   var form = document.getElementById('demoTextForm');
   var statusEl = document.getElementById('demoTextStatus');
   var btn = form && form.querySelector('button[type="submit"]');
-  if (!form || !statusEl || !window.LotLinkLead) return;
+  if (!form || !statusEl || !window.LotLinkLead) {
+    // Without this handler the form falls back to a native GET reload — never fail silently.
+    console.error('[demo-form] submit handler NOT attached', { form: !!form, statusEl: !!statusEl, LotLinkLead: !!window.LotLinkLead });
+    return;
+  }
   var API = (window.LOTLINK_API_BASE || 'https://lotlink-api-production.up.railway.app').replace(/\/$/, '');
   function show(cls, html) { statusEl.className = 'callme-status ' + cls; statusEl.innerHTML = html; }
 
