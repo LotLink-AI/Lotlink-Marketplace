@@ -31,7 +31,7 @@
   // TEMPORARY: pointing directly at Railway's default host until the
   // app.lotlinkin.com CNAME propagates and Railway issues the SSL cert.
   // Flip back to 'https://app.lotlinkin.com' once DNS resolves.
-  var DEFAULT_API_BASE = 'https://lotlink-api-production.up.railway.app';
+  var DEFAULT_API_BASE = 'https://dashboard.lotlinkin.com';
   var FORMSPREE_URL = 'https://formspree.io/f/xgonwnea';
   var API_TIMEOUT_MS = 6000;
 

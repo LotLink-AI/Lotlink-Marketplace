@@ -59,7 +59,7 @@ window.LOTLINK_INVENTORY = [
 // ── Live feed from the BDC scraper ───────────────────────────────────────────
 // The BDC on Railway runs an hourly scraper that pulls the House of Carz
 // ProMax feed into a Postgres table, and exposes a public endpoint:
-//   GET https://lotlink-api-production.up.railway.app/api/inventory
+//   GET https://dashboard.lotlinkin.com/api/inventory
 //       ?dealership_id=<HoC UUID>
 // This block fetches that feed on every page load, maps the API shape into
 // the shape the rest of inventory.html / vehicle.html expect, and overwrites
@@ -73,7 +73,7 @@ window.LOTLINK_INVENTORY = [
   // House of Carz dealership id in the BDC. When we onboard dealer #2 we'll
   // either union multiple dealerships or move this to a multi-tenant endpoint.
   var HOC_ID = 'cfff76a7-6385-4e2c-b4ee-63418198a564';
-  var API = 'https://lotlink-api-production.up.railway.app/api/inventory?dealership_id=' + HOC_ID;
+  var API = 'https://dashboard.lotlinkin.com/api/inventory?dealership_id=' + HOC_ID;
   // If network/API hiccups, give up fast and keep the static fallback.
   var TIMEOUT_MS = 6000;
 
