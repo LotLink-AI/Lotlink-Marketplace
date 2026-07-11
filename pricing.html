@@ -330,7 +330,7 @@
       </ul>
       <a href="signup.html?plan=starter" class="tier-cta" data-signup-href="signup.html?plan=starter">Sign Up Now</a>
     </div>
-    <div class="tier-card" data-plan="growth">
+    <div class="tier-card featured" data-plan="growth">
       <div class="tier-price"
            data-price-monthly='$1,499 <span>/ mo</span>'
            data-price-yearly='$14,990 <span>/ yr</span>'>$1,499 <span>/ mo</span></div>
@@ -362,9 +362,12 @@
       <div class="tier-saving">Save $3,998/year · 2 months free</div>
       <div class="tier-name">Pro</div>
       <!-- Live count populated by the inline script before </body>. The
-           hardcoded "10 of 10" is the non-JS fallback and the first-paint
-           value. -->
-      <div class="fp-spots">⏳ <span data-fp-counter>9 of 10</span> Founding Partner spots remaining</div>
+           hardcoded text is the non-JS fallback and the first-paint value.
+           The SPAN holds the ENTIRE phrase: the counter script paints the
+           API's label ("9 of 10 spots remaining") into it, so any static
+           text after the span duplicates the phrase (the "9 of 10 spots
+           remaining Founding Partner spots remaining" bug, fixed 7/11). -->
+      <div class="fp-spots">⏳ <span data-fp-counter>9 of 10 spots remaining</span></div>
       <ul class="tier-features">
         <li class="gold-check">Everything in Growth, plus:</li>
         <li class="gold-check">Unlimited leads · multi-rooftop</li>
