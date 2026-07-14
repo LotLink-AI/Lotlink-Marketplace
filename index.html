@@ -93,10 +93,11 @@
   color:rgba(255,255,255,0.78); letter-spacing:0.3px;
 }
 
-/* Dashboard tour — CSS-only crossfading carousel of mock product frames.
-   Four 5-second frames in a 20-second cycle. Pure HTML/CSS so no JS,
-   no asset weight, and no risk of broken images. Real screenshots can
-   replace these <div> mockups once John ships v2. */
+/* Dashboard tour — crossfading carousel of four REAL dashboard screenshots
+   (House of Carz production, captured 2026-07-14; every customer shown in a
+   frame is fictional/seeded — no real customer data). Same pure-CSS 20-second
+   dashFade cycle as the old mockups. To refresh the frames, see
+   lotlink-api scripts/seed-screenshot-contacts.js + the capture notes there. */
 .hero-dash {
   flex:1 1 480px; max-width:560px;
   aspect-ratio:5/4;
@@ -128,17 +129,18 @@
   font-size:10px; letter-spacing:1.5px; text-transform:uppercase;
   color:rgba(255,255,255,0.5); font-weight:600;
 }
-.dash-frame {
-  position:absolute;
-  inset:46px 18px 18px 18px;
+.dash-shot {
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover; object-position:top;
+  border-radius:13px;
   opacity:0;
   animation:dashFade 20s ease-in-out infinite;
-  display:flex; flex-direction:column; gap:10px;
 }
-.dash-frame:nth-child(1) { animation-delay:0s; }
-.dash-frame:nth-child(2) { animation-delay:5s; }
-.dash-frame:nth-child(3) { animation-delay:10s; }
-.dash-frame:nth-child(4) { animation-delay:15s; }
+.dash-shot:nth-of-type(1) { animation-delay:0s; }
+.dash-shot:nth-of-type(2) { animation-delay:5s; }
+.dash-shot:nth-of-type(3) { animation-delay:10s; }
+.dash-shot:nth-of-type(4) { animation-delay:15s; }
 @keyframes dashFade {
   0%   { opacity:0; }
   2%   { opacity:1; }
@@ -146,66 +148,6 @@
   25%  { opacity:0; }
   100% { opacity:0; }
 }
-.dash-h {
-  font-size:11px; letter-spacing:1px; text-transform:uppercase;
-  color:rgba(255,255,255,0.6); font-weight:700; margin-bottom:4px;
-}
-.dash-kpis { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
-.dash-kpi {
-  background:rgba(255,255,255,0.05); border:1px solid var(--border);
-  border-radius:6px; padding:12px 14px;
-}
-.dash-kpi .n { font-family:'Bebas Neue',sans-serif; font-size:28px; color:var(--gold); line-height:1; }
-.dash-kpi .l { font-size:10px; color:rgba(255,255,255,0.55); letter-spacing:0.5px; margin-top:4px; }
-.dash-row {
-  display:flex; align-items:center; gap:10px;
-  background:rgba(255,255,255,0.04); border:1px solid var(--border);
-  border-radius:6px; padding:10px 12px; font-size:12px;
-}
-.dash-row .av {
-  width:28px; height:28px; min-width:28px; border-radius:50%;
-  background:linear-gradient(135deg, var(--blue), var(--sky));
-  display:flex; align-items:center; justify-content:center;
-  font-size:11px; font-weight:700; color:var(--white);
-}
-.dash-row .nm { font-weight:600; color:var(--white); font-size:12px; }
-.dash-row .pv { color:rgba(255,255,255,0.6); font-size:11px; }
-.dash-row .ts { margin-left:auto; font-size:10px; color:var(--text-muted); }
-.dash-row .badge { font-size:9px; padding:2px 7px; border-radius:999px; font-weight:700; letter-spacing:0.5px; text-transform:uppercase; }
-.badge-hot { background:rgba(239,68,68,0.18); color:#fca5a5; }
-.badge-new { background:rgba(91,163,217,0.18); color:var(--sky); }
-.badge-set { background:rgba(34,197,94,0.18); color:#86efac; }
-.dash-card {
-  background:rgba(255,255,255,0.04); border:1px solid var(--border);
-  border-radius:6px; padding:14px;
-  display:flex; flex-direction:column; gap:8px;
-  flex:1;
-}
-.dash-card .title { font-family:'DM Serif Display',serif; font-size:15px; color:var(--white); line-height:1.2; }
-.dash-card .meta { font-size:11px; color:var(--text-muted); }
-.dash-bar { display:flex; align-items:center; gap:8px; }
-.dash-bar .lbl { font-size:10px; color:rgba(255,255,255,0.55); min-width:70px; }
-.dash-bar .fill { flex:1; height:6px; background:rgba(255,255,255,0.06); border-radius:999px; position:relative; overflow:hidden; }
-.dash-bar .fill::after { content:''; position:absolute; top:0; left:0; bottom:0; background:linear-gradient(90deg, var(--sky), var(--gold)); border-radius:999px; }
-.dash-bar.f1 .fill::after { width:87%; }
-.dash-bar.f2 .fill::after { width:62%; }
-.dash-bar.f3 .fill::after { width:94%; background:var(--gold); }
-.dash-bar .val { font-size:11px; color:var(--white); min-width:34px; text-align:right; font-weight:600; }
-.dash-wave {
-  display:flex; gap:3px; align-items:flex-end;
-  height:32px; padding:6px 0;
-}
-.dash-wave i {
-  width:3px; background:linear-gradient(180deg, var(--sky), var(--blue));
-  border-radius:2px; opacity:0.9;
-}
-.dash-transcript {
-  font-size:11px; line-height:1.55; color:rgba(255,255,255,0.78);
-  background:rgba(0,0,0,0.18); padding:10px 12px; border-radius:5px;
-  border:1px solid var(--border);
-}
-.dash-transcript b { color:var(--gold); font-weight:600; }
-.dash-transcript em { color:var(--sky); font-style:normal; font-weight:600; }
 
 /* ── How it works (3 numbered steps for Jordan's flow) ───────────────── */
 .steps-saas {
@@ -506,94 +448,15 @@
     </div>
   </div>
 
-  <!-- Dashboard tour — animated CSS carousel cycling through 4 mock
-       product views. Pure HTML/CSS, no JS, no asset weight. -->
-  <aside class="hero-dash" aria-label="LotLink dashboard preview">
+  <!-- Dashboard tour — four REAL dashboard screenshots (House of Carz
+       production; every customer visible is fictional/seeded, no real
+       customer data). Crossfades via the same pure-CSS dashFade cycle. -->
+  <aside class="hero-dash" aria-label="LotLink dashboard preview — real product screenshots">
     <div class="dash-label">LotLink Dashboard</div>
-
-    <!-- Frame 1 — Overview KPIs -->
-    <div class="dash-frame">
-      <div class="dash-h">Today · Overview</div>
-      <div class="dash-kpis">
-        <div class="dash-kpi"><div class="n">47</div><div class="l">Leads worked</div></div>
-        <div class="dash-kpi"><div class="n">12</div><div class="l">Appointments set</div></div>
-        <div class="dash-kpi"><div class="n">38s</div><div class="l">Avg response time</div></div>
-        <div class="dash-kpi"><div class="n">3</div><div class="l">Hot follow-ups</div></div>
-      </div>
-      <div class="dash-card" style="flex:0 0 auto;">
-        <div class="dash-bar f1"><span class="lbl">Mon</span><span class="fill"></span><span class="val">87</span></div>
-        <div class="dash-bar f2"><span class="lbl">Tue</span><span class="fill"></span><span class="val">62</span></div>
-        <div class="dash-bar f3"><span class="lbl">Wed</span><span class="fill"></span><span class="val">94</span></div>
-      </div>
-    </div>
-
-    <!-- Frame 2 — Inbox -->
-    <div class="dash-frame">
-      <div class="dash-h">Inbox · 5 active conversations</div>
-      <div class="dash-row">
-        <div class="av">MK</div>
-        <div><div class="nm">Mike K.</div><div class="pv">"Is the Silverado still available?"</div></div>
-        <span class="badge badge-hot">Hot</span>
-        <span class="ts">38s</span>
-      </div>
-      <div class="dash-row">
-        <div class="av">SR</div>
-        <div><div class="nm">Sarah R.</div><div class="pv">"Can I trade in my 2018 Accord?"</div></div>
-        <span class="badge badge-new">New</span>
-        <span class="ts">2m</span>
-      </div>
-      <div class="dash-row">
-        <div class="av">JD</div>
-        <div><div class="nm">James D.</div><div class="pv">"Booked for Saturday at 11am ✓"</div></div>
-        <span class="badge badge-set">Set</span>
-        <span class="ts">14m</span>
-      </div>
-      <div class="dash-row">
-        <div class="av">AR</div>
-        <div><div class="nm">Alex R.</div><div class="pv">"Need monthly under $400…"</div></div>
-        <span class="badge badge-new">New</span>
-        <span class="ts">22m</span>
-      </div>
-    </div>
-
-    <!-- Frame 3 — Contact card with lead score -->
-    <div class="dash-frame">
-      <div class="dash-h">Contact · Mike Karpentny</div>
-      <div class="dash-card">
-        <div class="title">2024 Silverado 1500 LTZ</div>
-        <div class="meta">Stock #7841 · $42,990 · 18,200 mi</div>
-        <div class="dash-bar f3"><span class="lbl">Lead Score</span><span class="fill"></span><span class="val">94</span></div>
-        <div class="dash-bar f1"><span class="lbl">Engagement</span><span class="fill"></span><span class="val">87</span></div>
-        <div class="dash-bar f2"><span class="lbl">Intent</span><span class="fill"></span><span class="val">62</span></div>
-      </div>
-      <div class="dash-row" style="background:rgba(34,197,94,0.06);border-color:rgba(34,197,94,0.2);">
-        <div class="av" style="background:linear-gradient(135deg,#16a34a,#22c55e);">J</div>
-        <div><div class="nm">Jordan AI</div><div class="pv">Appointment booked · Sat 11am</div></div>
-        <span class="ts">just now</span>
-      </div>
-    </div>
-
-    <!-- Frame 4 — Live call with waveform + transcript -->
-    <div class="dash-frame">
-      <div class="dash-h">Call · Inbound · 00:47</div>
-      <div class="dash-card">
-        <div class="dash-wave" aria-hidden="true">
-          <i style="height:40%"></i><i style="height:72%"></i><i style="height:55%"></i>
-          <i style="height:88%"></i><i style="height:60%"></i><i style="height:40%"></i>
-          <i style="height:78%"></i><i style="height:92%"></i><i style="height:50%"></i>
-          <i style="height:64%"></i><i style="height:82%"></i><i style="height:48%"></i>
-          <i style="height:70%"></i><i style="height:56%"></i><i style="height:88%"></i>
-          <i style="height:46%"></i><i style="height:74%"></i><i style="height:62%"></i>
-          <i style="height:84%"></i><i style="height:54%"></i><i style="height:68%"></i>
-          <i style="height:80%"></i><i style="height:44%"></i><i style="height:72%"></i>
-        </div>
-        <div class="dash-transcript">
-          <em>Jordan:</em> Thanks for calling, this is Jordan with House of Carz — how can I help you today?<br>
-          <em>Caller:</em> I saw a black F-150 on your site. Is that still available?<br>
-          <em>Jordan:</em> <b>The 2022 F-150 XLT, stock 4412 — yes, that one's on the lot.</b> Want me to set up a time for you to come look?
-        </div>
-      </div>
-    </div>
+    <img class="dash-shot" src="assets/dash-overview.webp" alt="LotLink dashboard Overview — today's workplan, appointments, scheduled calls, hot leads, and weekly KPIs" width="1120" height="896" decoding="async">
+    <img class="dash-shot" src="assets/dash-thread.webp" alt="LotLink inbox — SMS thread where Jordan books a Saturday test drive, with the inbound call transcript inline" width="1120" height="896" decoding="async" loading="lazy">
+    <img class="dash-shot" src="assets/dash-aiperf.webp" alt="AI Performance — leads worked, customer touches, appointments booked, and the lead funnel, all-time" width="1120" height="896" decoding="async" loading="lazy">
+    <img class="dash-shot" src="assets/dash-inventory.webp" alt="Inventory — the live House of Carz lot with photos, prices, stock numbers, and prospect counts" width="1120" height="896" decoding="async" loading="lazy">
   </aside>
 </section>
 
