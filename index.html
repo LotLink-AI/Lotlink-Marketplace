@@ -99,43 +99,38 @@
    dashFade cycle as the old mockups. To refresh the frames, see
    lotlink-api scripts/seed-screenshot-contacts.js + the capture notes there. */
 .hero-dash {
-  flex:1 1 480px; max-width:560px;
-  aspect-ratio:5/4;
+  /* No flex-basis: .page-hero (style.css) makes the hero a COLUMN, so a
+     480px basis becomes a forced HEIGHT that squashed/cropped the frames
+     (the pre-2026-07-15 "cut off + red rectangle" bug). Height comes from
+     the first in-flow screenshot now. */
+  flex:0 0 auto; width:min(560px, 100%);
   position:relative;
   background:linear-gradient(135deg, rgba(46,117,182,0.12), rgba(232,160,32,0.06));
   border:1px solid var(--border-hover);
   border-radius:14px;
-  padding:14px;
+  padding:12px;
   box-shadow:0 24px 64px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.04) inset;
   overflow:hidden;
+  line-height:0; /* whitespace between the stacked <img>s must not add a phantom line box below the frame */
 }
-.hero-dash::before {
-  content:''; position:absolute; top:0; left:0; right:0; height:36px;
-  background:linear-gradient(180deg, rgba(0,0,0,0.35), transparent);
-  border-bottom:1px solid var(--border);
-  z-index:1;
-}
-.hero-dash::after {
-  /* Three "window dots" — give the carousel an in-product feel. */
-  content:''; position:absolute; top:14px; left:18px; z-index:2;
-  width:46px; height:8px;
-  background:
-    radial-gradient(circle 4px at 4px 4px, #ff5f57 100%, transparent 100%),
-    radial-gradient(circle 4px at 19px 4px, #febc2e 100%, transparent 100%),
-    radial-gradient(circle 4px at 34px 4px, #28c840 100%, transparent 100%);
-}
-.dash-label {
-  position:absolute; top:14px; right:18px; z-index:2;
-  font-size:10px; letter-spacing:1.5px; text-transform:uppercase;
-  color:rgba(255,255,255,0.5); font-weight:600;
-}
+/* The FIRST screenshot flows normally and sets the card's height, so the
+   card always matches the images' exact 5:4 shape — no aspect-ratio math,
+   no object-fit:cover, NOTHING is ever cropped. (2026-07-15, John: the old
+   cover-crop clipped each frame's right edge — red score pills / buttons
+   became anonymous "red rectangles" hugging the corner.) The other three
+   stack on top of it and crossfade. The old fake window-dots chrome is
+   gone: the screenshots carry the real dashboard nav. */
 .dash-shot {
-  position:absolute; inset:0;
-  width:100%; height:100%;
-  object-fit:cover; object-position:top;
-  border-radius:13px;
+  display:block;
+  width:100%; height:auto;
+  border-radius:8px;
   opacity:0;
   animation:dashFade 20s ease-in-out infinite;
+}
+.dash-shot + .dash-shot {
+  position:absolute;
+  top:12px; left:12px;
+  width:calc(100% - 24px); height:auto;
 }
 .dash-shot:nth-of-type(1) { animation-delay:0s; }
 .dash-shot:nth-of-type(2) { animation-delay:5s; }
@@ -452,7 +447,6 @@
        production; every customer visible is fictional/seeded, no real
        customer data). Crossfades via the same pure-CSS dashFade cycle. -->
   <aside class="hero-dash" aria-label="LotLink dashboard preview — real product screenshots">
-    <div class="dash-label">LotLink Dashboard</div>
     <img class="dash-shot" src="assets/dash-overview.webp" alt="LotLink dashboard Overview — today's workplan, appointments, scheduled calls, hot leads, and weekly KPIs" width="1120" height="896" decoding="async">
     <img class="dash-shot" src="assets/dash-thread.webp" alt="LotLink inbox — SMS thread where Jordan books a Saturday test drive, with the inbound call transcript inline" width="1120" height="896" decoding="async" loading="lazy">
     <img class="dash-shot" src="assets/dash-aiperf.webp" alt="AI Performance — leads worked, customer touches, appointments booked, and the lead funnel, all-time" width="1120" height="896" decoding="async" loading="lazy">
