@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Receipts Update Themselves Now — LotLink</title>
+<meta name="description" content="Our homepage now shows our real production numbers — pulled from the same dashboard our dealership runs on, refreshed every week, win or lose. The screenshots are the actual product. And Jordan learned to page a human the moment he's out of his depth.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://lotlinkin.com/blog/the-receipts-update-themselves.html">
+
+<meta property="og:type" content="article">
+<meta property="article:author" content="John Roberts">
+<meta property="article:published_time" content="2026-07-15">
+<meta property="og:site_name" content="LotLink">
+<meta property="og:title" content="The Receipts Update Themselves Now">
+<meta property="og:description" content="Real production numbers on the homepage, refreshed weekly — win or lose. Real screenshots of the real product. And an AI that pages a human the moment a question isn't his to answer.">
+<meta property="og:url" content="https://lotlinkin.com/blog/the-receipts-update-themselves.html">
+<meta property="og:image" content="https://lotlinkin.com/assets/dash-overview.webp">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<script src="../assets/site.js" defer></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "The Receipts Update Themselves Now",
+  "author": { "@type": "Person", "name": "John Roberts" },
+  "datePublished": "2026-07-15",
+  "image": "https://lotlinkin.com/assets/dash-overview.webp",
+  "url": "https://lotlinkin.com/blog/the-receipts-update-themselves.html",
+  "publisher": { "@type": "Organization", "name": "LotLink" }
+}
+</script>
+
+<style>
+/* Same shell as the rest of the blog. */
+
+.article-hero { padding:140px 32px 48px; max-width:760px; margin:0 auto; }
+.article-hero .meta {
+  font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--gold);
+  margin-bottom:18px; display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+}
+.article-hero .meta .dot { width:3px; height:3px; background:var(--gray); border-radius:50%; }
+.article-hero h1 {
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(34px,4.5vw,56px); line-height:1.15; color:var(--white);
+  margin-bottom:20px;
+}
+.article-hero .lede {
+  font-size:18px; font-weight:300; color:rgba(255,255,255,0.78); line-height:1.65;
+}
+
+.byline-strip {
+  max-width:760px; margin:32px auto 0;
+  padding:20px 32px; display:flex; align-items:center; gap:14px;
+  border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+}
+.byline-photo {
+  width:44px; height:44px; border-radius:50%;
+  background:linear-gradient(135deg, rgba(46,117,182,0.4), rgba(232,160,32,0.3));
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Bebas Neue',sans-serif; font-size:18px; color:var(--white); letter-spacing:1px;
+  flex-shrink:0; overflow:hidden;
+}
+.byline-photo img { width:100%; height:100%; object-fit:cover; }
+.byline-text .name { font-size:14px; font-weight:600; color:var(--white); }
+.byline-text .role { font-size:12px; color:var(--text-muted); }
+
+article.post-body {
+  max-width:680px; margin:0 auto; padding:48px 32px 80px;
+  font-size:17px; line-height:1.8; color:rgba(255,255,255,0.82);
+}
+article.post-body p { margin-bottom:24px; }
+article.post-body h2 {
+  font-family:'DM Serif Display',serif;
+  font-size:28px; line-height:1.25; color:var(--white);
+  margin:48px 0 18px;
+}
+article.post-body ul { margin:0 0 24px; padding-left:22px; }
+article.post-body li { margin-bottom:12px; }
+article.post-body strong { color:var(--white); font-weight:600; }
+article.post-body em { color:rgba(255,255,255,0.92); font-style:italic; }
+article.post-body a { color:var(--sky); text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:3px; }
+article.post-body a:hover { color:var(--gold); }
+
+.aside {
+  border-left:3px solid var(--gold);
+  padding:6px 0 6px 22px;
+  margin:32px 0; color:rgba(255,255,255,0.95);
+  font-family:'DM Serif Display',serif;
+  font-size:22px; line-height:1.5; font-style:italic;
+}
+
+.stat-grid {
+  display:grid; grid-template-columns:repeat(4,1fr); gap:14px;
+  margin:36px 0;
+}
+.stat-grid .cell {
+  background:rgba(255,255,255,0.04); border:1px solid var(--border);
+  border-radius:8px; padding:18px 14px; text-align:center;
+}
+.stat-grid .cell .num {
+  font-family:'Bebas Neue',sans-serif; font-size:34px; color:var(--gold); line-height:1;
+  margin-bottom:8px;
+}
+.stat-grid .cell .desc { font-size:11px; color:var(--text-muted); line-height:1.4; letter-spacing:0.3px; }
+@media (max-width:700px) { .stat-grid { grid-template-columns:repeat(2,1fr); } }
+
+.post-cta {
+  max-width:680px; margin:0 auto 80px;
+  background:linear-gradient(135deg,rgba(232,160,32,0.10),rgba(46,117,182,0.08));
+  border:1px solid rgba(232,160,32,0.30); border-radius:10px;
+  padding:40px 36px; text-align:center;
+}
+.post-cta h3 { font-family:'DM Serif Display',serif; font-size:26px; color:var(--white); margin-bottom:12px; }
+.post-cta p { font-size:14px; color:var(--text-muted); line-height:1.7; margin-bottom:24px; }
+.post-cta .ctas { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">Lot<span>Link</span></a>
+  <ul id="nav-links" class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../pricing.html">Pricing</a></li>
+    <li><a href="../demo.html">Demo</a></li>
+    <li><a href="../blog/" class="active">Blog</a></li>
+    <li><a href="../faq.html">FAQ</a></li>
+    <li><a href="../contact.html">Contact</a></li>
+  </ul>
+  <button class="nav-mobile-btn" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+    <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+  </button>
+</nav>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<main id="main">
+
+<section class="article-hero">
+  <div class="meta">
+    <span>Behind the Build</span>
+    <span class="dot"></span>
+    <span>5 min read</span>
+    <span class="dot"></span>
+    <span>July 15, 2026</span>
+  </div>
+  <h1>The Receipts Update Themselves Now</h1>
+  <p class="lede">A month ago I published thirty days of receipts. This week we wired the receipts straight into the homepage — real production totals, refreshed every week, whether they make us look good or not.</p>
+</section>
+
+<div class="byline-strip">
+  <div class="byline-photo">JR</div>
+  <div class="byline-text">
+    <div class="name">John Roberts</div>
+    <div class="role">Sales &amp; F&amp;I Manager, House of Carz · Founder, LotLink</div>
+  </div>
+</div>
+
+<article class="post-body">
+
+<p>Back in June I posted <a href="30-days-with-jordan.html">"30 Days with Jordan: The Receipts"</a> — six car deals, roughly $19,200 in attributed revenue, one AI BDC at the independent store where I run sales and F&amp;I. It was honest the day it went up. And it started aging the minute I hit publish.</p>
+
+<p>That's the flaw in every case study you've ever been pitched: it's a snapshot, chosen by the vendor, frozen at their best angle. Nobody publishes the slow month. So last week we did something I haven't seen another AI company do.</p>
+
+<p><strong>The numbers on our homepage are now live production data.</strong> Same source as the dashboard House of Carz opens every morning — not marketing copy that <em>mentions</em> numbers, but the actual totals, pulled from the actual system, refreshed every week. As of this week's refresh, day 78 in production:</p>
+
+<div class="stat-grid">
+  <div class="cell"><div class="num">790</div><div class="desc">Phone calls handled<br>(inbound + outbound)</div></div>
+  <div class="cell"><div class="num">2,747</div><div class="desc">Texts &amp; emails<br>sent by Jordan</div></div>
+  <div class="cell"><div class="num">42</div><div class="desc">Appointments booked<br>for the sales floor</div></div>
+  <div class="cell"><div class="num">280<span style="font-size:20px;color:var(--text-muted);">/281</span></div><div class="desc">Leads worked —<br>one got away from us</div></div>
+</div>
+
+<p>Median response to a new lead: <strong>2.4 minutes</strong>, with 86% answered inside the five-minute window where deals are actually won. And here's the part that matters: the refresh isn't curated. If Jordan has a slow week, those totals crawl — in public. There's no version of this where I hide a bad stretch behind a "contact sales" wall. That's the point.</p>
+
+<h2>The screenshots were pretty. They were also fake.</h2>
+
+<p>Confession: until last week, the "dashboard" on our homepage was a mockup I had built in code. Plausible numbers, invented customers, a tidy little fake waveform. Every software vendor does this — it's so normal that nobody thinks to call it what it is. It never sat right with me.</p>
+
+<p>So we replaced every frame with captures of the real thing. What cycles on the homepage now is the actual morning workplan Jordan builds, a real booking conversation — the text thread <em>and</em> the call transcript — the receipts tab, and the actual House of Carz lot. The trucks in that inventory screenshot are for sale in Rochester right now.</p>
+
+<p>One honest footnote: the customers you see in those frames are fictional stand-ins. We seeded the demo data ourselves, because our customers' privacy isn't marketing material. The interface, the numbers, the inventory — all real.</p>
+
+<h2>An AI that knows what it doesn't know</h2>
+
+<p>Something else shipped this week, and it started with a real conversation. A customer asked Jordan whether she was pre-approved on her financing application. That is not an AI's question to answer — it's a person's. Jordan already knew to step back and hand the thread to a human. What was missing was the tap on the shoulder: the handoff happened quietly, and a customer who deserved a fast answer from a person got silence instead.</p>
+
+<p>We caught it in a live thread that night and closed the gap before the next morning — if you read <a href="the-night-jordan-went-quiet.html">"The Night Jordan Went Quiet,"</a> you know that's how it works around here. Now, the moment Jordan decides a conversation needs a human — a financing status, a manager question, anything above his pay grade — the assigned rep's phone buzzes with the thread and exactly what the customer needs. He doesn't guess. He doesn't improvise an answer to a question that was never his.</p>
+
+<div class="aside">"An AI that knows when to get a human is worth more than one that always has an answer."</div>
+
+<p>I'd rather tell you that story than pretend the gap never existed, because a vendor who says their AI has no gaps is describing an AI they haven't watched closely enough.</p>
+
+<h2>Three questions to ask any AI vendor</h2>
+
+<ul>
+  <li><strong>Can I see live numbers?</strong> Not a case study from four months ago — numbers that update, from the system, where a bad week would show.</li>
+  <li><strong>Are the screenshots real?</strong> Ask them directly. If the product shots are mockups, ask why.</li>
+  <li><strong>What happens when the AI is out of its depth?</strong> The honest answer involves a human getting notified. The dangerous answer is "that doesn't really happen."</li>
+</ul>
+
+<p>Our answers are sitting on <a href="../index.html">the homepage</a>, refreshed weekly. If those numbers ever stop updating, that tells you something too.</p>
+
+</article>
+
+<div class="post-cta">
+  <h3>Go Check the Numbers</h3>
+  <p>Day 78 and counting — real production totals from a real Indiana dealership, updated every week, win or lose. Then spend two minutes as your own customer on the demo page. Founding Partner pricing is still open for the first dealers in — locked for life, with a 30-day money-back guarantee.</p>
+  <div class="ctas">
+    <a href="../index.html" class="btn-gold">See the Live Numbers &rarr;</a>
+    <a href="../demo.html" class="btn-outline">Try the Demo</a>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <div class="footer-brand">
+    <a href="../index.html" class="footer-logo">Lot<span>Link</span></a>
+    <p class="footer-tagline">AI BDC for<br>Independent Car Dealers</p>
+  </div>
+  <div class="footer-links">
+    <a href="../index.html">Home</a>
+    <a href="../pricing.html">Pricing</a>
+    <a href="../blog/">Blog</a>
+    <a href="../faq.html">FAQ</a>
+    <a href="../contact.html">Contact</a>
+    <a href="../privacy.html">Privacy</a>
+    <a href="../terms.html">Terms</a>
+  </div>
+  <div class="footer-contact">
+    <p>📞 <a href="tel:2602299393">260-229-9393</a></p>
+    <p>✉️ <a href="mailto:john@lotlinkin.com">john@lotlinkin.com</a></p>
+    <p>Rochester, Indiana</p>
+    <p class="footer-social">
+      <a href="https://www.facebook.com/profile.php?id=61589930562227" target="_blank" rel="noopener">Facebook</a> ·
+      <a href="https://www.instagram.com/lotlinkai/" target="_blank" rel="noopener">Instagram</a> ·
+      <a href="https://x.com/lotlinkin" target="_blank" rel="noopener">X</a> ·
+      <a href="https://www.linkedin.com/in/lotlinkjr/" target="_blank" rel="noopener">LinkedIn</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
